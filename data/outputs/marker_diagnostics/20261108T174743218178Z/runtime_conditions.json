@@ -1,0 +1,11 @@
+{
+  "marker_version": "2.1.0",
+  "python_environment": ".venv-marker",
+  "backend": "llamacpp",
+  "surya_inference_parallel": 1,
+  "hf_home": ".venv-marker/model-cache",
+  "initial_free_ram_kib": 903956,
+  "physical_ram_kib": 8198616,
+  "docling_output_sha256_before": "e46fdd00cfe887948ec09e7473f5204899fb87ddc6e2d56f2e2804ffec73b739",
+  "dependencies_modified_during_extraction": false
+}

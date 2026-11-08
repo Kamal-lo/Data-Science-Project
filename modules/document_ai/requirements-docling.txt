@@ -1,0 +1,16 @@
+# Paquets principaux verifies le 2026-11-08 dans .venv (Python 3.14.0).
+# Environnement distinct de Marker. Installation neuve non retestee.
+# Ceci ne constitue pas un verrouillage de toutes les dependances transitives.
+docling==2.148.0
+rapidocr==3.10.0
+onnxruntime==1.31.1
+pypdfium2==5.15.1
+pillow==13.0.0
+torch==2.15.0
+torchvision==0.29.2
+transformers==5.22.2
+numpy==2.5.4
+opencv-python-headless==5.0.0.93
+
+# Utilise uniquement par le diagnostic historique archive (PDF absent).
+PyMuPDF==2.1

@@ -1,0 +1,480 @@
+{
+  "source": "data/samples/test_dce.pdf",
+  "output": "data/outputs/docling_dce_result.md",
+  "pages": 28,
+  "pages_without_native_text": 28,
+  "characters": 87609,
+  "accented_letters": 2443,
+  "replacement_characters": 0,
+  "unexpected_control_characters": 0,
+  "tables": [
+    {
+      "rows_including_header": 12,
+      "columns": 2,
+      "cells": [
+        [
+          "Monsieur ; qualité",
+          ""
+        ],
+        [
+          "Agissant au nom et pour le compte de",
+          ""
+        ],
+        [
+          "Au capital de",
+          "Dirhams ;"
+        ],
+        [
+          "Faisant élection de domicile au",
+          ""
+        ],
+        [
+          "Adresse du siège social",
+          ""
+        ],
+        [
+          "Inscrite au registre du commerce à sous nº",
+          ""
+        ],
+        [
+          "Affiliée à la Caisse Nationale de Sécurité Sociale sous nº",
+          ""
+        ],
+        [
+          "Patente n°",
+          ""
+        ],
+        [
+          "Identifiant fiscal n°",
+          ""
+        ],
+        [
+          "Titulaire du compte bancaire nº",
+          ""
+        ],
+        [
+          "Ouvert à.",
+          ""
+        ],
+        [
+          "En vertu des pouvoirs qui lui sont conférés, dénommé ci-après «Titulaire»",
+          ""
+        ]
+      ],
+      "consistent_column_counts": true
+    },
+    {
+      "rows_including_header": 9,
+      "columns": 1,
+      "cells": [
+        [
+          "Monsieur ; qualité"
+        ],
+        [
+          "Agissant en mon nom personnel et pour mon propre compte ;"
+        ],
+        [
+          "Adresse du domicile élu"
+        ],
+        [
+          "Affilié à la C.N.S.S sous le n°"
+        ],
+        [
+          "Inscrit au registre du commerce de"
+        ],
+        [
+          "sous le nº N° de patente"
+        ],
+        [
+          "Titulaire du compte bancaire nº"
+        ],
+        [
+          "Ouvert à"
+        ],
+        [
+          "Dénommé ci-après «Titulaire»"
+        ]
+      ],
+      "consistent_column_counts": true
+    },
+    {
+      "rows_including_header": 2,
+      "columns": 3,
+      "cells": [
+        [
+          "DESIGNATION",
+          "PERIODE",
+          "QUANTITE"
+        ],
+        [
+          "Apport d'engrais complet NPK Apport d'engrais azoté Apport de fumier ou compost",
+          "Automne / Hiver Printemps / Eté Automne",
+          "30 à 50 g/m²"
+        ]
+      ],
+      "consistent_column_counts": true
+    },
+    {
+      "rows_including_header": 3,
+      "columns": 5,
+      "cells": [
+        [
+          "Cultures",
+          "Maladies /ennemies",
+          "Produits",
+          "Périodes (mois)",
+          "Fréquence"
+        ],
+        [
+          "Gazon",
+          "Chenille Cochenille Les verres de terre Courtilières",
+          "Me Typhon, Dursban Appât ou équivalent",
+          "Printemps et été",
+          "1 fois/mois"
+        ],
+        [
+          "Arbres Arbustes",
+          "Puceron La mouche blanche Cochenille noctuelles",
+          "Dursban Me Typhon ou équivalent",
+          "Toute l'année sauf l'hiver",
+          "1 fois/mois"
+        ]
+      ],
+      "consistent_column_counts": true
+    },
+    {
+      "rows_including_header": 8,
+      "columns": 5,
+      "cells": [
+        [
+          "Palmiers",
+          "Acariens",
+          "Neoron ou équivalent",
+          "été",
+          "1 fois/mois"
+        ],
+        [
+          "Massifs rosiers",
+          "Nématode",
+          "Nemacur, Mocap ou équivalent",
+          "été",
+          "2 fois/mois"
+        ],
+        [
+          "Massifs rosiers",
+          "Puceron cochenille",
+          "Ultracide ou équivalent",
+          "Printemps et été",
+          "1 fois/mois"
+        ],
+        [
+          "Massifs rosiers",
+          "Oidium Rouille",
+          "Banko plus semi8 ou équivalent",
+          "Printemps, été et automne",
+          "1 fois/mois"
+        ],
+        [
+          "Massifs rosiers",
+          "Mildiou Bactéries Alternaria",
+          "Ridomil Dithane ou similaire",
+          "Printemps, été et automne",
+          "1 fois/mois"
+        ],
+        [
+          "Arbres fruitiers",
+          "Puceron cochenille",
+          "Ultracide ou similaire",
+          "Printemps, été et automne",
+          "1 fois/mois"
+        ],
+        [
+          "Arbres fruitiers",
+          "Mineuse",
+          "Confidor ou similaire",
+          "Printemps, été et automne",
+          "1 fois/mois"
+        ],
+        [
+          "Arbres fruitiers",
+          "Gommose",
+          "Alliette ou similaire",
+          "En cas d'apparition",
+          "1 fois/mois"
+        ]
+      ],
+      "consistent_column_counts": true
+    },
+    {
+      "rows_including_header": 12,
+      "columns": 3,
+      "cells": [
+        [
+          "Désignation",
+          "Quantité minimale",
+          "Accessoires"
+        ],
+        [
+          "Matériel de tonte et de coupe",
+          "Matériel de tonte et de coupe",
+          "Lunette, Casque ou broyeur"
+        ],
+        [
+          "Tondeuse à gazon autotracté avec largeur de coupe de 53 cm",
+          "une 01",
+          "Lunette, Casque ou broyeur"
+        ],
+        [
+          "Débrousailleuse",
+          "01",
+          "Lunette, Casque ou broyeur"
+        ],
+        [
+          "Matériel de taille et élagage",
+          "Matériel de taille et élagage",
+          "Echelle, gants professionnel, casque"
+        ],
+        [
+          "Tronçonneuse",
+          "01",
+          "Echelle, gants professionnel, casque"
+        ],
+        [
+          "Echenilloir",
+          "01",
+          "Echelle, gants professionnel, casque"
+        ],
+        [
+          "Scie arboricole",
+          "01",
+          "Echelle, gants professionnel, casque"
+        ],
+        [
+          "Taille haie",
+          "01",
+          "Echelle, gants professionnel, casque"
+        ],
+        [
+          "Elagueur",
+          "01",
+          "Echelle, gants professionnel, casque"
+        ],
+        [
+          "Scie à main",
+          "01",
+          "Echelle, gants professionnel, casque"
+        ],
+        [
+          "Cisaille",
+          "01",
+          "Echelle, gants professionnel, casque"
+        ]
+      ],
+      "consistent_column_counts": true
+    },
+    {
+      "rows_including_header": 20,
+      "columns": 3,
+      "cells": [
+        [
+          "",
+          "01",
+          "Sécateur"
+        ],
+        [
+          "Matériel d'arrosage",
+          "",
+          ""
+        ],
+        [
+          "Tuyaux flexibles avec chariot mobile",
+          "02 Rouleau Outils de réparation des de (50m) fuites, pistolet d'arrosage",
+          ""
+        ],
+        [
+          "Tourniquet",
+          "02",
+          ""
+        ],
+        [
+          "Arrosoir",
+          "01",
+          ""
+        ],
+        [
+          "Matériel de traitement phytosanitaire",
+          "Matériel de traitement phytosanitaire",
+          "Lunette, gants professionnel, combinaison, masque panoramique silicone, casque"
+        ],
+        [
+          "Pulvérisateur thermique sur roues",
+          "01",
+          "Lunette, gants professionnel, combinaison, masque panoramique silicone, casque"
+        ],
+        [
+          "Pulvérisateur à dos porté",
+          "01",
+          "Lunette, gants professionnel, combinaison, masque panoramique silicone, casque"
+        ],
+        [
+          "Poudreuse",
+          "01",
+          "Lunette, gants professionnel, combinaison, masque panoramique silicone, casque"
+        ],
+        [
+          "Matériel des travaux de sol",
+          "",
+          ""
+        ],
+        [
+          "Houe",
+          "01",
+          ""
+        ],
+        [
+          "Binette",
+          "01",
+          ""
+        ],
+        [
+          "Pelle",
+          "01",
+          ""
+        ],
+        [
+          "Râteau",
+          "01",
+          ""
+        ],
+        [
+          "Pioche",
+          "01",
+          ""
+        ],
+        [
+          "Autres matériels",
+          "",
+          ""
+        ],
+        [
+          "Un véhicule de type pick-up en bon état",
+          "01",
+          ""
+        ],
+        [
+          "Brouettes",
+          "01",
+          ""
+        ],
+        [
+          "Balais à gazon",
+          "01 de 13",
+          ""
+        ],
+        [
+          "Sac de ramassage",
+          "Forfait",
+          ""
+        ]
+      ],
+      "consistent_column_counts": true
+    },
+    {
+      "rows_including_header": 3,
+      "columns": 6,
+      "cells": [
+        [
+          "PRIX N°",
+          "DESIGNATION DES OUVRAGES",
+          "UNITE",
+          "QUANTITE",
+          "P.U. (H.T)",
+          "P.T. (H.T)"
+        ],
+        [
+          "1",
+          "Opérations quotidiennes d'entretien des espaces verts : * 8 Heures par jour du Lundi au Vendredi * 1 agent",
+          "Jours",
+          "260",
+          "208,66",
+          "54 251,60"
+        ],
+        [
+          "2",
+          "Opérations trimestrielles d'entretien des espaces verts : * 8 Heures le dernier Samedi de chaque Trimestre * 2 agents",
+          "Jours",
+          "8",
+          "208,66",
+          "1 669,28"
+        ]
+      ],
+      "consistent_column_counts": true
+    },
+    {
+      "rows_including_header": 6,
+      "columns": 2,
+      "cells": [
+        [
+          "TOTAL HORS TAXE :",
+          "55 920,88"
+        ],
+        [
+          "TVA20%:",
+          "11 184,17"
+        ],
+        [
+          "TOTAL TOUTES TAXES COMPRISES :",
+          "67 105,05"
+        ],
+        [
+          "TAUX DE MAJORATION (en%) :",
+          ""
+        ],
+        [
+          "MONTANT DE LA MAJORATION :",
+          ""
+        ],
+        [
+          "TOTAL TOUTES TAXES COMPRISES APRES MAJORATION :",
+          ""
+        ]
+      ],
+      "consistent_column_counts": true
+    }
+  ],
+  "french_word_counts": {
+    "marché": 103,
+    "supérieur": 9,
+    "exécution": 21,
+    "réception": 16,
+    "sécurité": 9,
+    "préventif": 5,
+    "végétaux": 14
+  },
+  "bpu_page27_checked_against_image": true,
+  "bpu_values_match": true,
+  "limitations": [
+    "Spot checks, not a full transcription audit.",
+    "Joined words such as DEJARDINAGE, ENLOT, DERNIERFEUILLET.",
+    "Arabic/Tifinagh header not reliably recognized with French configuration.",
+    "Signatures and stamps retained as image placeholders, not transcribed reliably."
+  ],
+  "source_sha256": "e7b529f09720b63c07f6fb728d51a8ded9e8c527162d91591770241cf08e5bb1",
+  "conversion_status": "SUCCESS",
+  "conversion_seconds": 350.77,
+  "orientation_classifier_enabled": false,
+  "ocr_mode": "full_page",
+  "east_asian_ocr_artifacts": [
+    {
+      "character": "と",
+      "page": 18,
+      "source": "bullet symbol"
+    }
+  ],
+  "confirmed_table_issues_page25": [
+    "Secateur shifted to third column and interpreted as header.",
+    "Watering accessories merged into hose quantity column.",
+    "Merged cells duplicated/flattened; stray fragment in broom quantity."
+  ],
+  "full_accuracy_validated": false
+}

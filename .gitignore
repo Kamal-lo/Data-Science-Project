@@ -1,0 +1,35 @@
+.venv/
+.venv-marker/
+__pycache__/
+*.pyc
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.tmp
+*.temp
+*.bak
+*.swp
+*~
+/Microsoft/Windows/PowerShell/ModuleAnalysisCache
+/modules/document_ai/**/model-cache/
+/modules/document_ai/**/models/
+
+# Le DCE provisoire reste local ; sa source officielle est dans le README.
+/data/samples/
+
+# Liste fermee des resultats et preuves textuelles T10 a versionner.
+# Tous les PDF, images, nouveaux essais et autres fichiers restent exclus.
+/data/outputs/*
+!/data/outputs/docling_dce_result.md
+!/data/outputs/marker_dce_result.md
+!/data/outputs/dce_diagnostics/
+/data/outputs/dce_diagnostics/*
+!/data/outputs/dce_diagnostics/rapport.md
+!/data/outputs/dce_diagnostics/verification.json
+!/data/outputs/marker_diagnostics/
+/data/outputs/marker_diagnostics/*
+!/data/outputs/marker_diagnostics/20261108T174743218178Z/
+/data/outputs/marker_diagnostics/20261108T174743218178Z/*
+!/data/outputs/marker_diagnostics/20261108T174743218178Z/verification.json
+!/data/outputs/marker_diagnostics/20261108T174743218178Z/runtime_conditions.json
+!/data/outputs/marker_diagnostics/20261108T174743218178Z/extraction_dce.log
