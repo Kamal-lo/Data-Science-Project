@@ -1,0 +1,8 @@
+fastapi
+uvicorn[standard]
+celery[redis]
+redis
+sqlalchemy>=2
+psycopg[binary]
+pgvector
+pydantic-settings
