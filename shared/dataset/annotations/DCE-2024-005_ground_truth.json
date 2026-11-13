@@ -1,0 +1,94 @@
+{
+  "dce_id": "DCE-2024-005",
+  "metadata_generale": {
+    "reference_ao": "AO Ouvert N° 17/2024/ABHS",
+    "acheteur": "Agence du Bassin Hydraulique du Sebou (ABHS)",
+    "titre_marche_fr": "Études d'impact environnemental et topographique pour les projets de protection contre les inondations dans le bassin hydraulique du Sebou",
+    "titre_marche_ar": "دراسات التأثير البيئي والمسح الطبوغرافي لمشاريع الحماية من الفيضانات بحوض سبو المائي",
+    "type_prestation": "ETUDES",
+    "mode_passation": "Appel d'offres ouvert au rabais ou à majoration"
+  },
+  "champs_cles_extraits": {
+    "date_limite_remise_plis": {
+      "valeur_normalisee": "2024-10-18T10:00:00+01:00",
+      "source_fichier": "RC_Reglement_Consultation.txt",
+      "article_ou_page": "Article 5",
+      "citation_source": "Dépôt électronique sur www.marchespublics.gov.ma avant le 18/10/2024 à 10h00."
+    },
+    "date_seance_ouverture": {
+      "valeur_normalisee": "2024-10-18T10:30:00+01:00",
+      "source_fichier": "RC_Reglement_Consultation.txt",
+      "article_ou_page": "Article 5",
+      "citation_source": "Séance d'ouverture des plis le 18/10/2024 à 10h30 au siège de l'ABHS à Fès."
+    },
+    "caution_provisoire_mad": {
+      "valeur_normalisee": 50000.0,
+      "source_fichier": "RC_Reglement_Consultation.txt",
+      "article_ou_page": "Article 3",
+      "citation_source": "Montant de la caution provisoire : 50 000,00 MAD (Cinquante mille dirhams)."
+    },
+    "estimation_maitre_ouvrage_mad": {
+      "valeur_normalisee": 3400000.0,
+      "source_fichier": "RC_Reglement_Consultation.txt",
+      "article_ou_page": "Article 3",
+      "citation_source": "Montant prévisionnel du marché : 3 400 000,00 MAD TTC."
+    },
+    "delai_execution_mois": {
+      "valeur_normalisee": 8,
+      "source_fichier": "metadata.json",
+      "article_ou_page": "Délai d'exécution",
+      "citation_source": "8 mois"
+    },
+    "delai_validite_offres_jours": {
+      "valeur_normalisee": 90,
+      "source_fichier": "metadata.json",
+      "article_ou_page": "Validité des offres",
+      "citation_source": "90 jours"
+    },
+    "exigences_techniques_ou_agrements": {
+      "valeur_normalisee": [
+        "Agrément Domaine D1 (Hydraulique et barrages)",
+        "Agrément Domaine D7 (Études d'impact environnemental)",
+        "Références d'études hydrauliques 5 dernières années"
+      ],
+      "source_fichier": "RC_Reglement_Consultation.txt",
+      "article_ou_page": "Article 2",
+      "citation_source": "Domaine D1 : Hydraulique et barrages ; Domaine D7 : Études d'impact sur l'environnement."
+    },
+    "chiffre_affaires_annuel_min_mad": {
+      "valeur_normalisee": 2500000.0,
+      "source_fichier": "metadata.json",
+      "article_ou_page": "Chiffre d'affaires minimum",
+      "citation_source": "2500000.0"
+    }
+  },
+  "pieces_requises_checklist": {
+    "dossier_administratif": [
+      "Déclaration sur l'honneur (Art. 26 Décret 2-22-431)",
+      "Caution provisoire bancaire (50 000 MAD)",
+      "Attestation fiscale DGI (< 1 an)",
+      "Attestation originale CNSS (< 1 an)",
+      "Extrait du Registre de Commerce (Modèle J)",
+      "Pouvoirs du signataire"
+    ],
+    "dossier_technique": [
+      "Agréments ministériels D1 et D7 en cours de validité",
+      "Note sur les moyens humains et logiciels scientifiques spécialisés (HEC-RAS, SIG)",
+      "Attestations de références délivrées par des agences de bassins ou ministères"
+    ],
+    "offre_financiere": [
+      "Acte d'engagement avec rabais ou majoration",
+      "Bordereau des Prix Unitaires",
+      "Détail Estimatif"
+    ]
+  },
+  "bareme_technique": {
+    "note_eliminatoire": 75.0,
+    "total_points": 100.0,
+    "criteres": [
+      { "critere": "Méthodologie et compréhension de la mission", "points_max": 30.0 },
+      { "critere": "Expérience et profil des experts clés", "points_max": 45.0 },
+      { "critere": "Références similaires en hydraulique", "points_max": 25.0 }
+    ]
+  }
+}

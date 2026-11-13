@@ -1,0 +1,57 @@
+{
+  "version": "1.0.0-FROZEN",
+  "freeze_timestamp": "2024-10-25T18:00:00+01:00",
+  "approved_by": "P1 - Chef de projet, ML prédictif et évaluation",
+  "hash_algorithm": "SHA-256",
+  "policy": "Aucune modification autorisée sur le jeu Test sans approbation formelle du Chef de projet",
+  "splits": {
+    "train_dev": {
+      "pourcentage": 60,
+      "description": "Entraînement des extracteurs et réglage initial des prompts",
+      "items": [
+        {
+          "id": "DCE-2024-001",
+          "secteur": "IT & Cloud",
+          "annotation_file": "dataset/annotations/DCE-2024-001_ground_truth.json",
+          "sha256": "252FB972CAC279003380966ABE5769B4D491AEB939BEB13A091A6BB951F2684E"
+        },
+        {
+          "id": "DCE-2024-002",
+          "secteur": "BTP & Construction",
+          "annotation_file": "dataset/annotations/DCE-2024-002_ground_truth.json",
+          "sha256": "A9EFF0B898DE1D21DF56E1C01628AF0FBD7AEEC859270BEBCF1AF0AB3F6F1097"
+        },
+        {
+          "id": "DCE-2024-003",
+          "secteur": "Gardiennage & Sécurité",
+          "annotation_file": "dataset/annotations/DCE-2024-003_ground_truth.json",
+          "sha256": "949E58534AD9460114534500BA2058A2A9A86BE8E6E41FD2DBE0ACD503CEBCD3"
+        }
+      ]
+    },
+    "validation": {
+      "pourcentage": 20,
+      "description": "Optimisation des hyperparamètres, seuils Go/No-Go et calibration de température LLM",
+      "items": [
+        {
+          "id": "DCE-2024-004",
+          "secteur": "Fournitures Médicales",
+          "annotation_file": "dataset/annotations/DCE-2024-004_ground_truth.json",
+          "sha256": "60B2B0B63A7CE83F481F4845C71863D9702849C5343F553F841BB9BE7BE113CB"
+        }
+      ]
+    },
+    "test": {
+      "pourcentage": 20,
+      "description": "Jeu de test gelé officiel pour la validation de la Porte 2 (T37)",
+      "items": [
+        {
+          "id": "DCE-2024-005",
+          "secteur": "Études & Ingénierie",
+          "annotation_file": "dataset/annotations/DCE-2024-005_ground_truth.json",
+          "sha256": "FD506558A1812F901241C9B257EFC11F08FB064CBCBDB9DD827A306C2DC9C814"
+        }
+      ]
+    }
+  }
+}

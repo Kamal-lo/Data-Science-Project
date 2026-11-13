@@ -1,0 +1,5 @@
+numero_prix,designation_prestation,unite,quantite,prix_unitaire_ht_mad,montant_total_ht_mad
+1,Agent de sécurité et surveillance posté 24h/24 (Vacation mensuelle),Agent/Mois,45,6200.00,3348000.00
+2,Chef d'équipe coordinateur de site (Vacation mensuelle),Agent/Mois,3,8000.00,288000.00
+3,Mise à disposition du matériel de contrôle électronique et rondiers,Forfait/Mois,12,5000.00,60000.00
+

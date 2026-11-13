@@ -1,0 +1,7 @@
+numero_prix,designation_prestation,unite,quantite,prix_unitaire_ht_mad,montant_total_ht_mad
+1,Diagnostic pluviométrique et enquêtes historiques crues,Forfait,1,380000.00,380000.00
+2,Reconnaissance topographique lidar et bathymétrie oued,km_lineaire,60,11000.00,660000.00
+3,Modélisation hydrodynamique 2D sous HEC-RAS / TELEMAC,Forfait,1,750000.00,750000.00
+4,Rapport d'étude d'impact sur l'environnement et PGES,Forfait,1,450000.00,450000.00
+5,Avant-Projet Sommaire (APS) et dossier d'appel d'offres travaux,Forfait,1,593333.33,593333.33
+

@@ -1,0 +1,11 @@
+AGENCE DU BASSIN HYDRAULIQUE DU SEBOU (ABHS)
+CPS - ETUDES IMPACT ENVIRONNEMENTAL ET HYDRAULIQUE
+AO N° 17/2024/ABHS
+
+PHASAGE DES ETUDES :
+- Phase 1 : Collecte des données hydro-pluviométriques et diagnostic de terrain (2 mois).
+- Phase 2 : Modélisation hydraulique 2D des écoulements et cartographie des zones inondables (3 mois).
+- Phase 3 : Étude d'impact environnemental et plan de gestion environnementale et sociale (PGES) (2 mois).
+- Phase 4 : Avant-projet sommaire (APS) des aménagements de protection et estimation chiffrée (1 mois).
+Livrables obligatoires : Rapports techniques sous format PDF et Word, cartes sous format SIG Shapefile/Geopackage projetées en Lambert Conforme Conique Maroc Nord.
+

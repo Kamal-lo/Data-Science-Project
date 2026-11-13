@@ -1,0 +1,322 @@
+{
+  "id": "e4b294e0-7e2b-4d43-9831-285b9b940001",
+  "identification_administrative": {
+    "raison_sociale": "ATLAS DIGITEC & INFRASTRUCTURE SARL",
+    "nom_commercial": "ATLAS TECH MAROC",
+    "forme_juridique": "SARL",
+    "ice": "002345678000045",
+    "identifiant_fiscal": "45892134",
+    "registre_commerce": {
+      "numero": "145892",
+      "tribunal_ville": "Casablanca"
+    },
+    "numero_patente": "34210985",
+    "numero_affiliation_cnss": "8934521",
+    "date_creation": "2018-04-12",
+    "capital_social_mad": 2500000.0,
+    "statut_pme": true,
+    "eligibilite_preference_nationale": true
+  },
+  "representant_legal": {
+    "nom": "EL ALAMI",
+    "prenom": "Mehdi",
+    "cin": "BE458920",
+    "nationalite": "Marocaine",
+    "qualite": "Gérant Associé Unique",
+    "pouvoir_signataire": "STATUTS",
+    "email_notification": "m.elalami@atlasdigitec.ma",
+    "telephone_mobile": "+212661234567"
+  },
+  "coordonnees": {
+    "adresse_siege": "145 Boulevard Zerktouni, 4ème étage, N° 12",
+    "complement_adresse": "Quartier Gauthier",
+    "ville": "Casablanca",
+    "code_postal": "20100",
+    "region": "Casablanca-Settat",
+    "telephone_fixe": "+212522456789",
+    "email_officiel": "contact@atlasdigitec.ma",
+    "site_web": "https://www.atlasdigitec.ma"
+  },
+  "qualifications_et_certifications": {
+    "certificats_btp": [
+      {
+        "secteur": "Secteur F",
+        "libelle_secteur": "Courants faibles, réseaux informatiques et télécommunications",
+        "classe": 2,
+        "categories": ["F.1", "F.2", "F.4"],
+        "numero_certificat": "BTP-QUAL-2023-8941",
+        "date_delivrance": "2023-01-15",
+        "date_expiration": "2026-01-14"
+      },
+      {
+        "secteur": "Secteur A",
+        "libelle_secteur": "Terrassements et génie civil léger",
+        "classe": 4,
+        "categories": ["A.1"],
+        "numero_certificat": "BTP-QUAL-2022-3112",
+        "date_delivrance": "2022-06-10",
+        "date_expiration": "2025-06-09"
+      }
+    ],
+    "agrements_etudes": [
+      {
+        "domaine_code": "D14",
+        "domaine_libelle": "Études de systèmes d'information, réseaux et télécoms",
+        "numero_agrement": "AGR-MTEDD-2022-094",
+        "date_expiration": "2025-12-31"
+      }
+    ],
+    "certifications_normes": [
+      {
+        "norme": "ISO 9001:2015",
+        "organisme_certificateur": "IMANOR",
+        "numero_certificat": "MA-Q-2022-0451",
+        "date_expiration": "2025-11-20"
+      },
+      {
+        "norme": "ISO 27001:2022",
+        "organisme_certificateur": "Bureau Veritas Maroc",
+        "numero_certificat": "BV-SEC-2023-1108",
+        "date_expiration": "2026-05-15"
+      }
+    ]
+  },
+  "capacites_financieres": {
+    "bilans_3_derniers_exercices": [
+      {
+        "exercice_annee": 2023,
+        "chiffre_affaires_global_mad": 28450000.0,
+        "chiffre_affaires_secteur_mad": 24100000.0,
+        "resultat_net_mad": 2450000.0,
+        "capitaux_propres_mad": 7890000.0,
+        "tresorerie_nette_mad": 3120000.0,
+        "certifie_par_commissaire_aux_comptes": true
+      },
+      {
+        "exercice_annee": 2022,
+        "chiffre_affaires_global_mad": 22100000.0,
+        "chiffre_affaires_secteur_mad": 19500000.0,
+        "resultat_net_mad": 1820000.0,
+        "capitaux_propres_mad": 5440000.0,
+        "tresorerie_nette_mad": 2400000.0,
+        "certifie_par_commissaire_aux_comptes": true
+      },
+      {
+        "exercice_annee": 2021,
+        "chiffre_affaires_global_mad": 17800000.0,
+        "chiffre_affaires_secteur_mad": 15200000.0,
+        "resultat_net_mad": 1350000.0,
+        "capitaux_propres_mad": 3620000.0,
+        "tresorerie_nette_mad": 1850000.0,
+        "certifie_par_commissaire_aux_comptes": true
+      }
+    ],
+    "chiffre_affaires_moyen_3_ans_mad": 22783333.33,
+    "lignes_bancaires_caution": [
+      {
+        "banque": "Attijariwafa bank",
+        "agence": "Agence Entreprises Zerktouni Casablanca",
+        "plafond_caution_mad": 5000000.0,
+        "encours_disponible_mad": 3850000.0
+      },
+      {
+        "banque": "Banque Populaire",
+        "agence": "Succursale Hassan II Casablanca",
+        "plafond_caution_mad": 3000000.0,
+        "encours_disponible_mad": 2400000.0
+      }
+    ]
+  },
+  "moyens_humains": {
+    "effectif_total_declare_cnss": 38,
+    "cadres_et_ingenieurs": 18,
+    "techniciens_et_agents_maitrise": 14,
+    "ouvriers_et_employes": 6,
+    "personnel_cle_experts": [
+      {
+        "id": "EXP-01",
+        "nom_complet": "Tariq BENNANI",
+        "cin": "A678912",
+        "role_titre": "Directeur de Projet & Architecte SI Cloud",
+        "niveau_etudes": "BAC+5_INGENIEUR",
+        "diplome": "Diplôme d'Ingénieur d'État en Génie Informatique",
+        "ecole_universite": "EMI - École Mohammadia d'Ingénieurs, Rabat",
+        "annees_experience_totale": 14.0,
+        "annees_experience_specifique": 9.5,
+        "competences_cles": [
+          "Architecture Cloud",
+          "Kubernetes & Docker",
+          "Sécurité des SI (ISO 27001)",
+          "Gouvernance SI Secteur Public",
+          "PMP Certified"
+        ],
+        "date_immatriculation_cnss": "2018-05-01",
+        "resume_cv": "Ingénieur d'État EMI avec 14 ans d'expérience dans le pilotage de grands projets numériques pour le secteur public marocain. Directeur de projet sur 6 marchés publics réceptionnés avec succès pour les ministères et établissements publics."
+      },
+      {
+        "id": "EXP-02",
+        "nom_complet": "Sara CHRAIBI",
+        "cin": "CD459012",
+        "role_titre": "Experte Data & Intelligence Artificielle",
+        "niveau_etudes": "DOCTORAT",
+        "diplome": "Doctorat en Informatique et Intelligence Artificielle",
+        "ecole_universite": "ENSIAS - Université Mohammed V, Rabat",
+        "annees_experience_totale": 8.0,
+        "annees_experience_specifique": 6.0,
+        "competences_cles": [
+          "Machine Learning & Deep Learning",
+          "NLP en Arabe et Français",
+          "Pipelines MLOps",
+          "PostgreSQL & pgvector",
+          "Python & FastAPI"
+        ],
+        "date_immatriculation_cnss": "2020-09-01",
+        "resume_cv": "Docteure ENSIAS en IA, spécialisée dans le traitement automatique des langues et la vision par ordinateur appliquée aux documents administratifs et marchés publics. 8 ans d'expérience en R&D et déploiement industriel."
+      },
+      {
+        "id": "EXP-03",
+        "nom_complet": "Karim IDRISSI",
+        "cin": "BK341290",
+        "role_titre": "Chef de Projet Réseaux & Infrastructure Télécoms",
+        "niveau_etudes": "BAC+5_INGENIEUR",
+        "diplome": "Ingénieur d'État en Réseaux et Télécommunications",
+        "ecole_universite": "INPT - Institut National des Postes et Télécommunications, Rabat",
+        "annees_experience_totale": 11.0,
+        "annees_experience_specifique": 8.0,
+        "competences_cles": [
+          "Câblage structuré et Fibre optique",
+          "Cisco CCNP",
+          "Datacenter Tier III",
+          "Supervision réseau Zabbix/Prometheus",
+          "Réglementation ANRT"
+        ],
+        "date_immatriculation_cnss": "2019-02-01",
+        "resume_cv": "Ingénieur Télécoms certifié CCNP avec 11 ans d'expérience dans l'ingénierie et le déploiement d'infrastructures pour les régies autonomes et collectivités marocaines."
+      }
+    ]
+  },
+  "moyens_materiels": {
+    "parc_materiel": [
+      {
+        "id": "MAT-01",
+        "designation": "Cluster Serveurs Haute Disponibilité 3 Nœuds",
+        "categorie": "SERVEUR_DATA_CENTER",
+        "marque_modele": "Dell PowerEdge R750 2x Xeon Gold 6330 256GB RAM",
+        "immatriculation_ou_numero_serie": "SRV-DELL-2023-01",
+        "annee_acquisition": 2023,
+        "statut_possession": "PLEINE_PROPRIETE",
+        "etat_fonctionnel": "EXCELLENT"
+      },
+      {
+        "id": "MAT-02",
+        "designation": "Baie de Stockage SAN NVMe 40 To",
+        "categorie": "SERVEUR_DATA_CENTER",
+        "marque_modele": "HPE MSA 2060 Storage",
+        "immatriculation_ou_numero_serie": "SAN-HPE-2022-88",
+        "annee_acquisition": 2022,
+        "statut_possession": "PLEINE_PROPRIETE",
+        "etat_fonctionnel": "EXCELLENT"
+      },
+      {
+        "id": "MAT-03",
+        "designation": "Réflectomètre Optique OTDR et Fusionneuse Fibre Optique",
+        "categorie": "MATERIEL_MESURE_LABO",
+        "marque_modele": "Fujikura 90S+ & EXFO FTB-1v2",
+        "immatriculation_ou_numero_serie": "MES-FO-2021-12",
+        "annee_acquisition": 2021,
+        "statut_possession": "PLEINE_PROPRIETE",
+        "etat_fonctionnel": "EXCELLENT"
+      },
+      {
+        "id": "MAT-04",
+        "designation": "Flotte de Véhicules d'Intervention Technique (4 Véhicules Utilitaires)",
+        "categorie": "VEHICULE_UTILITAIRE",
+        "marque_modele": "Renault Kangoo Express Maxi DCI",
+        "immatriculation_ou_numero_serie": "14582-B-26",
+        "annee_acquisition": 2022,
+        "statut_possession": "CREDIT_BAIL_LEASING",
+        "etat_fonctionnel": "BON"
+      }
+    ]
+  },
+  "references_similaires": [
+    {
+      "id": "REF-2023-01",
+      "client_nom": "Ministère de la Transition Numérique et de la Réforme de l'Administration (MTNRA)",
+      "client_type": "PUBLIC",
+      "numero_marche": "AO N° 18/2023/MTNRA",
+      "intitule_projet": "Mise en place d'une plateforme unifiée de gestion documentaire et archivage électronique sécurisé",
+      "description_prestations": "Déploiement de la solution logicielle, migration de 1,2 million de documents, formation de 450 cadres, hébergement cloud souverain.",
+      "secteur_nomenclature": "Informatique, Digitalisation et Systèmes d'information",
+      "montant_marche_mad": 6840000.0,
+      "part_realisee_pourcentage": 100.0,
+      "annee_debut": 2023,
+      "annee_fin": 2024,
+      "attestation_bonne_fin_disponible": true,
+      "signataire_attestation": "Secrétaire Général du Ministère",
+      "mots_cles_techniques": ["GED", "Cloud Souverain", "Sécurité", "Migration de données", "OCR"]
+    },
+    {
+      "id": "REF-2022-02",
+      "client_nom": "Régie Autonome Multi-Services de Casablanca-Settat",
+      "client_type": "SEMI_PUBLIC",
+      "numero_marche": "AO N° 45/2022/RAMS",
+      "intitule_projet": "Modernisation des infrastructures réseau et système de supervision temps réel",
+      "description_prestations": "Refonte du réseau fédérateur, installation de pare-feu haute performance, monitoring 24/7 et maintenance préventive.",
+      "secteur_nomenclature": "Réseaux et Télécommunications",
+      "montant_marche_mad": 4250000.0,
+      "part_realisee_pourcentage": 100.0,
+      "annee_debut": 2022,
+      "annee_fin": 2023,
+      "attestation_bonne_fin_disponible": true,
+      "signataire_attestation": "Directeur Général de la Régie",
+      "mots_cles_techniques": ["Télécoms", "Fibre optique", "Haute Disponibilité", "Cybersécurité"]
+    },
+    {
+      "id": "REF-2021-03",
+      "client_nom": "Conseil Régional de Rabat-Salé-Kénitra",
+      "client_type": "PUBLIC",
+      "numero_marche": "AO N° 12/2021/CR-RSK",
+      "intitule_projet": "Développement et intégration du portail cartographique régional d'aide à la décision",
+      "description_prestations": "Conception SIG, développement d'un tableau de bord décisionnel open-source, formation et maintenance applicative.",
+      "secteur_nomenclature": "Études et Développements Applicatifs",
+      "montant_marche_mad": 3100000.0,
+      "part_realisee_pourcentage": 100.0,
+      "annee_debut": 2021,
+      "annee_fin": 2022,
+      "attestation_bonne_fin_disponible": true,
+      "signataire_attestation": "Directeur Général des Services de la Région",
+      "mots_cles_techniques": ["SIG", "Dashboard", "Python", "PostGIS", "Décisionnel"]
+    }
+  ],
+  "preferences_veille_et_strategie": {
+    "domaines_cibles": [
+      "Systèmes d'information et logiciels",
+      "Infrastructure Cloud et Datacenter",
+      "Télécommunications et réseaux courants faibles",
+      "Transformation digitale et IA",
+      "Numérisation et dématérialisation"
+    ],
+    "regions_cibles": [
+      "Casablanca-Settat",
+      "Rabat-Salé-Kénitra",
+      "Tanger-Tétouan-Al Hoceïma",
+      "Marrakech-Safi",
+      "Fès-Meknès"
+    ],
+    "types_marches_exclus": [
+      "Gros œuvres BTP lourds",
+      "Fournitures de bureau consommables",
+      "Gardiennage physique"
+    ],
+    "montant_min_souhaite_mad": 1500000.0,
+    "montant_max_souhaite_mad": 30000000.0,
+    "taux_marge_cible_pourcentage": 22.0,
+    "tolerance_risque_financier": "MOYENNE",
+    "canaux_alertes": {
+      "email": true,
+      "telegram": true,
+      "whatsapp": true
+    }
+  }
+}

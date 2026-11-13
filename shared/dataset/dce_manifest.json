@@ -1,0 +1,80 @@
+﻿{
+    "version":  "2.0",
+    "date_creation":  null,
+    "date_mise_a_jour":  "2026-11-12",
+    "total_dce":  10,
+    "dce_synthetiques":  5,
+    "dce_reels":  5,
+    "sources":  [
+                    "Generes synthetiquement pour entrainement/evaluation",
+                    "marchespublics.gov.ma (metadata portail officiel)"
+                ],
+    "dossiers_synthetiques":  null,
+    "dossiers_reels":  [
+                           {
+                               "id":  "DCE-REAL-001",
+                               "ref_portail":  "1053059",
+                               "acheteur":  "Collectivite territoriale de KARIAT BEN AOUDA",
+                               "categorie":  "Travaux / Electricite",
+                               "region":  "Kenitra",
+                               "statut":  "en_cours",
+                               "est_reel":  true,
+                               "source":  "marchespublics.gov.ma",
+                               "date_scraping":  "2026-11-11",
+                               "chemin":  "dataset/dce_real/DCE-REAL-001/",
+                               "note":  "Metadata uniquement - DCE ZIP bloque par WAF portail"
+                           },
+                           {
+                               "id":  "DCE-REAL-002",
+                               "ref_portail":  "1051597",
+                               "acheteur":  "ONEE Branche Eau",
+                               "categorie":  "Travaux / Eau Potable",
+                               "region":  "Tetouan",
+                               "statut":  "en_cours",
+                               "est_reel":  true,
+                               "source":  "marchespublics.gov.ma",
+                               "date_scraping":  "2026-11-11",
+                               "chemin":  "dataset/dce_real/DCE-REAL-002/",
+                               "note":  "Metadata uniquement"
+                           },
+                           {
+                               "id":  "DCE-REAL-003",
+                               "ref_portail":  "1050297",
+                               "acheteur":  "ONEE Branche Electricite",
+                               "categorie":  "Fournitures / Equipements electriques",
+                               "region":  "National",
+                               "statut":  "en_cours",
+                               "est_reel":  true,
+                               "source":  "marchespublics.gov.ma",
+                               "date_scraping":  "2026-11-11",
+                               "chemin":  "dataset/dce_real/DCE-REAL-003/",
+                               "note":  "Metadata uniquement"
+                           },
+                           {
+                               "id":  "DCE-REAL-004",
+                               "ref_portail":  "1043336",
+                               "acheteur":  "AREP Beni Mellal-Khenifra",
+                               "categorie":  "Travaux / Routes et Pistes",
+                               "region":  "Beni Mellal-Khenifra",
+                               "statut":  "en_cours",
+                               "est_reel":  true,
+                               "source":  "marchespublics.gov.ma",
+                               "date_scraping":  "2026-11-11",
+                               "chemin":  "dataset/dce_real/DCE-REAL-004/",
+                               "note":  "Metadata uniquement"
+                           },
+                           {
+                               "id":  "DCE-REAL-005",
+                               "ref_portail":  "1041198",
+                               "acheteur":  "AREP Beni Mellal-Khenifra",
+                               "categorie":  "Travaux / Routes et Pistes",
+                               "region":  "Beni Mellal-Khenifra",
+                               "statut":  "en_cours",
+                               "est_reel":  true,
+                               "source":  "marchespublics.gov.ma",
+                               "date_scraping":  "2026-11-11",
+                               "chemin":  "dataset/dce_real/DCE-REAL-005/",
+                               "note":  "Metadata uniquement"
+                           }
+                       ]
+}

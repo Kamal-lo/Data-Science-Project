@@ -1,0 +1,30 @@
+{
+  "id": "DCE-2024-005",
+  "reference_ao": "AO Ouvert N° 17/2024/ABHS",
+  "objet": "Études d'impact environnemental et topographique pour les projets de protection contre les inondations dans le bassin hydraulique du Sebou",
+  "objet_arabe": "دراسات التأثير البيئي والمسح الطبوغرافي لمشاريع الحماية من الفيضانات بحوض سبو المائي",
+  "maitre_ouvrage": "Agence du Bassin Hydraulique du Sebou (ABHS)",
+  "ville": "Fès",
+  "region": "Fès-Meknès",
+  "type_prestation": "ETUDES",
+  "secteur_activite": "Ingénierie, Environnement et Topographie",
+  "mode_passation": "Appel d'offres ouvert au rabais ou à majoration",
+  "allotissement": "Marché unique",
+  "date_publication": "2024-09-05T10:00:00+01:00",
+  "date_limite_remise_plis": "2024-10-18T10:00:00+01:00",
+  "date_seance_ouverture": "2024-10-18T10:30:00+01:00",
+  "estimation_maitre_ouvrage_mad_ttc": 3400000.0,
+  "caution_provisoire_mad": 50000.0,
+  "delai_execution_mois": 8,
+  "delai_validite_offres_jours": 90,
+  "qualification_ou_agrement_exige": "Agrément ministériel pour bureaux d'études Domaine D1 (Hydraulique agricole et urbaine) ou D7 (Environnement)",
+  "chiffre_affaires_annuel_min_mad": 2500000.0,
+  "langue_principale": "FRANCAIS",
+  "comporte_arabe": true,
+  "est_scan": false,
+  "fichiers": [
+    "RC_Reglement_Consultation.txt",
+    "CPS_Prescriptions_Speciales.txt",
+    "BPU_Bordereau_Prix.csv"
+  ]
+}

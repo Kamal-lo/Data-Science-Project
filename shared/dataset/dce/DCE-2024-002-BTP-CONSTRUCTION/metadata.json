@@ -1,0 +1,49 @@
+{
+  "id": "DCE-2024-002",
+  "reference_ao": "AO Ouvert N° 08/2024/DR-EQUIP-CS",
+  "objet": "Travaux de construction d'un complexe administratif et technique régional à Casablanca-Settat (En 2 Lots)",
+  "objet_arabe": "أشغال بناء مجمع إداري وتقني جهوي بجهة الدار البيضاء-سطات (في حصتين)",
+  "maitre_ouvrage": "Direction Régionale de l'Équipement, du Transport et de la Logistique de Casablanca-Settat",
+  "ville": "Casablanca",
+  "region": "Casablanca-Settat",
+  "type_prestation": "TRAVAUX",
+  "secteur_activite": "Bâtiments et Travaux Publics (BTP)",
+  "mode_passation": "Appel d'offres ouvert sur offres de prix",
+  "allotissement": "Marché alloti en 2 lots",
+  "lots": [
+    {
+      "numero_lot": 1,
+      "intitule": "Gros œuvres, Étanchéité et Maçonnerie",
+      "estimation_mad_ttc": 18500000.0,
+      "caution_provisoire_mad": 270000.0,
+      "secteur_btp_exige": "Secteur B (Bâtiments)",
+      "classe_btp_minimale": 2
+    },
+    {
+      "numero_lot": 2,
+      "intitule": "Lots techniques : Électricité, Courants Faibles, Climatisation et Sécurité Incendie",
+      "estimation_mad_ttc": 9200000.0,
+      "caution_provisoire_mad": 140000.0,
+      "secteur_btp_exige": "Secteur F (Courants faibles) et Secteur G (Électricité)",
+      "classe_btp_minimale": 3
+    }
+  ],
+  "date_publication": "2024-08-20T10:00:00+01:00",
+  "date_limite_remise_plis": "2024-10-08T10:00:00+01:00",
+  "date_seance_ouverture": "2024-10-08T10:30:00+01:00",
+  "estimation_maitre_ouvrage_mad_ttc": 27700000.0,
+  "caution_provisoire_mad": 410000.0,
+  "delai_execution_mois": 14,
+  "delai_validite_offres_jours": 90,
+  "qualification_ou_agrement_exige": "Certificat de qualification BTP Secteur B Classe 2 pour Lot 1, Secteurs F et G Classe 3 pour Lot 2",
+  "chiffre_affaires_annuel_min_mad": 15000000.0,
+  "langue_principale": "FRANCAIS",
+  "comporte_arabe": true,
+  "est_scan": true,
+  "ocr_noise_simulated": true,
+  "fichiers": [
+    "RC_Reglement_Consultation.txt",
+    "CPS_Prescriptions_Speciales.txt",
+    "BPU_Bordereau_Prix.csv"
+  ]
+}

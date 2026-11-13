@@ -1,0 +1,9 @@
+numero_prix,designation_prestation,unite,quantite,prix_unitaire_ht_mad,montant_total_ht_mad
+1,Etude préalable et spécifications fonctionnelles détaillées,Forfait,1,450000.00,450000.00
+2,Infrastructure Cloud souverain et socle conteneurisé,Forfait,1,1200000.00,1200000.00
+3,Développement du portail dématérialisé et modules métiers,Forfait,1,1950000.00,1950000.00
+4,Intégration du système d'authentification et interopérabilité,Forfait,1,600000.00,600000.00
+5,Audit de sécurité intrusion et durcissement selon DNSSI,Forfait,1,350000.00,350000.00
+6,Formation des administrateurs et des agents régionaux,Jour-Homme,40,6500.00,260000.00
+7,Assistance technique et support opérationnel garanti 12 mois,Mois,12,50000.00,600000.00
+

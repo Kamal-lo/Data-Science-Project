@@ -1,0 +1,96 @@
+{
+  "dce_id": "DCE-2024-004",
+  "metadata_generale": {
+    "reference_ao": "AO Ouvert N° 41/2024/CHU-IS",
+    "acheteur": "Centre Hospitalier Universitaire Ibn Sina de Rabat",
+    "titre_marche_fr": "Acquisition, livraison, installation et mise en service d'équipements médicaux et biomédicaux pour le Centre Hospitalier Universitaire Ibn Sina de Rabat",
+    "titre_marche_ar": "شراء وتسليم وتركيب وتشغيل معدات طبية وبيوطبية للمركز الاستشفائي الجامعي ابن سينا بالرباط",
+    "type_prestation": "FOURNITURES",
+    "mode_passation": "Appel d'offres ouvert sur offres de prix"
+  },
+  "champs_cles_extraits": {
+    "date_limite_remise_plis": {
+      "valeur_normalisee": "2024-10-30T10:00:00+01:00",
+      "source_fichier": "RC_Reglement_Consultation.txt",
+      "article_ou_page": "Article 4",
+      "citation_source": "Les offres doivent être soumises sur www.marchespublics.gov.ma avant le 30/10/2024 à 10h00."
+    },
+    "date_seance_ouverture": {
+      "valeur_normalisee": "2024-10-30T10:30:00+01:00",
+      "source_fichier": "RC_Reglement_Consultation.txt",
+      "article_ou_page": "Article 4",
+      "citation_source": "Ouverture publique le 30/10/2024 à 10h30."
+    },
+    "caution_provisoire_mad": {
+      "valeur_normalisee": 130000.0,
+      "source_fichier": "RC_Reglement_Consultation.txt",
+      "article_ou_page": "Article 2",
+      "citation_source": "Caution provisoire : 130 000,00 MAD (Cent trente mille dirhams)."
+    },
+    "estimation_maitre_ouvrage_mad": {
+      "valeur_normalisee": 8900000.0,
+      "source_fichier": "RC_Reglement_Consultation.txt",
+      "article_ou_page": "Article 2",
+      "citation_source": "Estimation prévisionnelle : 8 900 000,00 MAD TTC."
+    },
+    "delai_execution_mois": {
+      "valeur_normalisee": 4,
+      "source_fichier": "CPS_Prescriptions_Speciales.txt",
+      "article_ou_page": "Conditions de fourniture",
+      "citation_source": "Délai de livraison et mise en service : 4 mois fermes."
+    },
+    "delai_validite_offres_jours": {
+      "valeur_normalisee": 90,
+      "source_fichier": "metadata.json",
+      "article_ou_page": "Validité offres",
+      "citation_source": "90 jours"
+    },
+    "exigences_techniques_ou_agrements": {
+      "valeur_normalisee": [
+        "Enregistrement DMP (Ministère de la Santé)",
+        "Marquage CE Médical ou FDA",
+        "Disponibilité pièces de rechange min. 7 ans",
+        "Garantie totale min. 24 mois"
+      ],
+      "source_fichier": "RC_Reglement_Consultation.txt",
+      "article_ou_page": "Article 3",
+      "citation_source": "Certificat d'enregistrement des dispositifs médicaux auprès de la Direction du Médicament et de la Pharmacie (DMP) ; Marquage CE Médical ou FDA"
+    },
+    "chiffre_affaires_annuel_min_mad": {
+      "valeur_normalisee": 8000000.0,
+      "source_fichier": "metadata.json",
+      "article_ou_page": "Conditions financières",
+      "citation_source": "8000000.0"
+    }
+  },
+  "pieces_requises_checklist": {
+    "dossier_administratif": [
+      "Déclaration sur l'honneur (Art. 26 Décret 2-22-431)",
+      "Caution provisoire de 130 000 MAD",
+      "Attestation fiscale DGI (< 1 an)",
+      "Attestation originale CNSS (< 1 an)",
+      "Extrait du Registre de Commerce (Modèle J)",
+      "Pouvoirs du signataire"
+    ],
+    "dossier_technique": [
+      "Certificats DMP Ministère de la Santé",
+      "Certificats CE Médical ou FDA",
+      "Attestation engagement pièces de rechange 7 ans",
+      "Attestations de références de fournitures biomédicales similaires"
+    ],
+    "offre_financiere": [
+      "Acte d'engagement",
+      "Bordereau des Prix Unitaires",
+      "Détail Estimatif"
+    ]
+  },
+  "bareme_technique": {
+    "note_eliminatoire": 70.0,
+    "total_points": 100.0,
+    "criteres": [
+      { "critere": "Conformité aux fiches techniques biomédicales", "points_max": 50.0 },
+      { "critere": "Qualité du service après-vente et garantie", "points_max": 30.0 },
+      { "critere": "Références et qualifications des techniciens", "points_max": 20.0 }
+    ]
+  }
+}

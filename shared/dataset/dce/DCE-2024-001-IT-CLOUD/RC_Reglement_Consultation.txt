@@ -1,0 +1,101 @@
+ROYAUME DU MAROC
+REGION RABAT - SALE - KENITRA
+CONSEIL REGIONAL
+DIRECTION GENERALE DES SERVICES
+DIRECTION DES SYSTEMES D'INFORMATION
+
+المملكة المغربية
+جهة الرباط - سلا - القنيطرة
+مجلس الجهة
+المديرية العامة للمصالح
+مديرية نظم المعلومات
+
+================================================================================
+REGLEMENT DE LA CONSULTATION (RC)
+APPEL D'OFFRES OUVERT SUR OFFRES DE PRIX N° 12/2024/CR-RSK
+Séance publique du 24/10/2024 à 11h00
+================================================================================
+
+ARTICLE 1 : OBJET DU REGLEMENT DE LA CONSULTATION
+Le présent règlement de consultation concerne l'appel d'offres ouvert sur offres de prix en séance publique ayant pour objet :
+« MISE EN PLACE D'UNE PLATEFORME REGIONALE UNIFIEE DE SERVICES CLOUD ET DE DEMATERIALISATION POUR LA REGION DE RABAT-SALE-KENITRA ».
+الموضوع: إرساء منصة جهوية موحدة للخدمات السحابية ورقمنة المساطر لجهة الرباط-سلا-القنيطرة.
+
+ARTICLE 2 : MAITRE D'OUVRAGE
+Le maître d'ouvrage du présent marché est le Président du Conseil Régional de Rabat-Salé-Kénitra, représenté par le Directeur Général des Services.
+
+ARTICLE 3 : ALLOTISSEMENT
+Le présent marché est passé en lot unique non alloti compte tenu de la forte interdépendance technique entre les briques logicielles, la couche cloud et la gouvernance de sécurité des données.
+
+ARTICLE 4 : CONDITIONS REQUISES DES CONCURRENTS
+Conformément aux dispositions de l'article 24 du Décret n° 2-22-431 du 15 Chaabane 1444 (8 mars 2023) relatif aux marchés publics :
+Peuvent valablement participer et être admises à concourir les personnes physiques ou morales qui :
+1. Justifient des capacités juridiques, techniques et financières nécessaires ;
+2. Sont en situation fiscale régulière vis-à-vis du fisc marocain (Direction Générale des Impôts) ;
+3. Sont affiliées à la Caisse Nationale de Sécurité Sociale (CNSS) et à jour de leurs cotisations.
+Ne sont pas admises à participer :
+- Les personnes en état de liquidation judiciaire ou de faillite ;
+- Les personnes sous le coup d'une exclusion temporaire ou définitive des marchés publics.
+
+ARTICLE 5 : QUALIFICATIONS ET CAPACITES TECHNIQUES EXIGEES
+Les concurrents doivent justifier d'au moins une des qualifications suivantes :
+- Agrément du Ministère de l'Équipement pour bureaux d'études dans le Domaine D14 (Études de systèmes d'information, réseaux et télécoms) en cours de validité ;
+OU
+- Certificat de qualification et classification BTP délivré par le Ministère compétent, Secteur F (Courants faibles, réseaux et télécoms), Classe 2 au minimum.
+De plus, le concurrent doit justifier d'au moins deux (2) références similaires au cours des cinq (5) dernières années portant sur la mise en œuvre de solutions logicielles cloud ou de portails dématérialisés pour un montant minimum unitaire de 3 000 000 MAD TTC, appuyées d'attestations de bonne fin d'exécution signées par des maîtres d'ouvrage publics.
+
+ARTICLE 6 : CAPACITES FINANCIERES MINIMALES
+Le chiffre d'affaires annuel moyen réalisé par le concurrent au cours des trois (3) derniers exercices (2021, 2022, 2023) doit être supérieur ou égal à 5 000 000,00 MAD (Cinq Millions de Dirhams).
+
+ARTICLE 7 : CAUTION PROVISOIRE ET CAUTION DEFINITIVE
+1. Le montant de la caution provisoire est fixé à 95 000,00 MAD (Quatre-vingt-quinze mille dirhams).
+Elle doit être constituée sous forme de caution personnelle et solidaire délivrée par un établissement bancaire marocain agréé par le Ministère des Finances.
+2. Le montant de la caution définitive est fixé à 3 % (trois pour cent) du montant initial du marché TTC.
+
+ARTICLE 8 : ESTIMATION DU COUT DES PRESTATIONS
+L'estimation prévisionnelle établie par le maître d'ouvrage pour la réalisation de l'ensemble des prestations s'élève à la somme de 6 500 000,00 MAD TTC (Six millions cinq cent mille dirhams toutes taxes comprises).
+
+ARTICLE 9 : DELAI D'EXECUTION ET DELAI DE VALIDITE DES OFFRES
+1. Le délai d'exécution global est de dix (10) mois à compter de la date de notification de l'ordre de service prescrivant le début des prestations.
+2. Le délai de validité des offres est fixé à quatre-vingt-dix (90) jours à compter de la date limite de dépôt des plis.
+
+ARTICLE 10 : CONTENU ET COMPOSITION DU DOSSIER DE SOUMISSION
+Les plis déposés par les concurrents doivent comprendre :
+A. Le Dossier Administratif :
+  - La déclaration sur l'honneur signée et cachetée (conforme au modèle de l'article 26 du décret 2-22-431) comportant le numéro d'ICE, IF, RC, CNSS et mentionnant le statut PME le cas échéant ;
+  - Le récépissé du cautionnement provisoire ou l'attestation de caution personnelle et solidaire de 95 000 MAD ;
+  - Pour les concurrents marocains : l'attestation fiscale délivrée par l'administration fiscale datant de moins d'un an ;
+  - Pour les concurrents marocains : l'attestation originale de la CNSS datant de moins d'un an ;
+  - Le certificat d'immatriculation au Registre du Commerce (modèle J datant de moins de 3 mois) ;
+  - Les pouvoirs conférés au signataire de la soumission.
+
+B. Le Dossier Technique :
+  - Une note indiquant les moyens humains et matériels du concurrent ;
+  - Les attestations de références similaires délivrées par des maîtres d'ouvrage publics ;
+  - Les copies certifiées conformes des agréments ou certificats de qualification exigés (Domaine D14 ou Secteur F Classe 2).
+
+C. L'Offre Technique (Mémoire Technique) :
+  - Méthodologie détaillée d'exécution et architecture cible (Cloud sécurisé) ;
+  - Fiches CV détaillées des experts affectés au projet (Directeur de projet min. 10 ans d'expérience, Architecte Cloud min. 7 ans d'expérience, Expert Sécurité) ;
+  - Planning prévisionnel d'exécution jalonné par phase (Conception, Développement, Recette, Déploiement, Conduite du changement) ;
+  - Plan d'assurance qualité et sécurité des données conforme aux recommandations de la DGSSI.
+
+D. L'Offre Financière :
+  - L'acte d'engagement dûment rempli, paraphé et signé (mentionnant le montant en chiffres et en lettres en MAD HT et TTC) ;
+  - Le Bordereau des Prix Unitaires (BPU) et le Détail Quantitatif et Estimatif (DQE) complétés, paraphés et signés.
+
+ARTICLE 11 : CRITERES D'EVALUATION ET NOTATION DES OFFRES TECHNIQUES
+L'offre technique est notée sur 100 points selon le barème suivant :
+1. Méthodologie d'exécution et architecture technique : 35 points
+2. Qualifications et expérience de l'équipe dédiée : 35 points
+   - Directeur de projet (15 pts)
+   - Architecte Cloud & Sécurité (12 pts)
+   - Consultant en conduite du changement (8 pts)
+3. Planning et cohérence des jalons : 15 points
+4. Qualité des références similaires présentées : 15 points
+Toute offre technique obtenant une note globale inférieure à 70 points sur 100 sera éliminée et son offre financière sera rejetée sans être ouverte.
+
+ARTICLE 12 : DATE ET LIEU DE DEPOT DES PLIS
+Les plis doivent être déposés par voie électronique sur le portail des marchés publics (www.marchespublics.gov.ma) avant le 24/10/2024 à 10h30 (heure marocaine).
+L'ouverture des plis aura lieu le même jour à 11h00 au siège du Conseil Régional de Rabat-Salé-Kénitra.
+

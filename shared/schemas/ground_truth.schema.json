@@ -1,0 +1,159 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://plateforme-marches-publics.ma/schemas/ground_truth.schema.json",
+  "title": "GroundTruthDCE",
+  "description": "Schéma de la vérité terrain (Ground Truth) pour l'évaluation des extractions Document AI et LLM",
+  "type": "object",
+  "required": [
+    "dce_id",
+    "metadata_generale",
+    "champs_cles_extraits",
+    "pieces_requises_checklist",
+    "bareme_technique"
+  ],
+  "properties": {
+    "dce_id": { "type": "string" },
+    "metadata_generale": {
+      "type": "object",
+      "required": ["reference_ao", "acheteur", "titre_marche_fr", "type_prestation"],
+      "properties": {
+        "reference_ao": { "type": "string" },
+        "acheteur": { "type": "string" },
+        "titre_marche_fr": { "type": "string" },
+        "titre_marche_ar": { "type": "string" },
+        "type_prestation": { "type": "string", "enum": ["SERVICES", "TRAVAUX", "FOURNITURES", "ETUDES"] },
+        "mode_passation": { "type": "string" }
+      }
+    },
+    "champs_cles_extraits": {
+      "type": "object",
+      "description": "Champs clés soumis à l'évaluation d'exactitude (Exact Match et Fuzzy F1)",
+      "required": [
+        "date_limite_remise_plis",
+        "date_seance_ouverture",
+        "caution_provisoire_mad",
+        "delai_execution_mois",
+        "delai_validite_offres_jours"
+      ],
+      "properties": {
+        "date_limite_remise_plis": {
+          "type": "object",
+          "required": ["valeur_normalisee", "source_fichier", "article_ou_page", "citation_source"],
+          "properties": {
+            "valeur_normalisee": { "type": "string", "format": "date-time" },
+            "source_fichier": { "type": "string" },
+            "article_ou_page": { "type": "string" },
+            "citation_source": { "type": "string" }
+          }
+        },
+        "date_seance_ouverture": {
+          "type": "object",
+          "required": ["valeur_normalisee", "source_fichier", "article_ou_page", "citation_source"],
+          "properties": {
+            "valeur_normalisee": { "type": "string", "format": "date-time" },
+            "source_fichier": { "type": "string" },
+            "article_ou_page": { "type": "string" },
+            "citation_source": { "type": "string" }
+          }
+        },
+        "caution_provisoire_mad": {
+          "type": "object",
+          "required": ["valeur_normalisee", "source_fichier", "article_ou_page", "citation_source"],
+          "properties": {
+            "valeur_normalisee": { "type": "number", "minimum": 0 },
+            "source_fichier": { "type": "string" },
+            "article_ou_page": { "type": "string" },
+            "citation_source": { "type": "string" }
+          }
+        },
+        "estimation_maitre_ouvrage_mad": {
+          "type": "object",
+          "required": ["valeur_normalisee", "source_fichier", "article_ou_page", "citation_source"],
+          "properties": {
+            "valeur_normalisee": { "type": ["number", "null"] },
+            "source_fichier": { "type": "string" },
+            "article_ou_page": { "type": "string" },
+            "citation_source": { "type": "string" }
+          }
+        },
+        "delai_execution_mois": {
+          "type": "object",
+          "required": ["valeur_normalisee", "source_fichier", "article_ou_page", "citation_source"],
+          "properties": {
+            "valeur_normalisee": { "type": "integer", "minimum": 1 },
+            "source_fichier": { "type": "string" },
+            "article_ou_page": { "type": "string" },
+            "citation_source": { "type": "string" }
+          }
+        },
+        "delai_validite_offres_jours": {
+          "type": "object",
+          "required": ["valeur_normalisee", "source_fichier", "article_ou_page", "citation_source"],
+          "properties": {
+            "valeur_normalisee": { "type": "integer", "minimum": 1 },
+            "source_fichier": { "type": "string" },
+            "article_ou_page": { "type": "string" },
+            "citation_source": { "type": "string" }
+          }
+        },
+        "exigences_techniques_ou_agrements": {
+          "type": "object",
+          "required": ["valeur_normalisee", "source_fichier", "article_ou_page", "citation_source"],
+          "properties": {
+            "valeur_normalisee": { "type": "array", "items": { "type": "string" } },
+            "source_fichier": { "type": "string" },
+            "article_ou_page": { "type": "string" },
+            "citation_source": { "type": "string" }
+          }
+        },
+        "chiffre_affaires_annuel_min_mad": {
+          "type": "object",
+          "required": ["valeur_normalisee", "source_fichier", "article_ou_page", "citation_source"],
+          "properties": {
+            "valeur_normalisee": { "type": ["number", "null"] },
+            "source_fichier": { "type": "string" },
+            "article_ou_page": { "type": "string" },
+            "citation_source": { "type": "string" }
+          }
+        }
+      }
+    },
+    "pieces_requises_checklist": {
+      "type": "object",
+      "required": ["dossier_administratif", "dossier_technique", "offre_financiere"],
+      "properties": {
+        "dossier_administratif": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "dossier_technique": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "offre_financiere": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "bareme_technique": {
+      "type": "object",
+      "required": ["note_eliminatoire", "total_points"],
+      "properties": {
+        "note_eliminatoire": { "type": "number", "minimum": 0, "maximum": 100 },
+        "total_points": { "type": "number", "default": 100 },
+        "criteres": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["critere", "points_max"],
+            "properties": {
+              "critere": { "type": "string" },
+              "points_max": { "type": "number" }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,34 @@
+ROYAUME DU MAROC
+REGION RABAT - SALE - KENITRA
+CONSEIL REGIONAL
+
+CAHIER DES PRESCRIPTIONS SPECIALES (CPS)
+MARCHE N° 12/2024/CR-RSK
+
+CHAPITRE I : CLAUSES ADMINISTRATIVES ET GENERALES (CCAP)
+
+ARTICLE 1 : CADRE JURIDIQUE ET TEXTES APPLICABLES
+Le titulaire du marché est soumis aux dispositions :
+- Du Décret n° 2-22-431 du 15 Chaabane 1444 (8 mars 2023) relatif aux marchés publics ;
+- Du Décret n° 2-14-394 approuvant le Cahier des Clauses Administratives Générales applicables aux marchés de services portant sur les prestations d'études et de maîtrise d'œuvre (CCAG-EMO) ;
+- De la Loi n° 09-08 relative à la protection des personnes physiques à l'égard du traitement des données à caractère personnel ;
+- De la Directive Nationale de la Sécurité des Systèmes d'Information (DNSSI) édictée par la DGSSI.
+
+ARTICLE 2 : PENALITES DE RETARD
+À défaut d'avoir terminé les prestations dans les délais prescrits, il sera appliqué au titulaire, sans mise en demeure préalable, une pénalité journalière de retard égale à un millième (1/1000) du montant initial du marché éventuel des avenants.
+Le montant cumulé des pénalités est plafonné à huit pour cent (8%) du montant du marché.
+
+ARTICLE 3 : RETENUE DE GARANTIE
+Une retenue de garantie de dix pour cent (10%) est prélevée sur chaque acompte mensuel. Elle cesse de croître lorsqu'elle atteint sept pour cent (7%) du montant initial du marché augmenté le cas échéant du montant des avenants.
+
+CHAPITRE II : CLAUSES TECHNIQUES ET FONCTIONNELLES (CCTP)
+
+ARTICLE 4 : DESCRIPTION DETAILLEE DES PRESTATIONS
+Les prestations comprennent :
+- Phase 1 : Cadrage méthodologique, cartographie des processus et spécifications fonctionnelles détaillées (Délai : 2 mois).
+- Phase 2 : Fourniture, configuration et déploiement de la plateforme de conteneurs et des services cloud souverains (Délai : 3 mois).
+- Phase 3 : Développement et intégration des modules de dématérialisation et du portail citoyen/entreprises (Délai : 3 mois).
+- Phase 4 : Recette technique, audit de sécurité et mise en pré-production (Délai : 1 mois).
+- Phase 5 : Déploiement en production, formation des utilisateurs et transfert de compétences (Délai : 1 mois).
+- Phase 6 : Garantie et support technique 24/7 pendant douze (12) mois après réception définitive.
+

@@ -1,0 +1,30 @@
+{
+  "id": "DCE-2024-001",
+  "reference_ao": "AO Ouvert N° 12/2024/CR-RSK",
+  "objet": "Mise en place d'une plateforme régionale unifiée de services cloud et de dématérialisation pour la Région de Rabat-Salé-Kénitra",
+  "objet_arabe": "إرساء منصة جهوية موحدة للخدمات السحابية ورقمنة المساطر لجهة الرباط-سلا-القنيطرة",
+  "maitre_ouvrage": "Conseil Régional de Rabat-Salé-Kénitra",
+  "ville": "Rabat",
+  "region": "Rabat-Salé-Kénitra",
+  "type_prestation": "SERVICES",
+  "secteur_activite": "Informatique et Télécommunications",
+  "mode_passation": "Appel d'offres ouvert sur offres de prix",
+  "allotissement": "Marché unique (Lot unique)",
+  "date_publication": "2024-09-15T09:00:00+01:00",
+  "date_limite_remise_plis": "2024-10-24T10:30:00+01:00",
+  "date_seance_ouverture": "2024-10-24T11:00:00+01:00",
+  "estimation_maitre_ouvrage_mad_ttc": 6500000.0,
+  "caution_provisoire_mad": 95000.0,
+  "delai_execution_mois": 10,
+  "delai_validite_offres_jours": 90,
+  "qualification_ou_agrement_exige": "Agrément d'études domaine D14 ou Certificat BTP Secteur F Classe 2",
+  "chiffre_affaires_annuel_min_mad": 5000000.0,
+  "langue_principale": "FRANCAIS",
+  "comporte_arabe": true,
+  "est_scan": false,
+  "fichiers": [
+    "RC_Reglement_Consultation.txt",
+    "CPS_Prescriptions_Speciales.txt",
+    "BPU_Bordereau_Prix.csv"
+  ]
+}

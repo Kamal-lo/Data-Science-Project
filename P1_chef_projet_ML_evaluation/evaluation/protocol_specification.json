@@ -1,0 +1,64 @@
+{
+  "protocole_version": "1.0.0",
+  "statut": "FIGE_OFFICIEL",
+  "date_approbation": "2024-10-25",
+  "responsable": "P1 - Chef de projet, ML prédictif et évaluation",
+  "description": "Protocole formel d'évaluation des 6 modules de la plateforme IA de réponse aux marchés publics marocains",
+  "portes_de_validation": {
+    "porte_1": {
+      "identifiant_tache": "T05",
+      "libelle": "Corpus annoté et protocole figés",
+      "phase": 1,
+      "criteres_acceptation": {
+        "nombre_dce_annotes_min": 5,
+        "taux_couverture_secteurs": 1.0,
+        "verification_integrite_sha256": "VALIDE",
+        "validation_schemas_json": "100%_CONFORME"
+      }
+    },
+    "porte_2": {
+      "identifiant_tache": "T37",
+      "libelle": "Module B validé sur le jeu de test",
+      "phase": 2,
+      "criteres_acceptation": {
+        "exactitude_caution_provisoire_exact_match": 1.0,
+        "exactitude_date_limite_exact_match": 1.0,
+        "exactitude_globale_champs_cles_f1": 0.90,
+        "taux_erreur_caracteres_cer_max": 0.05,
+        "latence_maximale_secondes_pour_200_pages": 120.0,
+        "gonogo_f1_score_min": 0.85
+      }
+    },
+    "porte_3": {
+      "identifiant_tache": "T60",
+      "libelle": "Mémoire, prix et conformité testés sur dossiers rejoués",
+      "phase": 3,
+      "criteres_acceptation": {
+        "taux_faux_negatifs_pieces_manquantes": 0.0,
+        "taux_hallucinations_memoire_technique_max": 0.0,
+        "couverture_exigences_dce_memoire_min": 0.90,
+        "scenarios_hors_seuils_decret_2_22_431": 0
+      }
+    },
+    "porte_4": {
+      "identifiant_tache": "T85",
+      "libelle": "Chaîne complète de l'avis au dossier prêt à déposer",
+      "phase": 4,
+      "criteres_acceptation": {
+        "pertinence_alertes_veille_min": 0.70,
+        "win_rate_auc_roc_min": 0.75,
+        "brier_score_calibration_max": 0.18,
+        "temps_generation_total_dossier_max_minutes": 30.0
+      }
+    }
+  },
+  "formules_metriques": {
+    "CER": "CER = (Substitutions + Deletions + Insertions) / Total_Characters_Reference",
+    "WER": "WER = (Substitutions + Deletions + Insertions) / Total_Words_Reference",
+    "ExactMatch": "EM = 1 if pred.strip().lower() == gt.strip().lower() else 0",
+    "ComplianceFalseNegativeRate": "FNR = Missing_Required_Pieces_Undetected / Total_Missing_Required_Pieces",
+    "BrierScore": "Brier = (1/N) * sum((pred_probability - actual_win)^2)",
+    "AbnormallyLowThreshold": "Price < Estimation * (1 - 0.20) [ou 0.25 selon nature]",
+    "ExcessivePriceThreshold": "Price > Estimation * 1.20"
+  }
+}

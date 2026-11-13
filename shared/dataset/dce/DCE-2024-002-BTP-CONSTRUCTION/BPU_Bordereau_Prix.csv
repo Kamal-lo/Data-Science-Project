@@ -1,0 +1,13 @@
+numero_lot,numero_prix,designation_des_ouvrages,unite,quantite,prix_unitaire_ht_mad,montant_total_ht_mad
+1,101,Installation de chantier et signalisation temporaire,Forfait,1,250000.00,250000.00
+1,102,Terrassements généraux en déblais et remblais,m3,4500,65.00,292500.00
+1,103,Béton armé en fondations (semelles et longrines),m3,650,1400.00,910000.00
+1,104,Béton armé en élévation (poteaux poutres voiles),m3,1200,1650.00,1980000.00
+1,105,Plancher en corps creux 16+4 et dalle de compression,m2,3800,280.00,1064000.00
+1,106,Maçonnerie en doubles cloisons de briques creuses,m2,2900,180.00,522000.00
+1,107,Étanchéité multicouche avec protection lourde gravillon,m2,1450,320.00,464000.00
+2,201,Tableau général basse tension (TGBT) et armoires divisionnaires,Unité,1,450000.00,450000.00
+2,202,Câblage réseaux informatiques Cat 6A et baies de brassage,Prise,450,650.00,292500.00
+2,203,Système de climatisation VRV / débit réfrigérant variable,Forfait,1,1850000.00,1850000.00
+2,204,Centrale de détection incendie adressable et diffuseurs,Forfait,1,380000.00,380000.00
+

@@ -1,0 +1,30 @@
+{
+  "id": "DCE-2024-004",
+  "reference_ao": "AO Ouvert N° 41/2024/CHU-IS",
+  "objet": "Acquisition, livraison, installation et mise en service d'équipements médicaux et biomédicaux pour le Centre Hospitalier Universitaire Ibn Sina de Rabat",
+  "objet_arabe": "شراء وتسليم وتركيب وتشغيل معدات طبية وبيوطبية للمركز الاستشفائي الجامعي ابن سينا بالرباط",
+  "maitre_ouvrage": "Centre Hospitalier Universitaire Ibn Sina de Rabat",
+  "ville": "Rabat",
+  "region": "Rabat-Salé-Kénitra",
+  "type_prestation": "FOURNITURES",
+  "secteur_activite": "Matériel Médical et Biomédical",
+  "mode_passation": "Appel d'offres ouvert sur offres de prix",
+  "allotissement": "Marché unique",
+  "date_publication": "2024-09-10T11:00:00+01:00",
+  "date_limite_remise_plis": "2024-10-30T10:00:00+01:00",
+  "date_seance_ouverture": "2024-10-30T10:30:00+01:00",
+  "estimation_maitre_ouvrage_mad_ttc": 8900000.0,
+  "caution_provisoire_mad": 130000.0,
+  "delai_execution_mois": 4,
+  "delai_validite_offres_jours": 90,
+  "qualification_ou_agrement_exige": "Certificat de conformité CE / FDA et autorisation de mise sur le marché délivrée par le Ministère de la Santé (DMP)",
+  "chiffre_affaires_annuel_min_mad": 8000000.0,
+  "langue_principale": "FRANCAIS",
+  "comporte_arabe": true,
+  "est_scan": false,
+  "fichiers": [
+    "RC_Reglement_Consultation.txt",
+    "CPS_Prescriptions_Speciales.txt",
+    "BPU_Bordereau_Prix.csv"
+  ]
+}

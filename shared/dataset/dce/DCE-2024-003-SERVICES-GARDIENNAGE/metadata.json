@@ -1,0 +1,30 @@
+{
+  "id": "DCE-2024-003",
+  "reference_ao": "AO Ouvert N° 22/2024/DRS-FM",
+  "objet": "Prestations de gardiennage et surveillance des établissements hospitaliers et administratifs relevant de la Direction Régionale de la Santé de Fès-Meknès",
+  "objet_arabe": "خدمات الحراسة والمراقبة للمؤسسات الاستشفائية والإدارية التابعة للمديرية الجهوية للصحة بجهة فاس-مكناس",
+  "maitre_ouvrage": "Direction Régionale de la Santé et de la Protection Sociale de Fès-Meknès",
+  "ville": "Fès",
+  "region": "Fès-Meknès",
+  "type_prestation": "SERVICES",
+  "secteur_activite": "Gardiennage, Sécurité et Surveillance",
+  "mode_passation": "Appel d'offres ouvert sur offres de prix",
+  "allotissement": "Marché unique",
+  "date_publication": "2024-09-01T09:00:00+01:00",
+  "date_limite_remise_plis": "2024-10-15T11:00:00+01:00",
+  "date_seance_ouverture": "2024-10-15T11:30:00+01:00",
+  "estimation_maitre_ouvrage_mad_ttc": 4200000.0,
+  "caution_provisoire_mad": 60000.0,
+  "delai_execution_mois": 12,
+  "delai_validite_offres_jours": 90,
+  "qualification_ou_agrement_exige": "Autorisation d'exercer délivrée par le Ministère de l'Intérieur (Loi 27-06)",
+  "chiffre_affaires_annuel_min_mad": 3000000.0,
+  "langue_principale": "FRANCAIS",
+  "comporte_arabe": true,
+  "est_scan": false,
+  "fichiers": [
+    "RC_Reglement_Consultation.txt",
+    "CPS_Prescriptions_Speciales.txt",
+    "BPU_Bordereau_Prix.csv"
+  ]
+}

@@ -1,0 +1,95 @@
+{
+  "dce_id": "DCE-2024-003",
+  "metadata_generale": {
+    "reference_ao": "AO Ouvert N° 22/2024/DRS-FM",
+    "acheteur": "Direction Régionale de la Santé et de la Protection Sociale de Fès-Meknès",
+    "titre_marche_fr": "Prestations de gardiennage et surveillance des établissements hospitaliers et administratifs relevant de la Direction Régionale de la Santé de Fès-Meknès",
+    "titre_marche_ar": "خدمات الحراسة والمراقبة للمؤسسات الاستشفائية والإدارية التابعة للمديرية الجهوية للصحة بجهة فاس-مكناس",
+    "type_prestation": "SERVICES",
+    "mode_passation": "Appel d'offres ouvert sur offres de prix"
+  },
+  "champs_cles_extraits": {
+    "date_limite_remise_plis": {
+      "valeur_normalisee": "2024-10-15T11:00:00+01:00",
+      "source_fichier": "RC_Reglement_Consultation.txt",
+      "article_ou_page": "Article 5",
+      "citation_source": "Les dossiers doivent être déposés avant le 15/10/2024 à 11h00 sur le portail des marchés publics."
+    },
+    "date_seance_ouverture": {
+      "valeur_normalisee": "2024-10-15T11:30:00+01:00",
+      "source_fichier": "RC_Reglement_Consultation.txt",
+      "article_ou_page": "Article 5",
+      "citation_source": "Ouverture publique des plis le 15/10/2024 à 11h30 au siège de la Direction Régionale à Fès."
+    },
+    "caution_provisoire_mad": {
+      "valeur_normalisee": 60000.0,
+      "source_fichier": "RC_Reglement_Consultation.txt",
+      "article_ou_page": "Article 3",
+      "citation_source": "Montant de la caution provisoire : 60 000,00 MAD (Soixante mille dirhams)."
+    },
+    "estimation_maitre_ouvrage_mad": {
+      "valeur_normalisee": 4200000.0,
+      "source_fichier": "RC_Reglement_Consultation.txt",
+      "article_ou_page": "Article 3",
+      "citation_source": "Estimation prévisionnelle du maître d'ouvrage : 4 200 000,00 MAD TTC."
+    },
+    "delai_execution_mois": {
+      "valeur_normalisee": 12,
+      "source_fichier": "metadata.json",
+      "article_ou_page": "Durée du marché",
+      "citation_source": "12 mois"
+    },
+    "delai_validite_offres_jours": {
+      "valeur_normalisee": 90,
+      "source_fichier": "metadata.json",
+      "article_ou_page": "Validité offres",
+      "citation_source": "90 jours"
+    },
+    "exigences_techniques_ou_agrements": {
+      "valeur_normalisee": [
+        "Autorisation d'exercer délivrée par le Ministère de l'Intérieur (Loi 27-06)",
+        "Respect strict du SMIG horaire marocain et charges sociales",
+        "Effectif de 45 agents et 3 chefs d'équipe"
+      ],
+      "source_fichier": "RC_Reglement_Consultation.txt",
+      "article_ou_page": "Article 2 & 4",
+      "citation_source": "autorisation d'exercer délivrée par le Ministère de l'Intérieur, en cours de validité (Loi n° 27-06)"
+    },
+    "chiffre_affaires_annuel_min_mad": {
+      "valeur_normalisee": 3000000.0,
+      "source_fichier": "metadata.json",
+      "article_ou_page": "Capacités financières",
+      "citation_source": "3000000.0"
+    }
+  },
+  "pieces_requises_checklist": {
+    "dossier_administratif": [
+      "Déclaration sur l'honneur (Art. 26 Décret 2-22-431)",
+      "Caution provisoire de 60 000 MAD",
+      "Autorisation d'exercer du Ministère de l'Intérieur (Loi 27-06)",
+      "Attestation fiscale DGI (< 1 an)",
+      "Attestation originale CNSS (< 1 an)",
+      "Registre de Commerce (Modèle J)",
+      "Pouvoirs du signataire"
+    ],
+    "dossier_technique": [
+      "Liste des agents et encadrants avec fiches CNSS",
+      "Attestations de références de prestations de gardiennage similaires",
+      "Moyens de transmission et équipements de sécurité"
+    ],
+    "offre_financiere": [
+      "Acte d'engagement",
+      "Bordereau des Prix Unitaires détaillant le respect du SMIG",
+      "Détail Estimatif"
+    ]
+  },
+  "bareme_technique": {
+    "note_eliminatoire": 70.0,
+    "total_points": 100.0,
+    "criteres": [
+      { "critere": "Organisation des rondes et astreintes 24/7", "points_max": 40.0 },
+      { "critere": "Qualification et formation des agents", "points_max": 35.0 },
+      { "critere": "Équipements radio et contrôle électronique", "points_max": 25.0 }
+    ]
+  }
+}

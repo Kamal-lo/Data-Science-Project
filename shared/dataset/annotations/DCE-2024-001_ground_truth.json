@@ -1,0 +1,95 @@
+{
+  "dce_id": "DCE-2024-001",
+  "metadata_generale": {
+    "reference_ao": "AO Ouvert N° 12/2024/CR-RSK",
+    "acheteur": "Conseil Régional de Rabat-Salé-Kénitra",
+    "titre_marche_fr": "Mise en place d'une plateforme régionale unifiée de services cloud et de dématérialisation pour la Région de Rabat-Salé-Kénitra",
+    "titre_marche_ar": "إرساء منصة جهوية موحدة للخدمات السحابية ورقمنة المساطر لجهة الرباط-سلا-القنيطرة",
+    "type_prestation": "SERVICES",
+    "mode_passation": "Appel d'offres ouvert sur offres de prix"
+  },
+  "champs_cles_extraits": {
+    "date_limite_remise_plis": {
+      "valeur_normalisee": "2024-10-24T10:30:00+01:00",
+      "source_fichier": "RC_Reglement_Consultation.txt",
+      "article_ou_page": "Article 12",
+      "citation_source": "Les plis doivent être déposés par voie électronique sur le portail des marchés publics (www.marchespublics.gov.ma) avant le 24/10/2024 à 10h30"
+    },
+    "date_seance_ouverture": {
+      "valeur_normalisee": "2024-10-24T11:00:00+01:00",
+      "source_fichier": "RC_Reglement_Consultation.txt",
+      "article_ou_page": "Article 12",
+      "citation_source": "L'ouverture des plis aura lieu le même jour à 11h00 au siège du Conseil Régional de Rabat-Salé-Kénitra."
+    },
+    "caution_provisoire_mad": {
+      "valeur_normalisee": 95000.0,
+      "source_fichier": "RC_Reglement_Consultation.txt",
+      "article_ou_page": "Article 7",
+      "citation_source": "Le montant de la caution provisoire est fixé à 95 000,00 MAD (Quatre-vingt-quinze mille dirhams)."
+    },
+    "estimation_maitre_ouvrage_mad": {
+      "valeur_normalisee": 6500000.0,
+      "source_fichier": "RC_Reglement_Consultation.txt",
+      "article_ou_page": "Article 8",
+      "citation_source": "L'estimation prévisionnelle établie par le maître d'ouvrage pour la réalisation de l'ensemble des prestations s'élève à la somme de 6 500 000,00 MAD TTC"
+    },
+    "delai_execution_mois": {
+      "valeur_normalisee": 10,
+      "source_fichier": "RC_Reglement_Consultation.txt",
+      "article_ou_page": "Article 9",
+      "citation_source": "Le délai d'exécution global est de dix (10) mois à compter de la date de notification de l'ordre de service"
+    },
+    "delai_validite_offres_jours": {
+      "valeur_normalisee": 90,
+      "source_fichier": "RC_Reglement_Consultation.txt",
+      "article_ou_page": "Article 9",
+      "citation_source": "Le délai de validité des offres est fixé à quatre-vingt-dix (90) jours à compter de la date limite de dépôt des plis."
+    },
+    "exigences_techniques_ou_agrements": {
+      "valeur_normalisee": [
+        "Agrément Domaine D14 (Études SI, réseaux et télécoms)",
+        "Certificat BTP Secteur F Classe 2",
+        "Deux références similaires min. 3 000 000 MAD"
+      ],
+      "source_fichier": "RC_Reglement_Consultation.txt",
+      "article_ou_page": "Article 5",
+      "citation_source": "Agrément du Ministère de l'Équipement pour bureaux d'études dans le Domaine D14 en cours de validité OU Certificat de qualification et classification BTP délivré par le Ministère compétent, Secteur F, Classe 2 au minimum."
+    },
+    "chiffre_affaires_annuel_min_mad": {
+      "valeur_normalisee": 5000000.0,
+      "source_fichier": "RC_Reglement_Consultation.txt",
+      "article_ou_page": "Article 6",
+      "citation_source": "Le chiffre d'affaires annuel moyen réalisé par le concurrent au cours des trois (3) derniers exercices (2021, 2022, 2023) doit être supérieur ou égal à 5 000 000,00 MAD"
+    }
+  },
+  "pieces_requises_checklist": {
+    "dossier_administratif": [
+      "Déclaration sur l'honneur (Art. 26 Décret 2-22-431)",
+      "Récépissé ou attestation de caution provisoire (95 000 MAD)",
+      "Attestation fiscale DGI (< 1 an)",
+      "Attestation CNSS (< 1 an)",
+      "Certificat d'immatriculation au Registre de Commerce (Modèle J < 3 mois)",
+      "Pouvoirs conférés au signataire"
+    ],
+    "dossier_technique": [
+      "Note des moyens humains et matériels",
+      "Attestations de références similaires délivrées par maîtres d'ouvrage publics",
+      "Copie certifiée conforme Agrément D14 ou Certificat BTP Secteur F Classe 2"
+    ],
+    "offre_financiere": [
+      "Acte d'engagement signé et paraphé",
+      "Bordereau des Prix Unitaires (BPU) complété et paraphé",
+      "Détail Quantitatif et Estimatif (DQE)"
+    ]
+  },
+  "bareme_technique": {
+    "note_eliminatoire": 70.0,
+    "total_points": 100.0,
+    "criteres": [
+      { "critere": "Méthodologie d'exécution et architecture technique", "points_max": 35.0 },
+      { "critere": "Qualifications et expérience de l'équipe dédiée", "points_max": 35.0 },
+      { "critere": "Planning et cohérence des jalons", "points_max": 15.0 },
+      { "critere": "Qualité des références similaires présentées", "points_max": 15.0 }
+    ]
+  }
+}

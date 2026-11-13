@@ -1,0 +1,51 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://plateforme-marches-publics.ma/schemas/attribution_data.schema.json",
+  "title": "AttributionMarchesPublicsMaroc",
+  "description": "Schéma de données des attributions historiques de marchés publics au Maroc (utilisé pour l'entraînement du modèle ML prédictif Win-Rate T80-T84)",
+  "type": "object",
+  "required": [
+    "ao_reference",
+    "acheteur_nom",
+    "acheteur_type",
+    "region",
+    "secteur_activite",
+    "estimation_mo_mad",
+    "montant_attribue_mad",
+    "rabais_pourcentage",
+    "attributaire_nom",
+    "attributaire_ice",
+    "nombre_soumissionnaires",
+    "nombre_admis_technique",
+    "date_attribution"
+  ],
+  "properties": {
+    "ao_reference": { "type": "string" },
+    "acheteur_nom": { "type": "string" },
+    "acheteur_type": {
+      "type": "string",
+      "enum": ["MINISTERE", "COLLECTIVITE_TERRITORIALE", "ETABLISSEMENT_PUBLIC", "SOCIETE_D_ETAT", "AUTRE"]
+    },
+    "region": { "type": "string" },
+    "secteur_activite": {
+      "type": "string",
+      "enum": ["BTP", "IT_TELECOM", "SERVICES", "FOURNITURES", "ETUDES_INGENIERIE"]
+    },
+    "objet_marche": { "type": "string" },
+    "estimation_mo_mad": { "type": "number", "minimum": 0 },
+    "montant_attribue_mad": { "type": "number", "minimum": 0 },
+    "rabais_pourcentage": { "type": "number", "description": "Taux de rabais ou majoration par rapport à l'estimation MO" },
+    "attributaire_nom": { "type": "string" },
+    "attributaire_ice": { "type": "string", "pattern": "^[0-9]{15}$" },
+    "attributaire_statut_pme": { "type": "boolean" },
+    "nombre_retraits_dce": { "type": "integer", "minimum": 0 },
+    "nombre_soumissionnaires": { "type": "integer", "minimum": 1 },
+    "nombre_admis_technique": { "type": "integer", "minimum": 1 },
+    "nombre_ecartes": { "type": "integer", "minimum": 0 },
+    "offre_financiere_min_mad": { "type": "number", "minimum": 0 },
+    "offre_financiere_max_mad": { "type": "number", "minimum": 0 },
+    "delai_execution_mois": { "type": "integer", "minimum": 1 },
+    "date_publication": { "type": "string", "format": "date" },
+    "date_attribution": { "type": "string", "format": "date" }
+  }
+}
