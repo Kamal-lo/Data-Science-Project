@@ -1,49 +1,22 @@
-# P4 — Scraping · Collecte de Données
+# P4 — Chiffrage et Conformité
 
-**Responsable :** P4  
-**Rôle :** Collecte automatique des données depuis marchespublics.gov.ma et autres sources
+## Rôle
+Je m'occupe des modules **D (Chiffrage)** et **E (Conformité)**, selon le plan du PDF
+`repartition_equipe_projet_marches_publics.pdf`.
 
----
+## Ce que je fais
+- Paramètres réglementaires du Décret 2-22-431 (prix, seuils, délais)
+- Modèle de prix de référence par région
+- Alertes pour offres trop chères ou trop basses
+- Check-list des documents obligatoires
+- Vérification des dates et montants (caution)
+- Tests sur d'anciens dossiers
 
-## Tes dossiers
+## Dossiers
+- `scripts/` — mon code
+- `docs/` — documents de référence (règles du décret, etc.)
+- `outputs/` — résultats (rapports, scénarios de prix)
+- `tests/` — tests sur dossiers rejoués
 
-| Dossier | Contenu |
-|---|---|
-| `scripts/` | Scripts de scraping et collecte |
-| `raw/` | Données brutes collectées (JSON, HTML, CSV) |
-| `logs/` | Logs des sessions de scraping |
-| `notebooks/` | Notebooks d'exploration du portail |
-
-## Tes fichiers clés (déjà présents)
-
-- `scripts/collect_dce.py` — Collecte et vérification des DCE
-- `scripts/collect_attributions.py` — Collecte des historiques d'attribution
-
-## Ce que tu dois produire
-
-- [ ] Script de scraping robuste du portail marchespublics.gov.ma
-- [ ] Données brutes enrichies dans `raw/`
-- [ ] Pipeline de nettoyage et normalisation des données
-- [ ] Logs structurés des collectes dans `logs/`
-
-## Données déjà collectées (dans shared/)
-
-```
-../shared/dataset/real_tenders_live.json   ← 5 AO réels scrapés
-../shared/data/real_attributions_live.json ← 5 attributions réelles
-../shared/data/attributions_historique.csv ← 150 lignes synthétiques
-```
-
-## Limitation connue du portail
-
-> ⚠️ **WAF Block** : Le téléchargement automatique des DCE ZIP est bloqué  
-> par le WAF (Web Application Firewall) du portail.  
-> Seules les métadonnées sont accessibles sans navigateur.  
-> Voir : `../shared/docs/tasks/T03_BIS_REAL_DATA_SCRAPING.md`
-
-## Portail officiel
-
-- URL : https://www.marchespublics.gov.ma
-- Framework : PRADO PHP (token PRADO_PAGESTATE requis)
-- Accès : Anonyme pour les métadonnées, inscription pour DCE ZIP
-
+## Tâches (voir le PDF pour les détails)
+T14, T50, T51, T52, T53, T54, T55, T56, T57, T58, T59, T96, T100
