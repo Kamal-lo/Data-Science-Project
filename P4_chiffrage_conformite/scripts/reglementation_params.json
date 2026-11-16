@@ -1,0 +1,17 @@
+{
+  "decree_version": "2-22-431",
+  "effective_date": "2023-09-01",
+  "parameters": {
+    "seuil_offre_excessive_pct": 20,
+    "seuil_anormalement_basse_travaux_pct": 20,
+    "seuil_anormalement_basse_fournitures_services_pct": 25,
+    "caution_provisoire_plafond_pct": 2,
+    "penalite_sans_caution_pct": 1,
+    "validite_attestation_fiscale_jours": 365,
+    "validite_attestation_cnss_jours": 365,
+    "delai_validite_offres_jours": 60,
+    "delai_publicite_standard_jours": 21,
+    "delai_publicite_majore_jours": 40,
+    "delai_publicite_restreint_jours": 10
+  }
+}
