@@ -1,0 +1,114 @@
+{
+  "protocol": "precision.pages_1_2.v1",
+  "run_id": "20261113T111045_112432Z_complete",
+  "scope_policy": "Zones françaises uniquement des pages 1 et 2, suivant les rectangles communs french_regions.v1 appliqués aux blocs des DEUX moteurs. En-têtes arabe/tifinagh, logos, tampons, marges et numéros de page exclus. Lecture de haut en bas, puis de gauche à droite dans une même ligne. Champs vides laissés vides ; traits de remplissage non transcrits, sans ajouter de points ni de marqueur. La ponctuation imprimée, les graphies et les fautes grammaticales sont conservées. Le bruit OCR à l’intérieur des zones retenues reste pénalisé pour les deux moteurs ; aucune correction lexicale de leurs sorties. Toute boîte coupée par une frontière bloque l’évaluation. Les références restent candidates jusqu’à validation humaine explicite.",
+  "source_hashes": {
+    "data/pdf/test_dce.pdf": "e7b529f09720b63c07f6fb728d51a8ded9e8c527162d91591770241cf08e5bb1",
+    "outputs/ocr/comparison.csv": "4a08fa6adbdbe0fda787d3851d657476ced97bf274ed3a689295e15a04187ca0",
+    "outputs/ocr/runs/20261113T111045_112432Z_complete/manifest.json": "22a69c93f938fe350ad27282168343487116cb27ef6244170f1a4e7cc2bea0d1",
+    "outputs/ocr/runs/20261113T111045_112432Z_complete/benchmark.json": "6b540c743563a5fbb977f3823cd4cc0d638a3cfaf7f502bb36518e0e5ba213e7",
+    "outputs/ocr/runs/20261113T111045_112432Z_complete/comparison.csv": "4a08fa6adbdbe0fda787d3851d657476ced97bf274ed3a689295e15a04187ca0",
+    "outputs/ocr/images/e7b529f09720b63c/200dpi/page_001.png": "81b77a642c0e59205231fa6926f4b885b76fd43a190f82e9857b64b64a7d9d65",
+    "outputs/ocr/paddleocr/20261113T111045_112432Z_complete/page_001.txt": "741b7c284fc367b9d8e2619dfba531aa5843a4eee4bdc7ce27316689ecb61b7f",
+    "outputs/ocr/paddleocr/20261113T111045_112432Z_complete/page_001.json": "a0db4115a4796a49d1eb6f8b9200c24e85933e46326bb99df1502885fa717553",
+    "outputs/ocr/tesseract/20261113T111045_112432Z_complete/page_001.txt": "413c3e27781a7597a92f5fbac774df676cb6641799944ba242a30c087eb42f19",
+    "outputs/ocr/tesseract/20261113T111045_112432Z_complete/page_001.json": "b19c302f0244c28e4d158d4b60c94e4f08237f2ae50ea915355b3f2db03a6146",
+    "outputs/ocr/images/e7b529f09720b63c/200dpi/page_002.png": "40690c6b8d4c4cddb73d3199016786f58c4ce5df9dc906cf5142d7e19b70444e",
+    "outputs/ocr/paddleocr/20261113T111045_112432Z_complete/page_002.txt": "1eb8d9d67eac124785b2dd55f9073b6be9f7be03846c7d15d4e8a7bd89441768",
+    "outputs/ocr/paddleocr/20261113T111045_112432Z_complete/page_002.json": "c57cc395a93ee5425798b886045c5408b483ebe38305fd0d93b863c931944a48",
+    "outputs/ocr/tesseract/20261113T111045_112432Z_complete/page_002.txt": "a40fb04c3a823ffa1e1a70e8aec83e0aee4a42807b9f7b5dbe537594bb87b5d2",
+    "outputs/ocr/tesseract/20261113T111045_112432Z_complete/page_002.json": "72cf06beae43d4056a88ab062029b524dec8d0f83ff50bba2720e4e29f4938c0"
+  },
+  "pages": [
+    {
+      "page": 1,
+      "candidate_file": "data/ground_truth/pages_1_2/page_001.txt",
+      "approval": {
+        "human_reviewed": true,
+        "reviewer": "wafa",
+        "approved_at": "2026-11-18T20:59:05.039808+00:00",
+        "scope_confirmed": true,
+        "scope_sha256": "66d8dc0d0ff8ff1e36628cd79208636da30b54ed6a3943d24f08988ce4137811",
+        "reference_sha256": "2cb1c0b877da6385cbdb96171fb4d9bc01bcaa1dec14d58759420e18b031aea9",
+        "reference_file": "data/ground_truth/pages_1_2/validated/page_001_2cb1c0b877da6385cbdb96171fb4d9bc01bcaa1dec14d58759420e18b031aea9.txt"
+      },
+      "origin": "Sorties OCR existantes puis corrections visuelles ; candidat assisté, non validé."
+    },
+    {
+      "page": 2,
+      "candidate_file": "data/ground_truth/pages_1_2/page_002.txt",
+      "approval": {
+        "human_reviewed": true,
+        "reviewer": "wafa",
+        "approved_at": "2026-11-18T20:59:28.575394+00:00",
+        "scope_confirmed": true,
+        "scope_sha256": "66d8dc0d0ff8ff1e36628cd79208636da30b54ed6a3943d24f08988ce4137811",
+        "reference_sha256": "85873d92d1ced31197e1ba5eac70d79eea85f508396a0c6c96ef3d9c0a844a30",
+        "reference_file": "data/ground_truth/pages_1_2/validated/page_002_85873d92d1ced31197e1ba5eac70d79eea85f508396a0c6c96ef3d9c0a844a30.txt"
+      },
+      "origin": "Sorties OCR existantes puis corrections visuelles ; candidat assisté, non validé."
+    }
+  ],
+  "evaluation_scope": {
+    "version": "french_regions.v1",
+    "coordinate_system": "pixels des PNG originaux à 200 DPI, origine en haut à gauche",
+    "pages": {
+      "1": {
+        "image_size": [
+          1654,
+          2339
+        ],
+        "regions": [
+          {
+            "name": "titres_et_objet_francais",
+            "bbox": [
+              150,
+              600,
+              1530,
+              1610
+            ]
+          },
+          {
+            "name": "paragraphe_juridique",
+            "bbox": [
+              150,
+              1975,
+              1530,
+              2120
+            ]
+          }
+        ]
+      },
+      "2": {
+        "image_size": [
+          1654,
+          2339
+        ],
+        "regions": [
+          {
+            "name": "texte_et_formulaire_superieurs",
+            "bbox": [
+              140,
+              80,
+              1530,
+              1900
+            ]
+          },
+          {
+            "name": "groupement_hors_tampon",
+            "bbox": [
+              140,
+              1900,
+              1250,
+              2240
+            ]
+          }
+        ]
+      }
+    },
+    "excluded": "En-têtes arabe/tifinagh page 1, logos, tampons des deux pages, marges et pagination.",
+    "empty_fields": "Champs vides laissés vides, traits de remplissage non transcrits dans la candidate. Aucun nettoyage lexical des OCR : tout bruit reconnu à l’intérieur du périmètre est conservé et pénalisé pour les deux moteurs.",
+    "selection": "Même union de rectangles pour les deux moteurs. Boîte entièrement couverte : conservée ; sans intersection : exclue ; intersection partielle : évaluation bloquée."
+  },
+  "scope_sha256": "66d8dc0d0ff8ff1e36628cd79208636da30b54ed6a3943d24f08988ce4137811"
+}

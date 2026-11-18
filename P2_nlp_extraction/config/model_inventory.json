@@ -1,0 +1,47 @@
+[
+  {
+    "path": ".cache/paddlex/official_models/arabic_PP-OCRv3_mobile_rec/inference.json",
+    "sha256": "adab27210eae2b26c76e90abb8240d33cdf962b50f693e4a0bb3e4836db71f90",
+    "bytes": 168414
+  },
+  {
+    "path": ".cache/paddlex/official_models/arabic_PP-OCRv3_mobile_rec/inference.pdiparams",
+    "sha256": "ab7a01be7e76cac4b25f52a81a9079856f1b9aa7e4b48370b7efeb77dff63ee7",
+    "bytes": 8933978
+  },
+  {
+    "path": ".cache/paddlex/official_models/arabic_PP-OCRv3_mobile_rec/inference.yml",
+    "sha256": "fd801db0002ff29e8f5908c72a2635eb88d5e744c1aebe0e8d857695a74ae159",
+    "bytes": 1806
+  },
+  {
+    "path": ".cache/paddlex/official_models/latin_PP-OCRv5_mobile_rec/inference.json",
+    "sha256": "820b2ee8e5072de5156c3d55124c2b03c82ef278d59f453f857c0789bacb4da1",
+    "bytes": 217712
+  },
+  {
+    "path": ".cache/paddlex/official_models/latin_PP-OCRv5_mobile_rec/inference.pdiparams",
+    "sha256": "53cdc8b481a7394bb108f96d0fb3432b0a8f392e22c7d18f06dbb2d42b8b25f9",
+    "bytes": 7965915
+  },
+  {
+    "path": ".cache/paddlex/official_models/latin_PP-OCRv5_mobile_rec/inference.yml",
+    "sha256": "0bbe984570f597af3638e50bdf2e8276f3ab26a61966096538b3b0d1849f5c84",
+    "bytes": 6817
+  },
+  {
+    "path": ".cache/paddlex/official_models/PP-OCRv5_mobile_det/inference.json",
+    "sha256": "05feef1acb00aa4cd7362b15f7f501fc4f99d7b1fa73c1c871e0c7b1504b0f5c",
+    "bytes": 229777
+  },
+  {
+    "path": ".cache/paddlex/official_models/PP-OCRv5_mobile_det/inference.pdiparams",
+    "sha256": "afa1820cb16c1fd0dad589d0f8b389139061c1ef6d68019685fd07be997dda5b",
+    "bytes": 4692937
+  },
+  {
+    "path": ".cache/paddlex/official_models/PP-OCRv5_mobile_det/inference.yml",
+    "sha256": "98069072e1b6b37d727fd9d9f11725faa46d6ea0de012f2ed26caea011c37699",
+    "bytes": 903
+  }
+]

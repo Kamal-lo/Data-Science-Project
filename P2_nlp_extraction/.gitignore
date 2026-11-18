@@ -1,0 +1,9 @@
+.venv/
+.cache/
+__pycache__/
+*.py[cod]
+outputs/
+tools/
+*.log
+# PDF conservé localement ; vérifier les droits avant toute publication.
+data/pdf/*.pdf
