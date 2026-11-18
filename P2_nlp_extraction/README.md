@@ -64,6 +64,8 @@ Aucune région manuelle n'est demandée. Voir [le contrat de l'API](ocr_pipeline
 
 ## Tests essentiels
 
+Les tests découverts ci-dessous couvrent le pipeline OCR et l'ingestion T23.
+
 ```powershell
 & .\P2_nlp_extraction\.venv\Scripts\python.exe -B -X utf8 -m unittest discover -s .\P2_nlp_extraction\tests -v
 & .\P2_nlp_extraction\.venv\Scripts\python.exe -B -X utf8 .\P2_nlp_extraction\scripts\run_automatic_ocr_sample.py
@@ -85,6 +87,32 @@ Ces scores ne mesurent ni l'arabe ni le routage automatique actuel.
 Les références restent dans `data/ground_truth/pages_1_2/`.
 Les anciens benchmarks, interfaces et diagnostics ont été retirés après sauvegarde
 vérifiée hors de P2.
+
+## T23 — Préparation des documents
+
+`document_ingestion.ingest_path()` reçoit un ZIP ou un fichier individuel, détecte
+son type réel et produit un manifeste JSON `p2.ingestion.v1` dans
+`outputs/ingestion/<run_id>/`. Il conserve les noms, chemins et empreintes et ne
+marque éligibles à T24 que les PDF/DOCX acceptés. Aucun OCR ni conversion Markdown.
+
+```python
+from P2_nlp_extraction.document_ingestion import ingest_path, IngestionLimits
+
+if __name__ == "__main__":
+    result = ingest_path(
+        "marche.zip",
+        "P2_nlp_extraction/outputs/ingestion",
+        dce_id="DCE-2024-001",
+        limits=IngestionLimits(),
+    )
+    print(result["status"], result["manifest_path"])
+```
+
+Les ZIP imbriqués ne sont pas extraits récursivement. Les types non pris en charge
+restent inventoriés sans éligibilité. Les contrôles de chemins, CRC et ressources
+ne constituent ni un antivirus ni une sandbox système. Voir le
+[contrat T23, les limites et les tests](document_ingestion/README.md).
+T24 n'est pas implémentée et le pipeline OCR existant reste indépendant.
 
 ## Prochaines tâches P2
 

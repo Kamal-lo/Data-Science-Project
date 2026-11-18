@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "P2 T23 document ingestion v1",
+  "type": "object",
+  "required": ["schema_version", "run_id", "dce_id", "created_at", "status", "eligible_for_t24", "source", "files", "errors", "limits", "execution_seconds", "bytes_processed"],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {"const": "p2.ingestion.v1"},
+    "run_id": {"type": "string", "minLength": 1},
+    "dce_id": {"type": ["string", "null"]},
+    "created_at": {"type": "string", "format": "date-time"},
+    "status": {"enum": ["processing", "completed", "completed_with_issues", "rejected", "failed"]},
+    "eligible_for_t24": {"type": "boolean"},
+    "source": {
+      "type": "object", "additionalProperties": false,
+      "required": ["name", "detected_type", "sha256", "size_bytes"],
+      "properties": {"name": {"type": "string"}, "detected_type": {"type": ["string", "null"]}, "sha256": {"$ref": "#/$defs/hash"}, "size_bytes": {"type": ["integer", "null"], "minimum": 0}}
+    },
+    "files": {"type": "array", "items": {"$ref": "#/$defs/file"}},
+    "errors": {"type": "array", "items": {"$ref": "#/$defs/error"}},
+    "limits": {"type": "object"},
+    "execution_seconds": {"type": "number", "minimum": 0},
+    "bytes_processed": {"type": "integer", "minimum": 0}
+  },
+  "allOf": [{"if": {"properties": {"status": {"enum": ["processing", "rejected", "failed"]}}}, "then": {"properties": {"eligible_for_t24": {"const": false}, "files": {"items": {"properties": {"eligible_for_t24": {"const": false}, "artifact_path": {"type": "null"}}}}}}}],
+  "$defs": {
+    "hash": {"anyOf": [{"type": "null"}, {"type": "string", "pattern": "^[a-f0-9]{64}$"}]},
+    "error": {"type": "object", "required": ["code", "message"], "properties": {"code": {"type": "string"}, "message": {"type": "string"}}, "additionalProperties": false},
+    "file": {
+      "type": "object", "additionalProperties": false,
+      "required": ["file_id", "original_name", "relative_path", "artifact_path", "declared_extension", "detected_type", "mime_type", "status", "reason", "warnings", "errors", "size_bytes", "sha256", "eligible_for_t24"],
+      "properties": {
+        "file_id": {"type": "string", "pattern": "^f[0-9]{6,}$"},
+        "original_name": {"type": "string"},
+        "relative_path": {"type": "string", "minLength": 1},
+        "artifact_path": {"type": ["string", "null"]},
+        "declared_extension": {"type": "string"},
+        "detected_type": {"enum": ["pdf", "docx", "docm", "zip", "ooxml", "unknown", "directory"]},
+        "mime_type": {"type": ["string", "null"]},
+        "status": {"enum": ["ready", "blocked", "invalid", "unsupported", "directory", "not_published"]},
+        "reason": {"type": ["string", "null"]},
+        "warnings": {"type": "array", "items": {"type": "string"}},
+        "errors": {"type": "array", "items": {"$ref": "#/$defs/error"}},
+        "size_bytes": {"type": "integer", "minimum": 0},
+        "sha256": {"$ref": "#/$defs/hash"},
+        "eligible_for_t24": {"type": "boolean"},
+        "metadata": {"type": "object"},
+        "zip_metadata": {"type": "object"}
+      },
+      "allOf": [{"if": {"properties": {"eligible_for_t24": {"const": true}}}, "then": {"properties": {"status": {"const": "ready"}, "detected_type": {"enum": ["pdf", "docx"]}, "artifact_path": {"type": "string", "pattern": "^files/"}, "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}}}}]
+    }
+  }
+}
