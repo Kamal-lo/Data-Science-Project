@@ -112,7 +112,37 @@ Les ZIP imbriqués ne sont pas extraits récursivement. Les types non pris en ch
 restent inventoriés sans éligibilité. Les contrôles de chemins, CRC et ressources
 ne constituent ni un antivirus ni une sandbox système. Voir le
 [contrat T23, les limites et les tests](document_ingestion/README.md).
-T24 n'est pas implémentée et le pipeline OCR existant reste indépendant.
+Le pipeline OCR existant reste indépendant.
+
+## T24 — Conversion Markdown et JSON
+
+Le package [document_conversion](document_conversion/README.md) consomme les
+fichiers `ready` et `eligible_for_t24` d'une ingestion T23 terminée. Il vérifie
+les chemins, tailles, empreintes et types réels avant conversion.
+
+```python
+from P2_nlp_extraction.document_conversion import convert_ingestion, ConversionOptions
+
+result = convert_ingestion(
+    "P2_nlp_extraction/outputs/ingestion/<run_id>/manifest.json",
+    options=ConversionOptions(ocr_mode="never"),
+)
+print(result["status"], result["manifest_path"])
+```
+
+PyMuPDF extrait les PDF textuels ; la décision est prise **page par page**.
+`ocr_mode="auto"` raccorde les pages scannées/mixtes au pipeline Paddle existant ;
+`never` signale les pages nécessitant encore l'OCR sans l'exécuter ; `reuse_only`
+consomme des résultats OCR locaux compatibles. Les DOCX passent par python-docx,
+avec pagination inconnue et pertes éventuelles explicitement signalées.
+Les textes bruts, hypothèses, coordonnées, pages PDF et provenance restent dans
+`outputs/conversion/<run_id>/documents/<file_id>/document.json`, avec son
+`document.md` UTF-8. Aucune sortie n'est validée humainement automatiquement.
+
+Installer l'extension avec `requirements-conversion.txt` et ses contraintes
+`requirements-conversion-lock.txt` ; voir la documentation T24 pour l'API
+`convert_document()`, la CLI, le schéma, les limites et les tests sans OCR réel.
+T26/T27 et les extractions métier ne sont pas implémentées par ce composant.
 
 ## Prochaines tâches P2
 
