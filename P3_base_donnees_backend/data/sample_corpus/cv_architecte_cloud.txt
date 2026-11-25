@@ -1,0 +1,19 @@
+CURRICULUM VITAE DÉTAILLÉ — EXPERT TECHNIQUE DEVSECOPS & DÉMATÉRIALISATION
+
+Nom complet : Mehdi Tazi
+Rôle proposé : Lead Ingénieur DevSecOps & Intégration Portail Citoyen
+Diplôme : Ingénieur d'État en Génie Logiciel — EMI (École Mohammadia d'Ingénieurs, Rabat)
+Expérience totale : 9 ans | Expérience spécifique marchés publics et e-Gov : 6 ans
+
+CERTIFICATIONS
+- Certified Kubernetes Security Specialist (CKS)
+- HashiCorp Certified Terraform Associate
+- ITIL v4 Foundation
+
+MISSIONS PRINCIPALES RÉALISÉES
+1. Plateforme Cloud Souveraine ADD (2023–2024) : Conception des pipelines CI/CD GitLab sécurisés (SAST/DAST), durcissement des images de conteneurs, mise en place de la haute disponibilité et de l'observabilité temps réel.
+2. Guichet Électronique MTNRA (2022–2023) : Intégration de l'API de signature électronique, optimisation des performances pour 10 000 connexions simultanées et rédaction du dossier d'exploitation.
+3. Portail Régional de Suivi des Investissements — CRI Casablanca-Settat (2020–2022) : Développement back-end Python/FastAPI et front-end bilingue Français/Arabe (RTL).
+
+COMPÉTENCES CLÉS
+Kubernetes, Docker, Terraform, Ansible, FastAPI, PostgreSQL, Qdrant, Keycloak SSO, DNSSI, Haute Disponibilité, Transfert de Compétences.

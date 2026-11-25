@@ -1,0 +1,223 @@
+{
+  "id": "11111111-2222-3333-4444-555555555555",
+  "identification_administrative": {
+    "raison_sociale": "Atlas Cloud & Systèmes SARL",
+    "nom_commercial": "AtlasCloud Maroc",
+    "forme_juridique": "SARL",
+    "ice": "001928374650012",
+    "identifiant_fiscal": "40291834",
+    "registre_commerce": {
+      "numero": "RC-148920",
+      "tribunal_ville": "Rabat"
+    },
+    "numero_patente": "25109482",
+    "numero_affiliation_cnss": "8741209",
+    "date_creation": "2016-04-12",
+    "capital_social_mad": 3000000.0,
+    "statut_pme": true,
+    "eligibilite_preference_nationale": true
+  },
+  "representant_legal": {
+    "nom": "Bennani",
+    "prenom": "Karim",
+    "cin": "A482910",
+    "nationalite": "Marocaine",
+    "qualite": "Gérant Associé",
+    "pouvoir_signataire": "STATUTS",
+    "email_notification": "k.bennani@atlascloud.ma",
+    "telephone_mobile": "+212661234567"
+  },
+  "coordonnees": {
+    "adresse_siege": "18 Avenue Annakhil, Hay Riad",
+    "complement_adresse": "Immeuble Al Majd, 3ème étage",
+    "ville": "Rabat",
+    "code_postal": "10100",
+    "region": "Rabat-Salé-Kénitra",
+    "telephone_fixe": "+212537712345",
+    "email_officiel": "marches@atlascloud.ma",
+    "site_web": "https://www.atlascloud.ma"
+  },
+  "qualifications_et_certifications": {
+    "certificats_btp": [
+      {
+        "secteur": "Secteur F",
+        "libelle_secteur": "Installations informatiques, réseaux et télécommunications",
+        "classe": 2,
+        "categories": ["F.1", "F.2", "F.4"],
+        "numero_certificat": "CERT-BTP-F-2023-412",
+        "date_delivrance": "2023-02-15",
+        "date_expiration": "2027-02-15"
+      }
+    ],
+    "agrements_etudes": [
+      {
+        "domaine_code": "D14",
+        "domaine_libelle": "Études de systèmes d'information, réseaux et télécommunications",
+        "numero_agrement": "AGR-ME-D14-2022-089",
+        "date_expiration": "2027-06-30"
+      }
+    ],
+    "certifications_normes": [
+      {
+        "norme": "ISO 9001:2015",
+        "organisme_certificateur": "IMANOR",
+        "numero_certificat": "IMANOR-QMS-2023-114",
+        "date_expiration": "2026-11-30"
+      },
+      {
+        "norme": "ISO/IEC 27001:2022",
+        "organisme_certificateur": "Bureau Veritas Maroc",
+        "numero_certificat": "BV-ISMS-2024-052",
+        "date_expiration": "2027-03-31"
+      }
+    ]
+  },
+  "capacites_financieres": {
+    "bilans_3_derniers_exercices": [
+      {
+        "exercice_annee": 2021,
+        "chiffre_affaires_global_mad": 11800000.0,
+        "chiffre_affaires_secteur_mad": 10200000.0,
+        "resultat_net_mad": 1450000.0,
+        "capitaux_propres_mad": 6100000.0,
+        "tresorerie_nette_mad": 2300000.0,
+        "certifie_par_commissaire_aux_comptes": true
+      },
+      {
+        "exercice_annee": 2022,
+        "chiffre_affaires_global_mad": 14600000.0,
+        "chiffre_affaires_secteur_mad": 13100000.0,
+        "resultat_net_mad": 1820000.0,
+        "capitaux_propres_mad": 7400000.0,
+        "tresorerie_nette_mad": 2950000.0,
+        "certifie_par_commissaire_aux_comptes": true
+      },
+      {
+        "exercice_annee": 2023,
+        "chiffre_affaires_global_mad": 18900000.0,
+        "chiffre_affaires_secteur_mad": 17200000.0,
+        "resultat_net_mad": 2410000.0,
+        "capitaux_propres_mad": 9200000.0,
+        "tresorerie_nette_mad": 3800000.0,
+        "certifie_par_commissaire_aux_comptes": true
+      }
+    ],
+    "chiffre_affaires_moyen_3_ans_mad": 15100000.0,
+    "lignes_bancaires_caution": [
+      {
+        "banque": "Attijariwafa Bank",
+        "agence": "Rabat Hay Riad Entreprises",
+        "plafond_caution_mad": 4000000.0,
+        "encours_disponible_mad": 3250000.0
+      }
+    ]
+  },
+  "moyens_humains": {
+    "effectif_total_declare_cnss": 38,
+    "cadres_et_ingenieurs": 26,
+    "techniciens_et_agents_maitrise": 8,
+    "ouvriers_et_employes": 4,
+    "personnel_cle_experts": [
+      {
+        "id": "EXP-001",
+        "nom_complet": "Youssef El Amrani",
+        "cin": "AA519203",
+        "role_titre": "Directeur de Projet & Architecte Cloud Souverain",
+        "niveau_etudes": "BAC+5_INGENIEUR",
+        "diplome": "Ingénieur d'État en Informatique et Réseaux",
+        "ecole_universite": "ENSIAS Rabat",
+        "annees_experience_totale": 13.0,
+        "annees_experience_specifique": 9.0,
+        "competences_cles": ["Kubernetes", "OpenShift", "Cloud Souverain", "DNSSI", "DevSecOps", "Pilotage Marchés Publics"],
+        "date_immatriculation_cnss": "2017-01-15",
+        "resume_cv": "Architecte Cloud certifié CKA et TOGAF avec 13 ans d'expérience dont 9 ans sur la conception et le déploiement de plateformes de dématérialisation et de conteneurs souverains pour des administrations publiques marocaines (ministères, conseils régionaux et agences nationales). A dirigé 5 marchés publics supérieurs à 4 millions MAD dans le respect des délais et de la DNSSI."
+      },
+      {
+        "id": "EXP-002",
+        "nom_complet": "Salma Chraibi",
+        "cin": "BE782144",
+        "role_titre": "Responsable Cybersécurité & Conformité Loi 09-08 / DNSSI",
+        "niveau_etudes": "BAC+5_INGENIEUR",
+        "diplome": "Ingénieur d'État en Sécurité des Systèmes d'Information",
+        "ecole_universite": "INPT Rabat",
+        "annees_experience_totale": 10.0,
+        "annees_experience_specifique": 8.0,
+        "competences_cles": ["ISO 27001 Lead Auditor", "DNSSI", "Loi 09-08 CNDP", "Tests d'intrusion", "Zero Trust", "SIEM"],
+        "date_immatriculation_cnss": "2019-05-02",
+        "resume_cv": "Auditrice certifiée ISO 27001 Lead Auditor et experte en conformité DNSSI (DGSSI) et Loi 09-08 (CNDP). A piloté l'homologation sécurité, les audits de vulnérabilité et la mise en place de SOC/SIEM pour des plateformes e-Gov et portails citoyens au Maroc."
+      }
+    ]
+  },
+  "moyens_materiels": {
+    "parc_materiel": [
+      {
+        "id": "MAT-001",
+        "designation": "Cluster de pré-production et laboratoire Cloud souverain (3 nœuds)",
+        "categorie": "SERVEUR_DATA_CENTER",
+        "marque_modele": "Dell PowerEdge R750xs (256 Go RAM, NVMe RAID-10)",
+        "immatriculation_ou_numero_serie": "DL-R750-MA-2023-01",
+        "annee_acquisition": 2023,
+        "statut_possession": "PLEINE_PROPRIETE",
+        "etat_fonctionnel": "EXCELLENT"
+      },
+      {
+        "id": "MAT-002",
+        "designation": "Suite d'audit de sécurité et analyse de vulnérabilités",
+        "categorie": "LICENCE_LOGICIEL_SPECIALISE",
+        "marque_modele": "Tenable Nessus Expert & SonarQube Enterprise",
+        "immatriculation_ou_numero_serie": "LIC-SEC-2024-882",
+        "annee_acquisition": 2024,
+        "statut_possession": "PLEINE_PROPRIETE",
+        "etat_fonctionnel": "EXCELLENT"
+      }
+    ]
+  },
+  "references_similaires": [
+    {
+      "id": "REF-2023-01",
+      "client_nom": "Agence de Développement du Digital (ADD)",
+      "client_type": "PUBLIC",
+      "numero_marche": "Marché N° 07/2023/ADD",
+      "intitule_projet": "Mise en place d'une plateforme cloud souveraine de services numériques mutualisés et portail usagers",
+      "description_prestations": "Cadrage, déploiement d'un cluster Kubernetes souverain haute disponibilité, développement de 12 téléservices dématérialisés bilingues FR/AR, audit DNSSI, formation de 45 administrateurs et support 24/7.",
+      "secteur_nomenclature": "Informatique et Télécommunications",
+      "montant_marche_mad": 5400000.0,
+      "part_realisee_pourcentage": 100.0,
+      "annee_debut": 2023,
+      "annee_fin": 2024,
+      "attestation_bonne_fin_disponible": true,
+      "signataire_attestation": "Directeur des Systèmes d'Information — ADD",
+      "mots_cles_techniques": ["Cloud Souverain", "Kubernetes", "Dématérialisation", "DNSSI", "Portail Citoyen", "Bilingue FR/AR"]
+    },
+    {
+      "id": "REF-2022-02",
+      "client_nom": "Ministère de la Transition Numérique et de la Réforme de l'Administration",
+      "client_type": "PUBLIC",
+      "numero_marche": "Marché N° 19/2022/MTNRA",
+      "intitule_projet": "Refonte et sécurisation du guichet électronique inter-administrations",
+      "description_prestations": "Architecture microservices conteneurisée, intégration de la signature électronique Barid eSign, mise en conformité Loi 09-08 et CNDP, tests de charge 10 000 utilisateurs simultanés et transfert de compétences.",
+      "secteur_nomenclature": "Informatique et Télécommunications",
+      "montant_marche_mad": 4150000.0,
+      "part_realisee_pourcentage": 100.0,
+      "annee_debut": 2022,
+      "annee_fin": 2023,
+      "attestation_bonne_fin_disponible": true,
+      "signataire_attestation": "Secrétaire Général — MTNRA",
+      "mots_cles_techniques": ["e-Gov", "Conteneurs", "Loi 09-08", "Signature Électronique", "Haute Disponibilité"]
+    }
+  ],
+  "preferences_veille_et_strategie": {
+    "domaines_cibles": ["SERVICES", "Informatique et Télécommunications", "ETUDES"],
+    "regions_cibles": ["Rabat-Salé-Kénitra", "Casablanca-Settat", "Tanger-Tétouan-Al Hoceïma"],
+    "types_marches_exclus": ["TRAVAUX"],
+    "montant_min_souhaite_mad": 1000000.0,
+    "montant_max_souhaite_mad": 15000000.0,
+    "taux_marge_cible_pourcentage": 18.0,
+    "tolerance_risque_financier": "MOYENNE",
+    "canaux_alertes": {
+      "email": true,
+      "telegram": true,
+      "whatsapp": true
+    }
+  }
+}
