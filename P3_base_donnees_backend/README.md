@@ -6,6 +6,27 @@
 
 ---
 
+## Ce que j'ai réalisé (Rida Mellouki — P3 / Module C)
+
+Dans le cadre de mon rôle **P3 (RAG, embeddings, génération & anti-hallucination)**, j'ai conçu, développé, testé et conteneurisé le socle complet des tâches **T40, T41 et T42** autour de la base vectorielle **Qdrant** :
+
+- **T40 — Indexation du corpus entreprise dans Qdrant (`rag_module/indexing/`)** :
+  - J'ai développé un pipeline d'ingestion multi-formats (`.txt`, `.md`, `.json`, `.pdf`, `.docx`) avec détection automatique de la langue (`fr`, `ar`, `bilingual`) et un adaptateur convertissant directement le schéma `EntrepriseProfile` existant en documents typés (`memoire_gagne`, `cv`, `moyens`, `reference`).
+  - J'ai implémenté **3 stratégies de découpage (chunking)** comparables (`recursive_structure` respectant les titres FR/AR, `sentence`, `fixed`), avec traçabilité (`page_or_section`), empreinte SHA-256 et identifiants **UUIDv5 déterministes** garantissant l'idempotence (zéro doublon lors des ré-indexations).
+  - J'ai intégré les embeddings multilingues FR/AR (`intfloat/multilingual-e5-base` avec préfixes `passage:` / `query:` + mode léger `hash` pour tests hors-ligne) et configuré la collection Qdrant `entreprise_corpus` (similarité Cosinus + **Payload Indexes** sur les métadonnées métier).
+- **T41 — Pipeline RAG avec filtrage métadonnées et reclassement (`rag_module/retrieval/`)** :
+  - J'ai mis en place un **pré-filtrage strict Qdrant** imposant l'isolation multi-tenant (`company_id`) et combinant les filtres métier (`doc_types`, `sectors`, `language`, `year`, `client_type`, `amount_mad`, `tags`).
+  - J'ai construit un pipeline en 2 étapes : recherche vectorielle dense top-20 suivie d'un **reclassement (reranking)** hybride (`HybridLexicalReranker` combinant cosinus + BM25 lexical sur sigles marocains `Décret 2-22-431`, `DNSSI`, `ISO 27001`, `D14` + bigrammes + boost `preferred_doc_types` et fraîcheur) ou neuronal (`CrossEncoderReranker`).
+  - J'ai ajouté la génération automatique des citations `[SRC-i | doc_type | source_file § page_or_section]`, la télémétrie de latence par étape et les métriques d'évaluation **`Recall@k` et `MRR`**.
+- **T42 — Gabarits et prompts anti-hallucination des 6 sections (`rag_module/templates/`)** :
+  - J'ai défini les **6 gabarits réglementaires du mémoire technique** (titres FR/AR, sous-sections obligatoires, types de documents prioritaires et format de sortie structuré).
+  - J'ai développé `PromptBuilder` reliant le contexte DCE (Module B2) aux chunks récupérés par T41 pour produire des prompts `system` et `user` imposant les citations `[SRC-i]`, le marqueur explicite `[DONNÉE MANQUANTE À COMPLÉTER PAR L'ENTREPRISE]` en cas d'absence de preuve et des alertes pré-génération (`warnings`).
+- **API REST, Docker + Qdrant, Corpus d'exemple & Validation** :
+  - J'ai exposé les endpoints FastAPI dédiés à T40, T41 et T42 (`api/main.py`), écrit le `Dockerfile` et le `docker-compose.yml` (Qdrant `v1.13.4` + API sur le port `8003`).
+  - J'ai créé un corpus synthétique marocain réaliste (`data/sample_corpus/`), les scripts CLI `seed_sample_corpus.py` et `benchmark_rag.py`, ainsi qu'une suite automatisée `pytest` couvrant T40, T41, T42 et l'API.
+
+---
+
 ## 1. Rôle du Module C dans la plateforme
 
 Dans la chaîne globale du projet :
