@@ -1,4 +1,4 @@
-# P3 (Rida Mellouki) — Module C : RAG & Rédaction du Mémoire Technique (T40 à T42)
+# P3 — Module C : RAG & Rédaction du Mémoire Technique (T40 à T42)
 
 > **Projet Master 2 Data Science & IA** — Plateforme IA de réponse aux marchés publics marocains (Décret n° 2-22-431)  
 > **Responsable :** Rida Mellouki (**P3**)  
@@ -6,7 +6,7 @@
 
 ---
 
-## Ce que j'ai réalisé (Rida Mellouki — P3 / Module C)
+## Ce que j'ai réalisE
 
 Dans le cadre de mon rôle **P3 (RAG, embeddings, génération & anti-hallucination)**, j'ai conçu, développé, testé et conteneurisé le socle complet des tâches **T40, T41 et T42** autour de la base vectorielle **Qdrant** :
 
