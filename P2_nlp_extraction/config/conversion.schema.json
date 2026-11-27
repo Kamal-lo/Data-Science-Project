@@ -5,6 +5,31 @@
   "oneOf": [{"$ref": "#/$defs/manifest"}, {"$ref": "#/$defs/document"}],
   "$defs": {
     "status": {"enum": ["processing", "completed", "completed_with_review", "partial", "failed", "rejected"]},
+    "graphic": {
+      "type": "object",
+      "required": ["kind", "index", "bbox"],
+      "properties": {
+        "kind": {"enum": ["raster", "vector"]},
+        "index": {"type": "integer", "minimum": 0},
+        "bbox": {"type": "array", "minItems": 4, "maxItems": 4, "items": {"type": "number"}},
+        "pixel_size": {"type": "array", "minItems": 2, "maxItems": 2, "items": {"type": "integer", "minimum": 1}},
+        "operator": {"enum": ["fill-path", "stroke-path", "fill-shade"]}
+      }
+    },
+    "text_locator": {
+      "type": "object",
+      "required": ["kind", "raw_text", "block_id", "page", "span", "method", "bbox", "needs_review"],
+      "properties": {
+        "kind": {"enum": ["date", "reference"]},
+        "raw_text": {"type": "string", "minLength": 1},
+        "block_id": {"$ref": "#/$defs/block/properties/block_id"},
+        "page": {"$ref": "#/$defs/block/properties/page"},
+        "span": {"type": "array", "minItems": 2, "maxItems": 2, "items": {"type": "integer", "minimum": 0}},
+        "method": {"$ref": "#/$defs/block/properties/method"},
+        "bbox": {"$ref": "#/$defs/block/properties/bbox"},
+        "needs_review": {"const": true}
+      }
+    },
     "errors": {"type": "array", "items": {"type": "object", "required": ["code", "message"], "properties": {"code": {"type": "string"}, "message": {"type": "string"}}}},
     "block": {
       "type": "object",
@@ -76,8 +101,9 @@
             "size_bytes": {"type": "integer", "minimum": 0}
           }
         },
-        "pages": {"type": "array", "items": {"type": "object", "required": ["page", "status", "routing", "blocks", "warnings", "errors"], "properties": {"page": {"type": "integer", "minimum": 1}, "blocks": {"type": "array", "items": {"$ref": "#/$defs/block"}}, "structure": {"type": "array", "items": {"$ref": "#/$defs/ocr_structure"}}}}},
+        "pages": {"type": "array", "items": {"type": "object", "required": ["page", "status", "routing", "blocks", "warnings", "errors"], "properties": {"page": {"type": "integer", "minimum": 1}, "blocks": {"type": "array", "items": {"$ref": "#/$defs/block"}}, "structure": {"type": "array", "items": {"$ref": "#/$defs/ocr_structure"}}, "graphics": {"type": "array", "items": {"$ref": "#/$defs/graphic"}}}}},
         "blocks": {"type": "array", "items": {"$ref": "#/$defs/block"}},
+        "text_locators": {"type": "array", "items": {"$ref": "#/$defs/text_locator"}},
         "sections": {"type": "array"},
         "coverage": {"type": "object"},
         "warnings": {"type": "array", "items": {"type": "string"}},

@@ -1,14 +1,12 @@
 """Coordonnées, doublons de détection et ordre géométrique prudent."""
 import math
 
+from ..document_conversion.layout import intersection
+
 
 def bbox(polygon):
     return [min(p[0] for p in polygon), min(p[1] for p in polygon),
             max(p[0] for p in polygon), max(p[1] for p in polygon)]
-
-
-def intersection(a, b):
-    return max(0, min(a[2], b[2])-max(a[0], b[0]))*max(0, min(a[3], b[3])-max(a[1], b[1]))
 
 
 def detections(polygons, scores, width, height):

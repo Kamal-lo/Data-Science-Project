@@ -75,8 +75,8 @@ class AutomaticPipelineTests(unittest.TestCase):
 
     def test_clear_scripts_and_conflicting_candidates(self):
         self.assertEqual(route(candidates())['language'], 'fr')
-        self.assertEqual(route(candidates(fr='noise', fs=.2, ar='المملكة المغربية', ars=.95))['language'], 'ar')
-        ambiguous = route(candidates(ar='المملكة المغربية', ars=.95))
+        self.assertEqual(route(candidates(fr='noise', fs=.2, ar='الورقة الزرقاء', ars=.95))['language'], 'ar')
+        ambiguous = route(candidates(ar='الورقة الزرقاء', ars=.95))
         self.assertEqual(ambiguous['language'], 'und')
         self.assertIsNone(ambiguous['raw_text'])
         self.assertTrue(ambiguous['needs_review'])
@@ -112,17 +112,17 @@ class AutomaticPipelineTests(unittest.TestCase):
             detections([[[0, 0]]*4], [.9], 400, 400)
 
     def test_rtl_and_mixed_rows_are_explicit(self):
-        blocks = [{'language': 'ar', 'bbox': [20, 10, 100, 30], 'raw_text': 'المعهد', 'needs_review': False, 'warnings': []},
-                  {'language': 'ar', 'bbox': [200, 10, 300, 30], 'raw_text': 'المملكة', 'needs_review': False, 'warnings': []}]
+        blocks = [{'language': 'ar', 'bbox': [20, 10, 100, 30], 'raw_text': 'المثال', 'needs_review': False, 'warnings': []},
+                  {'language': 'ar', 'bbox': [200, 10, 300, 30], 'raw_text': 'الورقة', 'needs_review': False, 'warnings': []}]
         ordered, warnings = reading_order(blocks)
-        self.assertEqual(ordered[0]['raw_text'], 'المملكة')
+        self.assertEqual(ordered[0]['raw_text'], 'الورقة')
         self.assertEqual(ordered[0]['direction'], 'rtl')
         blocks[0]['language'] = 'fr'
         self.assertTrue(any(w['code'] == 'ambiguous_mixed_row' for w in reading_order(blocks)[1]))
 
     def test_spaces_never_change_letters(self):
-        self.assertTrue(propose('المملكةالمغربية', ['المملكة', 'المغربية'])['accepted'])
-        self.assertFalse(propose('المملكةالمغربية', ['المملكة', 'المغربيه'])['accepted'])
+        self.assertTrue(propose('الورقةالزرقاء', ['الورقة', 'الزرقاء'])['accepted'])
+        self.assertFalse(propose('الورقةالزرقاء', ['الورقة', 'الزرقا'])['accepted'])
         from PIL import Image
         self.assertEqual(segments(Image.new('L', (100, 30), 255))['status'], 'no_ink')
 

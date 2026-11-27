@@ -1,3 +1,4 @@
+from importlib.util import find_spec
 import json
 from pathlib import Path
 import unittest
@@ -12,6 +13,98 @@ from P2_nlp_extraction.document_conversion.routing import choose_route
 
 
 class PDFTests(ConversionCase):
+    @unittest.skipUnless(find_spec('numpy'), 'NumPy is part of the optional OCR environment')
+    def test_short_rule_requires_raster_evidence_before_splitting(self):
+        import numpy as np
+        from P2_nlp_extraction.document_conversion.scan_tables import _short_vertical_rules
+
+        gray = np.full((85, 100), 255, dtype=np.uint8)
+        boxes = [(2, 2, 98, 24), (2, 27, 47, 51), (51, 27, 98, 51), (2, 54, 98, 81)]
+        gray[2:24, 49] = 0
+        gray[60:74, 49] = 0  # Short foreground mark inside a real merge.
+        refined, evidence = _short_vertical_rules(gray, boxes, Budget(ConversionLimits()))
+        self.assertEqual(evidence, [(49, 2, 49, 24)])
+        self.assertIn((2, 2, 49, 24), refined)
+        self.assertIn((49, 2, 98, 24), refined)
+        self.assertIn(boxes[-1], refined)
+
+    def test_borderless_bpu_preserves_rows_and_cell_geometry(self):
+        import pymupdf
+        from P2_nlp_extraction.document_conversion.pdf_native import extract_page
+
+        matrix = [['Designation', 'Unite', 'Quantite', 'Montant'],
+                  ['Beton', 'm3', '2', '200'], ['Acier', 'kg', '4', '400']]
+        with pymupdf.open() as pdf:
+            page = pdf.new_page()
+            for row, values in enumerate(matrix):
+                for column, value in enumerate(values):
+                    page.insert_text((50 + column * 130, 100 + row * 40), value)
+            limits = ConversionLimits()
+            result = extract_page(page, ConversionOptions(), limits, Budget(limits))
+        table, = [block for block in result['blocks'] if block['type'] == 'table']
+        self.assertEqual(table['cells'], matrix)
+        self.assertIn('borderless_grid_inferred_from_text_alignment', table['warnings'])
+        self.assertEqual(len(table['cell_metadata']), 12)
+        self.assertEqual({cell['row'] for cell in table['cell_metadata']}, {0, 1, 2})
+
+    def test_native_merged_cell_keeps_its_geometry_and_missing_cell(self):
+        import pymupdf
+        from P2_nlp_extraction.document_conversion.pdf_native import extract_page
+        from P2_nlp_extraction.table_extraction.extraction import extract
+
+        with pymupdf.open() as pdf:
+            page = pdf.new_page()
+            page.draw_rect(pymupdf.Rect(30, 30, 330, 150))
+            page.draw_line((30, 70), (330, 70))
+            page.draw_line((30, 110), (330, 110))
+            page.draw_line((180, 70), (180, 150))
+            for point, value in [((65, 55), 'Bordereau'), ((45, 95), 'Designation'),
+                                 ((195, 95), 'Montant'), ((45, 135), 'Beton'), ((195, 135), '200')]:
+                page.insert_text(point, value)
+            limits = ConversionLimits()
+            result = extract_page(page, ConversionOptions(), limits, Budget(limits))
+        table, = [block for block in result['blocks'] if block['type'] == 'table']
+        self.assertEqual(table['cells'][0], ['Bordereau', None])
+        self.assertFalse(table['structure_preserved'])
+        merged, = [cell for cell in table['cell_metadata'] if cell['row'] == 0]
+        self.assertEqual(merged['bbox'], [30, 30, 330, 70])
+        exported, = extract({'blocks': [dict(table, block_id='t24_1')]})
+        self.assertEqual(exported['status'], 'partial')
+        first, second = exported['rows'][0]['cells']
+        self.assertEqual(first['source']['bbox'], merged['bbox'])
+        self.assertIsNone(second['value'])
+        self.assertEqual(exported['price_lines'], [])
+
+    @unittest.skipUnless(find_spec('cv2'), 'OpenCV is part of the optional OCR environment')
+    def test_scanned_grid_preserves_cell_geometry_and_unresolved_text(self):
+        import pymupdf
+
+        with pymupdf.open(stream=pdf_bytes(table=True)) as native, pymupdf.open() as scan:
+            image = native[0].get_pixmap(dpi=144)
+            page = scan.new_page(width=400, height=500)
+            page.insert_image(page.rect, pixmap=image)
+            self.ingestion(scan.tobytes())
+        cache = self.mock_ocr()
+        recorded = json.loads(cache.read_text(encoding='utf-8'))
+        template = recorded['pages'][0]['blocks'][0]
+        recorded['pages'][0]['blocks'] = [
+            dict(template, block_id=f'ocr_{index}', raw_text=text, bbox_pdf_points=box)
+            for index, (text, box) in enumerate((
+                ('Article', [40, 194, 94, 210]), ('Prix', [160, 194, 205, 210]),
+                ('Travaux', [40, 234, 102, 250]), (None, [160, 234, 205, 250]),
+            ), 1)
+        ]
+        cache.write_text(json.dumps(recorded), encoding='utf-8')
+        result = self.convert(options=ConversionOptions(ocr_mode='reuse_only', ocr_results=(str(cache),)))
+        table, = [block for block in result['blocks'] if block['type'] == 'table']
+        self.assertEqual(table['cells'], [['Article', 'Prix'], ['Travaux', None]])
+        self.assertEqual(table['cell_metadata'][0]['ocr_block_ids'], ['ocr_1'])
+        self.assertEqual(len(table['cell_metadata'][0]['bbox']), 4)
+        self.assertTrue(next(b for b in result['blocks'] if b['type'] == 'unresolved')['render'])
+        markdown = Path(result['markdown_path']).read_text(encoding='utf-8')
+        self.assertIn('| Article | Prix |', markdown)
+        self.assertIn('Texte OCR indéterminé', markdown)
+
     def test_native_pdf_preserves_text_positions_and_structure(self):
         self.ingestion()
         result = self.convert()
@@ -21,6 +114,11 @@ class PDFTests(ConversionCase):
         self.assertTrue(any(b['type'] == 'list_item' for b in result['blocks']))
         self.assertTrue(all(len(b['bbox']) == 4 and b['page'] == 1 for b in result['blocks']))
         self.assertIn('19/11/2026', Path(result['markdown_path']).read_text(encoding='utf-8'))
+        locator = next(item for item in result['text_locators'] if item['kind'] == 'date')
+        source = next(b for b in result['blocks'] if b['block_id'] == locator['block_id'])
+        start, end = locator['span']
+        self.assertEqual(source['raw_text'][start:end], '19/11/2026')
+        self.assertEqual(locator['bbox'], source['bbox'])
 
     def test_scan_with_simulated_arabic_ocr(self):
         self.ingestion(pdf_bytes(('scan',)))
@@ -34,6 +132,24 @@ class PDFTests(ConversionCase):
         self.assertFalse(block['human_validated'])
         self.assertIn('recognition_candidates', block)
         self.assertEqual(result['pages'][0]['routing']['decision'], 'ocr')
+        self.assertTrue(any(g['kind'] == 'raster' and len(g['bbox']) == 4
+                            for g in result['pages'][0]['graphics']))
+
+    def test_broken_arabic_font_mapping_requests_ocr_without_hiding_french(self):
+        import pymupdf
+        with pymupdf.open() as pdf:
+            page = pdf.new_page()
+            page.insert_text((60, 80), 'Texte natif valide et suffisamment long pour la conversion.')
+            page.insert_htmlbox(pymupdf.Rect(60, 130, 500, 200),
+                                '<div dir="rtl">الورقة الزرقاء</div>')
+            self.ingestion(pdf.tobytes())
+        result = self.convert(options=ConversionOptions(ocr_mode='never'))
+        self.assertEqual(result['status'], 'partial')
+        self.assertEqual(result['pages'][0]['routing']['decision'], 'hybrid')
+        self.assertTrue(any(not b['render'] and 'unusable_native_encoding' in b['warnings']
+                            for b in result['blocks']))
+        self.assertTrue(any(b['render'] and 'Texte natif valide' in b['raw_text']
+                            for b in result['blocks']))
 
     def test_mixed_pdf_routes_pages_individually(self):
         self.ingestion(pdf_bytes(('native', 'scan')))
@@ -181,6 +297,68 @@ class PDFTests(ConversionCase):
         result = self.convert(options=ConversionOptions(ocr_mode='reuse_only', ocr_results=(str(cache),)))
         self.assertEqual(result['status'], 'partial')
         self.assertEqual(result['errors'][0]['code'], 'ocr_source_mismatch')
+
+
+    def simulated_retry(self, status, *, fail=False):
+        from dataclasses import asdict
+        from P2_nlp_extraction.document_conversion.worker import initial_document, process_request
+        from P2_nlp_extraction.scripts.ocr_common import sha256
+        self.ingestion(pdf_bytes(('scan', 'scan')))
+        cache = self.mock_ocr((1, 2))
+        raw = json.loads(cache.read_text(encoding='utf-8'))
+        raw['pages'][1].update(status=status, blocks=[])
+        cache.write_text(json.dumps(raw, ensure_ascii=False), encoding='utf-8')
+        options = ConversionOptions(ocr_mode='auto', pdf_pages=(1,2), ocr_results=(str(cache),),
+                                    ocr_batch_size=1, ocr_detector_max_side=1280)
+        folder = self.folder / 'direct'; folder.mkdir()
+        initial = initial_document(self.item, self.manifest_data, self.manifest, sha256(self.manifest), options)
+        request = dict(manifest_path=str(self.manifest), document_directory=str(folder),
+                       options=asdict(options), limits=asdict(ConversionLimits()), initial_document=initial)
+        result = json.loads(json.dumps(raw))
+        result['selected_pages'] = [2]; result['pages'] = [json.loads(json.dumps(raw['pages'][0]))]
+        result['pages'][0]['page'] = 2
+        from P2_nlp_extraction.document_conversion.models import ConversionFailure
+        with patch('P2_nlp_extraction.document_conversion.ocr_adapter.recognize',
+                   side_effect=ConversionFailure('ocr_failed','simulated failure') if fail else None,
+                   return_value=result) as recognize_mock:
+            process_request(request)
+        self.assertEqual(recognize_mock.call_count, 1)
+        self.assertEqual(recognize_mock.call_args.args[1], [2])
+        output = json.loads((folder / 'document.json').read_text(encoding='utf-8'))
+        from jsonschema import Draft202012Validator
+        from P2_nlp_extraction.scripts.ocr_common import ROOT
+        Draft202012Validator(json.loads((ROOT/'config/conversion.schema.json').read_text())).validate(output)
+        self.assertEqual(output['pages'][0]['status'], 'completed_with_review')
+        self.assertIn('previous_failed_ocr_retried', output['pages'][1]['warnings'])
+        self.assertEqual(output['pages'][0]['blocks'][0]['bbox'], raw['pages'][0]['blocks'][0]['bbox_pdf_points'])
+        return output
+
+    def test_failed_cache_retried_without_repeating_completed_page(self):
+        result = self.simulated_retry('error')
+        self.assertEqual(result['pages'][1]['status'], 'completed_with_review')
+        self.assertIn('previous_ocr_attempt', result['pages'][1]['ocr_provenance'])
+
+    def test_processing_cache_retried(self):
+        self.assertEqual(self.simulated_retry('processing')['pages'][1]['status'], 'completed_with_review')
+
+    def test_retry_failure_preserves_previous_diagnostics(self):
+        result = self.simulated_retry('error', fail=True)
+        self.assertEqual(result['status'], 'partial')
+        self.assertEqual(result['pages'][1]['status'], 'ocr_incomplete')
+        self.assertTrue(result['pages'][1]['ocr_provenance'])
+
+    def test_small_detector_options_do_not_change_recognition_dpi_or_memory_limit(self):
+        options = ConversionOptions(ocr_detector_max_side=1280, ocr_dpi=200, ocr_fallback_mode='off')
+        limits = ConversionLimits(timeout_seconds=90)
+        calls = []
+        recognize('unused', [1], self.folder, options, limits, Budget(limits),
+                  backend=lambda *a, **k: calls.append(k))
+        self.assertEqual(calls[0]['detector_max_side'],1280)
+        self.assertEqual(calls[0]['dpi'],200)
+        self.assertEqual(calls[0]['pages'],[1])
+        self.assertEqual(calls[0]['max_worker_memory_bytes'],1536*1024**2)
+        self.assertLessEqual(calls[0]['timeout_seconds'],90)
+        self.assertEqual(calls[0]['fallback_mode'],'off')
 
 
 if __name__ == '__main__':

@@ -22,7 +22,11 @@ def choose_route(blocks, images, page_box, ink_without_text=False):
         fraction = min(1, covered / max(1, area(image)))
         if area(image) / max(1, area(page_box)) >= .08 and fraction < .15:
             uncovered.append(image)
-    if not quality['usable'] and quality['visible_characters']:
+    if any(b.get('native_usable') is False for b in blocks):
+        has_usable = any(b.get('native_usable', True) for b in blocks)
+        decision = 'hybrid' if has_usable else 'ocr'
+        reason = 'native_blocks_unusable' if has_usable else 'native_text_unusable'
+    elif not quality['usable'] and quality['visible_characters']:
         decision, reason = 'ocr', 'native_text_unusable'
     elif uncovered:
         decision, reason = 'hybrid' if quality['usable'] else 'ocr', 'substantial_image_without_text_layer'

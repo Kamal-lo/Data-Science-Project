@@ -1,0 +1,296 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "P2 local workflow and portable storage reference",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "job_id",
+    "status",
+    "source",
+    "options",
+    "steps",
+    "documents",
+    "warnings",
+    "errors",
+    "integrations",
+    "execution_seconds",
+    "job_path"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "p2.pipeline.v1"
+    },
+    "job_id": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{16}$"
+    },
+    "status": {
+      "enum": [
+        "processing",
+        "completed_with_review",
+        "partial",
+        "failed"
+      ]
+    },
+    "source": {
+      "anyOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/$defs/storage"
+        }
+      ]
+    },
+    "options": {
+      "type": "object"
+    },
+    "settings": {"type": "object"},
+    "ingestion_manifest": {"$ref": "#/$defs/export"},
+    "resume": {
+      "type": "object",
+      "required": ["from", "changes", "reused"],
+      "properties": {
+        "from": {"$ref": "#/$defs/path"},
+        "changes": {"type": "object"},
+        "reused": {"type": "array", "items": {"$ref": "#/$defs/hash"}}
+      },
+      "additionalProperties": false
+    },
+    "steps": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "name",
+          "status",
+          "seconds",
+          "errors"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "seconds": {
+            "type": "number",
+            "minimum": 0
+          },
+          "errors": {
+            "type": "array"
+          },
+          "warnings": {
+            "type": "array"
+          },
+          "supervisor_rss_after_bytes": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "documents": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "document_id",
+          "source",
+          "status",
+          "outputs",
+          "quality"
+        ],
+        "properties": {
+          "document_id": {
+            "type": "string",
+            "pattern": "^f[0-9]{6,}$"
+          },
+          "source": {
+            "type": "object"
+          },
+          "member_id": {"$ref": "#/$defs/hash"},
+          "finished": {"type": "boolean"},
+          "status": {
+            "type": "string"
+          },
+          "outputs": {
+            "$ref": "#/$defs/exports"
+          },
+          "quality": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "ocr_status",
+                "segmentation_status",
+                "outputs"
+              ],
+              "properties": {
+                "ocr_status": {
+                  "type": "object"
+                },
+                "segmentation_status": {
+                  "type": "string"
+                },
+                "outputs": {
+                  "$ref": "#/$defs/exports"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "warnings": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "errors": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "integrations": {
+      "const": {
+        "storage": "local_only",
+        "team_backend": "not_connected",
+        "final_response_dossier": "outside_p2"
+      }
+    },
+    "execution_seconds": {
+      "type": "number",
+      "minimum": 0
+    },
+    "job_path": {
+      "$ref": "#/$defs/path"
+    },
+    "page_progress": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": [
+          "document_id",
+          "status",
+          "pages"
+        ],
+        "properties": {
+          "document_id": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "pages": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "page",
+                "status",
+                "blocks"
+              ],
+              "properties": {
+                "page": {
+                  "type": "integer",
+                  "minimum": 1
+                },
+                "status": {
+                  "type": "string"
+                },
+                "blocks": {
+                  "type": "integer",
+                  "minimum": 0
+                }
+              },
+              "additionalProperties": false
+            }
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "$defs": {
+    "path": {
+      "type": "string",
+      "pattern": "^outputs/[^\\\\:]+$"
+    },
+    "hash": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "exports": {
+      "type": "object",
+      "additionalProperties": {"$ref": "#/$defs/export"}
+    },
+    "export": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "path",
+          "sha256",
+          "size_bytes"
+        ],
+        "properties": {
+          "path": {
+            "$ref": "#/$defs/path"
+          },
+          "sha256": {
+            "$ref": "#/$defs/hash"
+          },
+          "size_bytes": {
+            "type": "integer",
+            "minimum": 0
+          }
+        }
+    },
+    "storage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_version",
+        "backend",
+        "document_id",
+        "sha256",
+        "size_bytes",
+        "original_name",
+        "artifact_path"
+      ],
+      "properties": {
+        "schema_version": {
+          "const": "p2.storage.v1"
+        },
+        "backend": {
+          "const": "local"
+        },
+        "document_id": {
+          "type": "string",
+          "pattern": "^sha256:[a-f0-9]{64}$"
+        },
+        "sha256": {
+          "$ref": "#/$defs/hash"
+        },
+        "size_bytes": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "original_name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "artifact_path": {
+          "$ref": "#/$defs/path"
+        }
+      }
+    }
+  }
+}

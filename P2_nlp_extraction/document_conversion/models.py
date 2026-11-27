@@ -3,8 +3,10 @@ from dataclasses import asdict, dataclass
 import json
 import math
 from pathlib import Path
-from time import monotonic
-from uuid import uuid4
+from tempfile import NamedTemporaryFile
+from time import monotonic, sleep
+
+DELIVERY_OCR_MAX_SIDE = 1280
 
 
 @dataclass(frozen=True)
@@ -14,15 +16,29 @@ class ConversionOptions:
     ocr_results: tuple[str, ...] = ()  # JSON existants ; jamais leurs chemins internes
     ocr_dpi: int = 200
     ocr_batch_size: int = 4
-    extract_tables: bool = True
+    extract_tables: bool = True  # Keep the six original T24 positional parameters first.
+    ocr_fallback_mode: str = 'preprocess'
+    ocr_max_fallback_blocks: int = 8
+    ocr_fallback_timeout_seconds: float = 20
+
+    ocr_detector_max_side: int | None = None  # None preserves the original API profile.
 
     def validate(self):
+        if self.ocr_detector_max_side is not None and (type(self.ocr_detector_max_side) is not int or not 32 <= self.ocr_detector_max_side <= 4000):
+            raise ValueError("ocr_detector_max_side: entier entre 32 et 4000, ou None.")
         if self.ocr_mode not in ('auto', 'never', 'reuse_only'):
             raise ValueError('ocr_mode doit être auto, never ou reuse_only.')
         if self.ocr_dpi not in (200, 300) or type(self.ocr_dpi) is not int:
             raise ValueError('ocr_dpi doit être 200 ou 300.')
         if type(self.ocr_batch_size) is not int or not 1 <= self.ocr_batch_size <= 16:
             raise ValueError('ocr_batch_size doit être compris entre 1 et 16.')
+        if self.ocr_fallback_mode not in ('off', 'preprocess'):
+            raise ValueError('ocr_fallback_mode doit être off ou preprocess.')
+        if type(self.ocr_max_fallback_blocks) is not int or not 0 <= self.ocr_max_fallback_blocks <= 64:
+            raise ValueError('ocr_max_fallback_blocks doit être compris entre 0 et 64.')
+        value = self.ocr_fallback_timeout_seconds
+        if isinstance(value, bool) or not isinstance(value, (int, float)) or not math.isfinite(value) or value <= 0:
+            raise ValueError('ocr_fallback_timeout_seconds doit être positif et fini.')
         if type(self.extract_tables) is not bool:
             raise ValueError('extract_tables doit être booléen.')
         if self.pdf_pages is not None:
@@ -60,6 +76,9 @@ class ConversionLimits:
                 raise ValueError(f'{name} doit être un entier positif.')
 
 
+AUTO_LIMITS = ConversionLimits(timeout_seconds=8_500)
+
+
 class ConversionInputError(ValueError):
     """Requête/manifeste refusé avant traitement des documents."""
 
@@ -93,9 +112,25 @@ def atomic_text(path, text, limit):
     if len(data) > limit:
         raise ConversionFailure('output_size_limit', 'Sortie trop volumineuse.')
     path = Path(path)
-    temporary = path.with_name(path.name + '.' + uuid4().hex + '.tmp')
-    temporary.write_bytes(data)
-    temporary.replace(path)
+    # Garder le fichier voisin pour le remplacement atomique et son nom court
+    # pour les installations Windows où les chemins longs sont désactivés.
+    stream = NamedTemporaryFile(dir=path.parent, prefix='.', delete=False)
+    temporary = Path(stream.name)
+    try:
+        with stream:
+            stream.write(data)
+        # Le superviseur peut lire progress.json au moment du remplacement.
+        # Windows refuse alors brièvement le renommage.
+        for attempt in range(101):
+            try:
+                temporary.replace(path)
+                break
+            except PermissionError as exc:
+                if getattr(exc, 'winerror', None) not in (5, 32) or attempt == 100:
+                    raise
+                sleep(.005)
+    finally:
+        temporary.unlink(missing_ok=True)
 
 
 def write_json(path, value, limit):

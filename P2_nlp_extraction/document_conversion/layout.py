@@ -16,7 +16,7 @@ def overlap(a, b):
 
 
 def language(text):
-    ar = sum('\u0600' <= c <= '\u06ff' and c.isalpha() for c in text)
+    ar = sum(unicodedata.name(c, '').startswith('ARABIC') and c.isalpha() for c in text)
     latin = sum('LATIN' in unicodedata.name(c, '') and c.isalpha() for c in text)
     return 'mixed' if ar and latin else 'ar' if ar else 'fr' if latin else 'und'
 

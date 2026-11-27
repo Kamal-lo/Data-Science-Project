@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:p2:segmentation:v1",
+  "title": "T26 DCE sections with canonical T24 blocks",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "status", "human_validated", "rule_version", "source_status", "source", "sections", "candidates", "unassigned_block_ids", "blocks", "pages", "coverage", "warnings", "source_errors", "source_warnings", "outputs"],
+  "properties": {
+    "schema_version": {"const": "p2.segmentation.v1"},
+    "status": {"enum": ["partial", "completed_with_review"]},
+    "human_validated": {"const": false},
+    "rule_version": {"const": "p2.dce_title_rules.v1"},
+    "source_status": {"enum": ["completed", "completed_with_review", "partial", "failed"]},
+    "source": {"type": "object", "required": ["document_id", "conversion_json", "conversion_json_sha256", "markdown", "markdown_sha256", "conversion_source", "coordinate_system"], "properties": {
+      "document_id": {"type": "string"}, "conversion_json": {"type": "string"},
+      "conversion_json_sha256": {"$ref": "#/$defs/hash"},
+      "markdown": {"type": ["string", "null"]},
+      "markdown_sha256": {"oneOf": [{"$ref": "#/$defs/hash"}, {"type": "null"}]},
+      "conversion_source": {"type": "object"}, "coordinate_system": {"type": "string"}
+    }},
+    "sections": {"type": "array", "items": {"allOf": [{"$ref": "#/$defs/node"}, {"properties": {"kind": {"const": "section"}, "category": {"enum": ["RC", "CPS", "CCAP", "CCTP", "BPU"]}, "level": {"const": 1}}}]}},
+    "candidates": {"type": "array", "items": {"type": "object", "required": ["text", "category_candidates", "source_block_ids", "page", "reason", "needs_review", "confidence"], "properties": {
+      "text": {"type": "string"}, "category_candidates": {"type": "array", "uniqueItems": true, "items": {"enum": ["RC", "CPS", "CCAP", "CCTP", "BPU"]}},
+      "source_block_ids": {"$ref": "#/$defs/ids"}, "page": {"type": ["integer", "null"], "minimum": 1},
+      "reason": {"type": "string"}, "needs_review": {"const": true}, "confidence": {"$ref": "#/$defs/confidence"}
+    }}},
+    "unassigned_block_ids": {"$ref": "#/$defs/ids"},
+    "blocks": {"type": "array", "items": {"type": "object", "required": ["block_id", "raw_text", "page", "bbox", "source_reference", "human_validated"], "properties": {
+      "block_id": {"type": "string"}, "raw_text": {"type": ["string", "null"]},
+      "page": {"type": ["integer", "null"], "minimum": 1},
+      "bbox": {"oneOf": [{"type": "null"}, {"type": "array", "minItems": 4, "maxItems": 4, "items": {"type": "number"}}]},
+      "source_reference": {"type": "object"}, "human_validated": {"const": false}
+    }}},
+    "pages": {"type": "array", "items": {"type": "object", "required": ["page", "source_block_ids"], "properties": {"page": {"type": "integer", "minimum": 1}, "source_block_ids": {"$ref": "#/$defs/ids"}}}},
+    "coverage": {"type": "object"}, "warnings": {"$ref": "#/$defs/strings"},
+    "source_warnings": {"$ref": "#/$defs/strings"}, "source_errors": {"type": "array", "items": {"type": "object"}},
+    "outputs": {"const": {"json": "sections.json", "markdown": "sections.md"}}
+  },
+  "$defs": {
+    "hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "strings": {"type": "array", "items": {"type": "string"}},
+    "ids": {"type": "array", "uniqueItems": true, "items": {"type": "string"}},
+    "confidence": {"type": "object", "additionalProperties": false, "required": ["score", "basis", "calibrated"], "properties": {"score": {"type": "number", "minimum": 0, "maximum": 1}, "basis": {"type": "string"}, "calibrated": {"const": false}}},
+    "node": {"type": "object", "additionalProperties": false, "required": ["section_id", "kind", "category", "title_raw", "title_block_ids", "level", "number", "source_block_ids", "pages", "children", "confidence", "human_validated", "needs_review", "warnings", "start_block_index", "end_block_index", "extent_complete"], "properties": {
+      "section_id": {"type": "string", "pattern": "^s[0-9]{6,}$"},
+      "kind": {"enum": ["section", "subsection", "article"]}, "category": {"enum": ["RC", "CPS", "CCAP", "CCTP", "BPU", null]},
+      "title_raw": {"type": "string", "minLength": 1}, "title_block_ids": {"allOf": [{"$ref": "#/$defs/ids"}, {"minItems": 1}]},
+      "level": {"type": "integer", "minimum": 1, "maximum": 6}, "number": {"type": ["string", "null"]},
+      "source_block_ids": {"allOf": [{"$ref": "#/$defs/ids"}, {"minItems": 1}]},
+      "pages": {"type": "array", "uniqueItems": true, "items": {"type": "integer", "minimum": 1}},
+      "children": {"type": "array", "items": {"$ref": "#/$defs/node"}},
+      "confidence": {"$ref": "#/$defs/confidence"}, "human_validated": {"const": false}, "needs_review": {"const": true},
+      "warnings": {"$ref": "#/$defs/strings"}, "start_block_index": {"type": "integer", "minimum": 0}, "end_block_index": {"type": "integer", "minimum": 0}, "extent_complete": {"type": "boolean"}
+    }}
+  }
+}

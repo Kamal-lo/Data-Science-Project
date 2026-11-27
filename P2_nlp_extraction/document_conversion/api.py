@@ -1,5 +1,5 @@
 """API T24 : validation T23 puis conversion séquentielle dans des processus bornés."""
-from dataclasses import asdict
+from dataclasses import asdict, replace
 from datetime import datetime, timezone
 import os
 from pathlib import Path
@@ -9,6 +9,7 @@ from time import monotonic, sleep
 from uuid import uuid4
 
 from ..scripts.ocr_common import ROOT
+from ..ocr_pipeline.resources import conversion_process_bytes
 from .manifest_validation import confined, load_json, relative, validate_manifest
 from .models import ConversionLimits, ConversionOptions, error, write_json
 
@@ -29,9 +30,10 @@ def _stop(process):
     process.wait(timeout=10)
 
 
-def _run(request_path, document_folder, limits):
+def _run(request_path, document_folder, limits, progress=None):
     import psutil
     start, failure = monotonic(), None
+    previous_progress = None
     with (document_folder / 'worker.log').open('w', encoding='utf-8') as log:
         process = subprocess.Popen([sys.executable, '-B', '-X', 'utf8', '-m',
                                     'P2_nlp_extraction.document_conversion.worker', '--request', str(request_path)],
@@ -43,19 +45,27 @@ def _run(request_path, document_folder, limits):
                     failure = error('timeout', 'Délai dépassé ; processus de conversion arrêté.')
                 try:
                     parent = psutil.Process(process.pid)
-                    rss = parent.memory_info().rss
+                    used_bytes = conversion_process_bytes(parent)
                     for child in parent.children(recursive=True):
                         try:
-                            rss += child.memory_info().rss
+                            used_bytes += conversion_process_bytes(child)
                         except psutil.NoSuchProcess:
                             pass
-                    if rss > limits.max_worker_memory_bytes:
+                    if used_bytes > limits.max_worker_memory_bytes:
                         failure = error('memory_limit', 'Budget mémoire surveillé dépassé ; processus arrêté.')
                 except psutil.NoSuchProcess:
                     pass
                 if failure:
                     _stop(process)
                     break
+                if progress:
+                    try:
+                        data, digest = load_json(document_folder / "progress.json", 1024**2)
+                        if digest != previous_progress:
+                            progress(data)
+                            previous_progress = digest
+                    except (OSError, ValueError):
+                        pass
                 sleep(.02)
         finally:
             if process.poll() is None:
@@ -65,7 +75,7 @@ def _run(request_path, document_folder, limits):
     return failure, monotonic() - start
 
 
-def convert_ingestion(manifest_path, output_dir=None, *, file_ids=None, options=None, limits=None):
+def convert_ingestion(manifest_path, output_dir=None, *, file_ids=None, options=None, limits=None, progress=None):
     """Convertir les PDF/DOCX ready + eligible d'une ingestion terminée.
 
     Retourne le manifeste de conversion + run_directory/manifest_path absolus
@@ -85,6 +95,19 @@ def convert_ingestion(manifest_path, output_dir=None, *, file_ids=None, options=
     # Valider les chemins de réutilisation AVANT de créer les sorties.
     for cached in options.ocr_results:
         confined(cached)
+    caches_by_digest = {}
+    archive = manifest['source']['detected_type'] == 'zip'
+    if archive and options.ocr_results:
+        pdf_digests = {item['sha256'] for item in manifest['files']
+                       if item['eligible_for_t24'] and item['detected_type'] == 'pdf'}
+        for cached in options.ocr_results:
+            record, _ = load_json(cached, limits.max_output_bytes)
+            if not isinstance(record, dict) or record.get('schema_version') != 'p2.automatic_ocr.v1':
+                raise ValueError('Format de cache OCR inconnu.')
+            cache_digest = record.get('pdf_sha256')
+            if not isinstance(cache_digest, str) or cache_digest not in pdf_digests:
+                raise ValueError('Cache OCR sans PDF correspondant dans le ZIP.')
+            caches_by_digest.setdefault(cache_digest, []).append(cached)
     base = confined(output_dir if output_dir is not None else ROOT / 'outputs/conversion', must_exist=False)
     # Ne jamais écrire dans les artefacts T23 ni dans les packages sources.
     if base == path.parent or base.is_relative_to(path.parent):
@@ -98,15 +121,17 @@ def convert_ingestion(manifest_path, output_dir=None, *, file_ids=None, options=
               'execution_seconds': 0.0}
     write_json(folder / 'manifest.json', result, limits.max_output_bytes)
     for item in items:
+        document_options = (replace(options, ocr_results=tuple(caches_by_digest.get(item['sha256'], ())))
+                            if archive else options)
         destination = folder / 'documents' / item['file_id']
         destination.mkdir(parents=True)
-        initial = initial_document(item, manifest, path, digest, options)
+        initial = initial_document(item, manifest, path, digest, document_options)
         export(destination, initial, limits)
         request = {'manifest_path': str(path), 'document_directory': str(destination),
-                   'options': asdict(options), 'limits': asdict(limits), 'initial_document': initial}
+                   'options': asdict(document_options), 'limits': asdict(limits), 'initial_document': initial}
         request_path = destination / 'request.json'
         write_json(request_path, request, limits.max_manifest_bytes)
-        failure, seconds = _run(request_path, destination, limits)
+        failure, seconds = _run(request_path, destination, limits, **({"progress": progress} if progress else {}))
         try:
             document, _ = load_json(destination / 'document.json', limits.max_output_bytes)
         except (OSError, ValueError):
@@ -117,6 +142,9 @@ def convert_ingestion(manifest_path, output_dir=None, *, file_ids=None, options=
             document['status'] = 'partial' if document['blocks'] else 'failed'
             document['execution_seconds'] = seconds
             export(destination, document, limits)
+        if progress:
+            progress({'document_id': item['file_id'], 'status': document['status'],
+                      'pages': [{'page': p['page'], 'status': p['status'], 'blocks': len(p['blocks'])} for p in document['pages']]})
         result['documents'].append({'document_id': item['file_id'], 'status': document['status'],
                                     'source_file_id': item['file_id'], 'execution_seconds': seconds,
                                     'markdown': f"documents/{item['file_id']}/document.md",

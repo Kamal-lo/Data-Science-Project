@@ -1,0 +1,152 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "dataset_kind",
+    "document_sha256",
+    "records"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "p2.ocr_references.v1"
+    },
+    "dataset_kind": {
+      "enum": [
+        "real",
+        "synthetic"
+      ]
+    },
+    "document_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "records": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "page",
+          "language",
+          "scope",
+          "approval"
+        ],
+        "properties": {
+          "page": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "language": {
+            "enum": [
+              "fr",
+              "ar"
+            ]
+          },
+          "scope": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "image_size",
+              "dpi",
+              "regions"
+            ],
+            "properties": {
+              "image_size": {
+                "type": "array",
+                "minItems": 2,
+                "maxItems": 2,
+                "items": {
+                  "type": "integer",
+                  "minimum": 1
+                }
+              },
+              "dpi": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "regions": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "name",
+                    "bbox"
+                  ],
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "bbox": {
+                      "type": "array",
+                      "minItems": 4,
+                      "maxItems": 4,
+                      "items": {
+                        "type": "number"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "approval": {
+            "type": "object",
+            "required": [
+              "human_reviewed",
+              "scope_confirmed",
+              "reviewer",
+              "approved_at",
+              "reference_sha256",
+              "scope_sha256",
+              "reference_file"
+            ],
+            "properties": {
+              "human_reviewed": {
+                "type": "boolean"
+              },
+              "scope_confirmed": {
+                "type": "boolean"
+              },
+              "reviewer": {
+                "oneOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "approved_at": {
+                "oneOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "reference_sha256": {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              },
+              "scope_sha256": {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              },
+              "reference_file": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:p2:ocr_references:v1"
+}

@@ -40,6 +40,10 @@ def adapt_page(record, geometry, limits, provenance):
         b['direction'] = 'rtl' if b['language'] == 'ar' else source.get('direction', 'ltr')
         b['needs_review'] = True  # Le routage bilingue n'est pas une validation humaine.
         b['warnings'] = list(source.get('warnings', [])) + ['ocr_unvalidated_experimental_bilingual_routing']
+        recovery_fields = ('primary_raw_text', 'recognition_attempts', 'selected_attempt', 'fallback_used',
+                           'fallback_attempted', 'fallback_skipped_reason', 'quality')
+        if any(k in source for k in recovery_fields):
+            b['ocr_recovery'] = {k: source[k] for k in recovery_fields if k in source}
         if raw is None:
             b['warnings'].append('recognition_unresolved_see_candidates')
         if b['arabic_spacing_proposal'] is not None:
@@ -82,9 +86,23 @@ def cached_pages(paths, digest, geometries, options, limits):
                 raise ConversionFailure('ocr_dpi_mismatch', 'Résolution du résultat OCR incompatible.')
             provenance = {'ocr_json': relative(path), 'ocr_json_sha256': checksum,
                           'ocr_run_id': data.get('run_id'), 'ocr_status': page.get('status')}
+            for key in ('detection_attempts', 'fallback', 'quality_summary', 'fallback_interruption', 'memory_events'):
+                if key in page:
+                    provenance[key] = page[key]
+            # These are diagnostics only, never paths to follow or proof of OCR accuracy.
+            provenance['ocr_runtime'] = {key: data[key] for key in
+                ('status', 'attempts', 'errors', 'resource_policy') if key in data}
+            if isinstance(page.get('preprocessing'), dict):
+                # Les chemins image déclarés dans le JSON OCR ne sont ni suivis
+                # ni recopiés comme chemins absolus dans le document portable.
+                provenance['preprocessing'] = {k: page['preprocessing'][k] for k in
+                    ('primary_variant', 'selected_variant', 'parameters', 'geometry_changed', 'coordinate_transform')
+                    if k in page['preprocessing']}
             metadata = data.get('model_metadata')
             if isinstance(metadata, dict):
-                provenance['model_metadata'] = {k: metadata[k] for k in ('versions', 'models', 'parameters', 'downloads') if k in metadata}
+                provenance['model_metadata'] = {k: metadata[k] for k in
+                    ('versions', 'models', 'parameters', 'downloads', 'model_load_counts', 'model_load_events')
+                    if k in metadata}
             blocks = adapt_page(page, geometries[number], limits, provenance)
             found[number] = {'blocks': blocks, 'status': page.get('status'),
                              'warnings': page.get('warnings', []), 'errors': page.get('errors', []),
@@ -105,10 +123,15 @@ def recognize(pdf_path, numbers, folder, options, limits, budget, *, backend=Non
     try:
         return backend(pdf_path, output_dir=folder, pages=numbers, dpi=options.ocr_dpi,
                        arabic_spacing='suggest', on_error='continue', cpu_threads=2,
+                       fallback_mode=options.ocr_fallback_mode,
+                       max_fallback_blocks=options.ocr_max_fallback_blocks,
+                       fallback_timeout_seconds=min(options.ocr_fallback_timeout_seconds, max(.1, budget.remaining)),
                        timeout_seconds=max(.1, budget.remaining),
                        page_timeout_seconds=max(.1, min(240, budget.remaining)),
                        initialization_timeout_seconds=max(.1, min(120, budget.remaining)),
-                       max_pixels=limits.max_pixels)
+                       max_pixels=limits.max_pixels,
+                       max_worker_memory_bytes=limits.max_worker_memory_bytes,
+                       **({"detector_max_side": options.ocr_detector_max_side} if options.ocr_detector_max_side is not None else {}))
     except Exception as exc:
         # L'API OCR peut conserver un résultat partiel dans son exception.
         partial = getattr(exc, 'result', None)

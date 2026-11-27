@@ -135,7 +135,7 @@ def structure_page(page, document_id):
     groups, i = [], 0
     while i < len(blocks):
         b = blocks[i]
-        if b.get('method') != 'ocr' or not b.get('render', True):
+        if b.get('method') != 'ocr' or b.get('type') == 'table' or not b.get('render', True):
             i += 1
             continue
         start, level, evidence = i, None, {}

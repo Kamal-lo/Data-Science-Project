@@ -3,10 +3,7 @@
 ## Objectif et document
 
 Comparer PaddleOCR et Tesseract 5 pour préparer l'extraction des marchés publics
-marocains. Le PDF local test_dce.pdf est un CPS scanné de 28 pages : jardinage de
-l'Institut supérieur de la magistrature, AO 02/ISM/2024, principalement français,
-avec en-têtes arabe/tifinagh et tampons.
-SHA-256 : `e7b529f09720b63c07f6fb728d51a8ded9e8c527162d91591770241cf08e5bb1`.
+marocains sur un CPS scanné bilingue de 28 pages. Les sources restent locales.
 
 **Vitesse : 28 pages. Précision : zones françaises des pages 1 et 2 seulement.**
 Cette synthèse reprend les résultats enregistrés avant nettoyage, sans nouvelle
@@ -21,8 +18,7 @@ Tesseract 5.5.4, tessdata_fast/fra, OEM 1, PSM 3. MKLDNN et orientation désacti
 
 Les temps de reconnaissance excluent rendu, initialisation et sauvegarde.
 Tesseract recharge son processus par page ; Paddle conserve son instance dans
-chaque passage. Le run consolidé `20261113T111045_112432Z_complete` rassemble
-un passage et sa reprise : 56 lignes de mesures réussies.
+chaque passage. Les deux moteurs ont produit 56 mesures au total.
 
 ## Résultats enregistrés
 
@@ -39,8 +35,8 @@ un passage et sa reprise : 56 lignes de mesures réussies.
 | Tesseract | 2 | 3,851 s | 4,6712 % | 15,7534 % |
 
 Les références françaises ont été explicitement validées humainement le
-18 novembre 2026 ; manifeste et copies scellées sont conservés dans
-[références et manifeste partagés](../data/ground_truth/pages_1_2/README.md). Mêmes régions pour les deux moteurs ;
+18 novembre 2026. Les références et leur manifeste sont conservés localement.
+Le protocole utilise les mêmes régions pour les deux moteurs.
 Unicode NFC, espaces harmonisés, casse/accents/ponctuation conservés.
 Les globaux utilisent 2 177 caractères et 383 mots de référence :
 42/204 erreurs de caractères et 30/66 erreurs de mots pour Paddle/Tesseract.
@@ -48,9 +44,7 @@ Ce ne sont pas des moyennes de pourcentages.
 
 ## Erreurs et choix
 
-Paddle conserve mieux les titres et rubriques sur cet échantillon, mais produit
-notamment mats pour mars et Insctit pour Inscrit. Tesseract omet des titres et
-produit 02/1SM/2024, petsonnel, Titulaite et du bruit de formulaire.
+Les erreurs observées incluent des omissions de titres et des substitutions de lettres et de chiffres.
 Accents, apostrophes, n°, noms propres, chiffres et dates restent sensibles.
 
 Tesseract est nettement plus rapide dans ce protocole. **PaddleOCR est retenu
@@ -66,7 +60,6 @@ réelle produisait 17 blocs page 1 (13 fr, 2 ar, 2 indéterminés) et 55 page 2
 Ces temps incluent un traitement différent : double reconnaissance, routage et
 segmentation ; ils ne sont pas directement comparables au benchmark historique.
 
-Bruts arabes : المملكةالمغربية et المعهدالعاليللقضاء.
 Les propositions d'espacement restent séparées et ne changent pas les lettres.
 Les deux en-têtes suivent l'ordre de droite à gauche. Aucun CER/WER arabe n'a été
 calculé et aucune référence arabe n'a été validée.
@@ -76,30 +69,8 @@ d'écriture latine ; les seuils ne sont pas calibrés. Tifinagh, tampons, logos,
 colonnes, tableaux et orientations complexes restent des limites.
 Les tests techniques ne valident pas la précision en production.
 
-## Preuves et suite
+## Conservation des preuves
 
-Les anciens benchmarks, sorties, rapports détaillés et interfaces ont été
-sauvegardés et vérifiés hors de P2 avant suppression du dossier actif :
-`../../_p2_cleanup_backup_20261118T220341Z/`.
-Son manifeste répertorie les fichiers et leurs SHA-256. Cette sauvegarde est
-locale, absente de GitHub ; conserver son ZIP pour restaurer l'ancien atelier.
-Le ZIP `p2_before_cleanup.zip` et son `backup_manifest.json` restent disponibles
-sur la machine ayant effectué le nettoyage ; ils ne sont pas fournis par un clone.
-Les chemins `source_hashes` du manifeste Ground Truth sont conservés pour leur
-traçabilité : les sources correspondantes sont dans ce ZIP avec leurs chemins
-relatifs à P2. Le PDF existe également dans `P2_nlp_extraction/data/pdf/`, hors Git.
-Les références validées et leur manifeste sont partagés ; les résultats OCR
-historiques et les sorties d'intégration sous `outputs/` restent locaux.
-
-Une seule synthèse reste dans le module. Le contrôle après nettoyage conserve
-ses résultats dans le nouveau dossier d'intégration sous
-`outputs/ocr/automatic_sample/`.
-Contrôle effectué après nettoyage : **17 tests techniques réussis**, `pip check`
-sans dépendance cassée, puis extraction réelle des seules pages 1 et 2 en
-**71,547 s**, sans erreur d'exécution. Résultat : 17 blocs (13 fr, 2 ar, 2 und)
-sur la page 1 et 55 blocs (48 fr, 7 und) sur la page 2, toujours
-`completed_with_review`. Run : `20261118T221046_740048Z_de048b93`.
-Les exports JSON/TXT UTF-8 et les hypothèses bilingues ont été vérifiés.
-Avant production : corpus réel annoté plus large, paragraphes arabes longs,
-validation des espaces, du routage et de l'ordre de lecture, PDF mixtes/tournés,
-charge mémoire et coût CPU.
+Les fichiers sources, les transcriptions, les manifestes avec leurs empreintes
+et les sorties OCR sont conservés dans la sauvegarde privée du projet.
+Les pourcentages ci-dessus décrivent uniquement le périmètre français approuvé.

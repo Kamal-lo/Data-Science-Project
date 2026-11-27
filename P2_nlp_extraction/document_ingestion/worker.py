@@ -6,6 +6,7 @@ import hashlib
 import json
 from pathlib import Path
 import os
+from time import sleep
 
 from ..scripts.ocr_common import local_path, write_json
 from .detection import detect_file
@@ -120,7 +121,16 @@ def process_request(request):
                                            result['source']['sha256'], result['source']['size_bytes'], 1))
         budget.tick()
         # Publication uniquement après le succès du traitement complet du conteneur.
-        staged_files.rename(folder/'files')
+        for attempt in range(11):
+            try:
+                staged_files.rename(folder/'files')
+                break
+            except PermissionError as exc:
+                # Windows scanners can briefly hold a handle to the staged tree.
+                if getattr(exc, 'winerror', None) not in (5, 32) or attempt == 10:
+                    raise
+                budget.tick()
+                sleep(.02)
         for item in result['files']:
             item['artifact_path'] = 'files/'+item['relative_path']
             item['eligible_for_t24'] = item['status'] == 'ready' and item['detected_type'] in ('pdf', 'docx')

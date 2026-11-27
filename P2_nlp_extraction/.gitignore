@@ -3,7 +3,13 @@
 __pycache__/
 *.py[cod]
 outputs/
-tools/
+tools/*
+!tools/audit_p2.py
 *.log
 # PDF conservé localement ; vérifier les droits avant toute publication.
-data/pdf/*.pdf
+data/pdf/
+# Annotations et transcriptions de DCE réels distribuées séparément.
+data/ground_truth/
+.env
+.env.*
+.streamlit/secrets.toml

@@ -22,9 +22,9 @@ def block(text, box, lang='fr', **extras):
 
 
 def body(lang='fr'):
-    texts = ["Passé en application de l'article 8, de l'alinéa 1 du",
-             "paragraphe 3 de l'article 19 et des dispositions du",
-             "décret du 08 mats 2023 relatif aux marchés publics."]
+    texts = ["Le groupe prépare une fiche de suivi pour chaque",
+             "atelier et consigne les réserves dans le journal du",
+             "site le 14 juim 2031 avant le contrôle final."]
     if lang == 'ar':
         texts = ['يتعلق هذا العقد بالخدمات المنصوص عليها في دفتر الشروط',
                  'وتلتزم الجهة المعنية بتنفيذ جميع الخدمات وفق الشروط',
@@ -71,7 +71,7 @@ class StructureTests(unittest.TestCase):
     def test_clear_french_paragraph_keeps_ocr_error(self):
         groups = self.groups(body())
         self.assertEqual(len(groups), 1)
-        self.assertIn('08 mats 2023', groups[0]['text'])
+        self.assertIn('14 juim 2031', groups[0]['text'])
         self.assertEqual(groups[0]['raw_texts'], [b['raw_text'] for b in self.page['blocks']])
 
     def test_arabic_paragraph_uses_right_edge_alignment(self):
@@ -138,22 +138,22 @@ class StructureTests(unittest.TestCase):
                 self.assertEqual(len(self.groups(sources)), 2)
 
     def test_rtl_same_row_order_and_tifinagh_ambiguity_preserved(self):
-        left = block('المعهدالعاليللقضاء', [20, 20, 180, 38], 'ar')
-        right = block('المملكةالمغربية', [420, 20, 580, 38], 'ar')
+        left = block('مركزالتدريبالتجريبي', [20, 20, 180, 38], 'ar')
+        right = block('الورقةالزرقاء', [420, 20, 580, 38], 'ar')
         sources = order_blocks([left, right]) + [block(None, [20, 42, 180, 56], 'und', direction='und')]
         groups = self.groups(sources)
-        self.assertEqual(groups[0]['text'], 'المملكةالمغربية')
-        self.assertEqual(groups[1]['text'], 'المعهدالعاليللقضاء')
+        self.assertEqual(groups[0]['text'], 'الورقةالزرقاء')
+        self.assertEqual(groups[1]['text'], 'مركزالتدريبالتجريبي')
         self.assertEqual(groups[2]['type'], 'unresolved')
         self.assertIsNone(groups[2]['text'])
         self.assertEqual(groups[2]['direction'], 'und')
 
     def test_arabic_spacing_proposal_is_not_applied(self):
-        source = block('المملكةالمغربية', [420, 20, 580, 38], 'ar',
-                       arabic_spacing_proposal={'proposed_text': 'المملكة المغربية', 'human_validated': False})
+        source = block('الورقةالزرقاء', [420, 20, 580, 38], 'ar',
+                       arabic_spacing_proposal={'proposed_text': 'الورقة الزرقاء', 'human_validated': False})
         groups = self.groups([source])
-        self.assertEqual(groups[0]['text'], 'المملكةالمغربية')
-        self.assertEqual(source['arabic_spacing_proposal']['proposed_text'], 'المملكة المغربية')
+        self.assertEqual(groups[0]['text'], 'الورقةالزرقاء')
+        self.assertEqual(source['arabic_spacing_proposal']['proposed_text'], 'الورقة الزرقاء')
 
     def test_unreadable_stamp_is_not_invented(self):
         groups = self.groups([block('aroc', [500, 600, 535, 630]), block(None, [500, 640, 530, 660], 'und')])
@@ -178,7 +178,7 @@ class StructureTests(unittest.TestCase):
         self.assertEqual(structure_page(self.page, 'f000001'), first)
         md = render({'status': 'completed_with_review', 'pages': [self.page], 'blocks': self.page['blocks']})
         self.assertEqual(md.count('# CAHIER DES PRESCRIPTIONS SPECIALES'), 1)
-        self.assertEqual(md.count('08 mats 2023'), 1)
+        self.assertEqual(md.count('14 juim 2031'), 1)
         mapping = {b['block_id']: b for b in self.page['blocks']}
         for group in groups:
             self.assertTrue(group['markdown_lines'])
@@ -220,7 +220,7 @@ class StructureIntegrationTests(ConversionCase):
         self.assertEqual(ids, [b['block_id'] for b in result['blocks']])
         md = Path(result['markdown_path']).read_text(encoding='utf-8')
         self.assertIn('# CAHIER DES PRESCRIPTIONS SPECIALES', md)
-        self.assertEqual(md.count('08 mats 2023'), 1)
+        self.assertEqual(md.count('14 juim 2031'), 1)
 
 
 if __name__ == '__main__':

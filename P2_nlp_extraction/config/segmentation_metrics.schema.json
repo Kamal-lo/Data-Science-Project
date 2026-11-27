@@ -1,0 +1,616 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "dataset_kind",
+    "status",
+    "sources",
+    "document_id",
+    "language",
+    "reference_validation",
+    "metrics",
+    "predicted_sections",
+    "reference_sections",
+    "scope",
+    "warnings",
+    "limits"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "p2.segmentation_metrics.v1"
+    },
+    "dataset_kind": {
+      "enum": [
+        "real",
+        "synthetic"
+      ]
+    },
+    "status": {
+      "enum": [
+        "evaluated",
+        "not_evaluated"
+      ]
+    },
+    "sources": {
+      "type": "object"
+    },
+    "document_id": {
+      "oneOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "language": {
+      "type": "string"
+    },
+    "reference_validation": {
+      "oneOf": [
+        {
+          "type": "object"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "metrics": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "labeled_exact",
+            "boundary_exact",
+            "category_on_exact_spans",
+            "boundary_exact_accuracy",
+            "per_category",
+            "errors"
+          ],
+          "properties": {
+            "labeled_exact": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "true_positives",
+                "false_positives",
+                "false_negatives",
+                "precision",
+                "recall",
+                "f1"
+              ],
+              "properties": {
+                "true_positives": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "false_positives": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "false_negatives": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "precision": {
+                  "oneOf": [
+                    {
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 1
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "recall": {
+                  "oneOf": [
+                    {
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 1
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "f1": {
+                  "oneOf": [
+                    {
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 1
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                }
+              }
+            },
+            "boundary_exact": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "true_positives",
+                "false_positives",
+                "false_negatives",
+                "precision",
+                "recall",
+                "f1"
+              ],
+              "properties": {
+                "true_positives": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "false_positives": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "false_negatives": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "precision": {
+                  "oneOf": [
+                    {
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 1
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "recall": {
+                  "oneOf": [
+                    {
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 1
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "f1": {
+                  "oneOf": [
+                    {
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 1
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                }
+              }
+            },
+            "category_on_exact_spans": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "correct",
+                "compared",
+                "accuracy"
+              ],
+              "properties": {
+                "correct": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "compared": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "accuracy": {
+                  "oneOf": [
+                    {
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 1
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                }
+              }
+            },
+            "boundary_exact_accuracy": {
+              "oneOf": [
+                {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "per_category": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "RC",
+                "CPS",
+                "CCAP",
+                "CCTP",
+                "BPU"
+              ],
+              "properties": {
+                "RC": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "true_positives",
+                    "false_positives",
+                    "false_negatives",
+                    "precision",
+                    "recall",
+                    "f1"
+                  ],
+                  "properties": {
+                    "true_positives": {
+                      "type": "integer",
+                      "minimum": 0
+                    },
+                    "false_positives": {
+                      "type": "integer",
+                      "minimum": 0
+                    },
+                    "false_negatives": {
+                      "type": "integer",
+                      "minimum": 0
+                    },
+                    "precision": {
+                      "oneOf": [
+                        {
+                          "type": "number",
+                          "minimum": 0,
+                          "maximum": 1
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "recall": {
+                      "oneOf": [
+                        {
+                          "type": "number",
+                          "minimum": 0,
+                          "maximum": 1
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "f1": {
+                      "oneOf": [
+                        {
+                          "type": "number",
+                          "minimum": 0,
+                          "maximum": 1
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "CPS": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "true_positives",
+                    "false_positives",
+                    "false_negatives",
+                    "precision",
+                    "recall",
+                    "f1"
+                  ],
+                  "properties": {
+                    "true_positives": {
+                      "type": "integer",
+                      "minimum": 0
+                    },
+                    "false_positives": {
+                      "type": "integer",
+                      "minimum": 0
+                    },
+                    "false_negatives": {
+                      "type": "integer",
+                      "minimum": 0
+                    },
+                    "precision": {
+                      "oneOf": [
+                        {
+                          "type": "number",
+                          "minimum": 0,
+                          "maximum": 1
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "recall": {
+                      "oneOf": [
+                        {
+                          "type": "number",
+                          "minimum": 0,
+                          "maximum": 1
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "f1": {
+                      "oneOf": [
+                        {
+                          "type": "number",
+                          "minimum": 0,
+                          "maximum": 1
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "CCAP": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "true_positives",
+                    "false_positives",
+                    "false_negatives",
+                    "precision",
+                    "recall",
+                    "f1"
+                  ],
+                  "properties": {
+                    "true_positives": {
+                      "type": "integer",
+                      "minimum": 0
+                    },
+                    "false_positives": {
+                      "type": "integer",
+                      "minimum": 0
+                    },
+                    "false_negatives": {
+                      "type": "integer",
+                      "minimum": 0
+                    },
+                    "precision": {
+                      "oneOf": [
+                        {
+                          "type": "number",
+                          "minimum": 0,
+                          "maximum": 1
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "recall": {
+                      "oneOf": [
+                        {
+                          "type": "number",
+                          "minimum": 0,
+                          "maximum": 1
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "f1": {
+                      "oneOf": [
+                        {
+                          "type": "number",
+                          "minimum": 0,
+                          "maximum": 1
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "CCTP": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "true_positives",
+                    "false_positives",
+                    "false_negatives",
+                    "precision",
+                    "recall",
+                    "f1"
+                  ],
+                  "properties": {
+                    "true_positives": {
+                      "type": "integer",
+                      "minimum": 0
+                    },
+                    "false_positives": {
+                      "type": "integer",
+                      "minimum": 0
+                    },
+                    "false_negatives": {
+                      "type": "integer",
+                      "minimum": 0
+                    },
+                    "precision": {
+                      "oneOf": [
+                        {
+                          "type": "number",
+                          "minimum": 0,
+                          "maximum": 1
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "recall": {
+                      "oneOf": [
+                        {
+                          "type": "number",
+                          "minimum": 0,
+                          "maximum": 1
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "f1": {
+                      "oneOf": [
+                        {
+                          "type": "number",
+                          "minimum": 0,
+                          "maximum": 1
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "BPU": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "true_positives",
+                    "false_positives",
+                    "false_negatives",
+                    "precision",
+                    "recall",
+                    "f1"
+                  ],
+                  "properties": {
+                    "true_positives": {
+                      "type": "integer",
+                      "minimum": 0
+                    },
+                    "false_positives": {
+                      "type": "integer",
+                      "minimum": 0
+                    },
+                    "false_negatives": {
+                      "type": "integer",
+                      "minimum": 0
+                    },
+                    "precision": {
+                      "oneOf": [
+                        {
+                          "type": "number",
+                          "minimum": 0,
+                          "maximum": 1
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "recall": {
+                      "oneOf": [
+                        {
+                          "type": "number",
+                          "minimum": 0,
+                          "maximum": 1
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "f1": {
+                      "oneOf": [
+                        {
+                          "type": "number",
+                          "minimum": 0,
+                          "maximum": 1
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            },
+            "errors": {
+              "type": "array",
+              "items": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "predicted_sections": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "reference_sections": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "hierarchy_metrics": {"type": "object"},
+    "scope": {
+      "oneOf": [
+        {
+          "type": "object"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "warnings": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "limits": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:p2:segmentation_metrics:v1"
+}

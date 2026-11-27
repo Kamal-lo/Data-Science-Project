@@ -8,11 +8,39 @@ from unittest.mock import patch
 
 from conversion_fixtures import ConversionCase, pdf_bytes, docx_bytes, zip_bytes
 from P2_nlp_extraction.document_conversion import convert_ingestion, ConversionInputError, ConversionLimits, ConversionOptions
-from P2_nlp_extraction.document_conversion.models import error
+from P2_nlp_extraction.document_conversion.models import atomic_text, error
 from P2_nlp_extraction.scripts.ocr_common import ROOT
 
 
 class IntegrationTests(ConversionCase):
+    def test_atomic_export_in_deep_folder(self):
+        folder = self.folder / ('nested_' + 'x' * max(1, 227 - len(str(self.folder))))
+        folder.mkdir()
+        target = folder / 'document.md'
+        atomic_text(target, 'First', 64)
+        atomic_text(target, 'Second', 64)
+        self.assertEqual(target.read_text(encoding='utf-8'), 'Second')
+        self.assertEqual(list(folder.iterdir()), [target])
+
+    def test_atomic_export_retries_windows_reader_lock(self):
+        target = self.folder / 'progress.json'
+        target.write_text('old', encoding='utf-8')
+        locked = PermissionError('A polling reader has the file open')
+        locked.winerror = 5
+        original_replace = Path.replace
+        attempts = []
+
+        def replace(source, destination):
+            attempts.append(destination)
+            if len(attempts) == 1:
+                raise locked
+            return original_replace(source, destination)
+
+        with patch.object(Path, 'replace', replace):
+            atomic_text(target, 'new', 64)
+        self.assertEqual(attempts, [target, target])
+        self.assertEqual(target.read_text(encoding='utf-8'), 'new')
+
     def test_multi_document_t23_zip_to_markdown_json(self):
         self.ingestion(zip_bytes([('Français/cahier.pdf', pdf_bytes()), ('عربي/عقد.docx', docx_bytes()), ('notes.txt', b'unsupported')]), 'dce.zip')
         source_bytes = self.manifest.read_bytes()
