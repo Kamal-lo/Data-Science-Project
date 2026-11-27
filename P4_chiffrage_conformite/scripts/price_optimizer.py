@@ -8,7 +8,12 @@ from prix_reference_model import calculer_prix_reference
 
 
 def seuil_anormalement_basse_pct(type_prestation, params):
-    if type_prestation.upper() == "TRAVAUX":
+    """Renvoie le seuil applicable, ou None si aucun seuil ne s'applique
+    (cas des etudes, cf. article 44 et T14)."""
+    tp = type_prestation.upper()
+    if tp == "ETUDES":
+        return None
+    if tp == "TRAVAUX":
         return params["parameters"]["seuil_anormalement_basse_travaux_pct"]
     return params["parameters"]["seuil_anormalement_basse_fournitures_services_pct"]
 
@@ -21,6 +26,32 @@ def simuler_scenarios(estimation_mad, type_prestation, region, secteur_activite,
     seuil_excessif = params["parameters"]["seuil_offre_excessive_pct"]
 
     prix_ref, rabais_marche = calculer_prix_reference(estimation_mad, region, secteur_activite)
+
+    if seuil_bas is None:
+        # Etudes : aucun seuil d'offre anormalement basse (article 44 / T14).
+        # On genere quand meme des scenarios indicatifs, sans zone de rejet.
+        rabais_max_affiche = 30
+        scenarios = []
+        rabais = 0
+        while rabais <= rabais_max_affiche:
+            prix = estimation_mad * (1 - rabais / 100)
+            scenarios.append({
+                "rabais_pct": rabais,
+                "prix_offre_mad": round(prix, 2),
+                "zone": "SUR (pas de seuil - etudes, note technico-financiere art. 144)",
+            })
+            rabais += pas_pct
+
+        return {
+            "estimation_mad": estimation_mad,
+            "type_prestation": type_prestation,
+            "seuil_anormalement_basse_pct": None,
+            "seuil_offre_excessive_pct": None,
+            "rabais_marche_estime_pct": round(rabais_marche, 2),
+            "prix_reference_marche_mad": round(prix_ref, 2),
+            "scenarios": scenarios,
+            "scenario_recommande": scenarios[-1],
+        }
 
     scenarios = []
     rabais = 0

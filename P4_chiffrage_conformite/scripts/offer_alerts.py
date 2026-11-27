@@ -10,11 +10,23 @@ from price_optimizer import seuil_anormalement_basse_pct
 def evaluer_offre(estimation_mad, offre_mad, type_prestation):
     """Classe une offre financiere par rapport a l'estimation du maitre d'ouvrage,
     selon les seuils de l'article 44 du decret 2-22-431 (T14/T50)."""
+    ecart_pct = (offre_mad - estimation_mad) / estimation_mad * 100
+
+    if type_prestation.upper() == "ETUDES":
+        return {
+            "estimation_mad": estimation_mad,
+            "offre_mad": offre_mad,
+            "ecart_pct": round(ecart_pct, 2),
+            "statut": "NON_APPLICABLE",
+            "message": (
+                "Aucun seuil d'offre excessive/anormalement basse pour les etudes "
+                "(article 44) - evaluation par note technico-financiere (article 144)"
+            ),
+        }
+
     params = charger_parametres()
     seuil_excessif = params["parameters"]["seuil_offre_excessive_pct"]
     seuil_bas = seuil_anormalement_basse_pct(type_prestation, params)
-
-    ecart_pct = (offre_mad - estimation_mad) / estimation_mad * 100
 
     if ecart_pct > seuil_excessif:
         statut = "EXCESSIVE"
