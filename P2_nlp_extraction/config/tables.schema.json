@@ -1,0 +1,802 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "status",
+    "human_validated",
+    "source",
+    "coverage",
+    "warnings",
+    "source_warnings",
+    "source_errors",
+    "source_pages",
+    "segmentation_warnings",
+    "outputs",
+    "tables"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "p2.tables.v1"
+    },
+    "status": {
+      "enum": [
+        "partial",
+        "completed_with_review"
+      ]
+    },
+    "human_validated": {
+      "const": false
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "document_id",
+        "conversion_json",
+        "conversion_json_sha256",
+        "segmentation_json",
+        "segmentation_json_sha256",
+        "conversion_source",
+        "coordinate_system",
+        "conversion_status"
+      ],
+      "properties": {
+        "document_id": {
+          "type": "string"
+        },
+        "conversion_json": {
+          "type": "string"
+        },
+        "conversion_json_sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "segmentation_json": {
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "segmentation_json_sha256": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "conversion_source": {
+          "type": "object"
+        },
+        "coordinate_system": {
+          "type": "string"
+        },
+        "conversion_status": {
+          "type": "string"
+        }
+      }
+    },
+    "coverage": {
+      "type": "object"
+    },
+    "warnings": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "source_warnings": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "source_errors": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "source_pages": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "segmentation_warnings": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "outputs": {
+      "const": {
+        "tables_json": "tables.json",
+        "tables_csv": "tables.csv",
+        "bpu_json": "bpu.json",
+        "bpu_csv": "bpu.csv"
+      }
+    },
+    "tables": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/table"
+      }
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:p2:tables:v1",
+  "$defs": {
+    "table": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "table_id",
+        "source_block_ids",
+        "pages",
+        "bbox",
+        "language",
+        "source_block",
+        "section",
+        "status",
+        "human_validated",
+        "needs_review",
+        "classification",
+        "classification_evidence",
+        "columns",
+        "header_row_index",
+        "rows",
+        "price_lines",
+        "continuation_candidates",
+        "warnings"
+      ],
+      "properties": {
+        "table_id": {
+          "type": "string",
+          "pattern": "^t[0-9]{6,}$"
+        },
+        "source_block_ids": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        },
+        "pages": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "bbox": {
+          "oneOf": [
+            {
+              "type": "array",
+              "minItems": 4,
+              "maxItems": 4,
+              "items": {
+                "type": "number"
+              }
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "language": {
+          "enum": [
+            "fr",
+            "ar",
+            "mixed",
+            "und"
+          ]
+        },
+        "source_block": {
+          "type": "object",
+          "required": [
+            "block_id",
+            "type",
+            "raw_text",
+            "source_reference"
+          ],
+          "properties": {
+            "type": {
+              "const": "table"
+            }
+          }
+        },
+        "section": {
+          "oneOf": [
+            {
+              "type": "object",
+              "required": [
+                "section_id",
+                "category",
+                "title_raw",
+                "confidence",
+                "needs_review",
+                "warnings"
+              ],
+              "properties": {
+                "category": {
+                  "enum": [
+                    "RC",
+                    "CPS",
+                    "CCAP",
+                    "CCTP",
+                    "BPU"
+                  ]
+                },
+                "needs_review": {
+                  "const": true
+                }
+              }
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "status": {
+          "enum": [
+            "partial",
+            "completed_with_review"
+          ]
+        },
+        "human_validated": {
+          "const": false
+        },
+        "needs_review": {
+          "const": true
+        },
+        "classification": {
+          "enum": [
+            "undetermined",
+            "ordinary",
+            "price_table",
+            "bpu_candidate",
+            "bpu"
+          ]
+        },
+        "classification_evidence": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "columns": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "index",
+              "header_raw",
+              "candidates",
+              "field"
+            ],
+            "properties": {
+              "index": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "header_raw": {
+                "oneOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "candidates": {
+                "type": "array",
+                "items": {
+                  "enum": [
+                    "price_number",
+                    "designation",
+                    "unit",
+                    "quantity",
+                    "unit_price",
+                    "amount"
+                  ]
+                }
+              },
+              "field": {
+                "oneOf": [
+                  {
+                    "enum": [
+                      "price_number",
+                      "designation",
+                      "unit",
+                      "quantity",
+                      "unit_price",
+                      "amount"
+                    ]
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "header_row_index": {
+          "oneOf": [
+            {
+              "type": "integer",
+              "minimum": 0
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "rows": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "index",
+              "kind",
+              "cells"
+            ],
+            "properties": {
+              "index": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "kind": {
+                "enum": [
+                  "header_candidate",
+                  "repeated_header_candidate",
+                  "data"
+                ]
+              },
+              "cells": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "row",
+                    "column",
+                    "value",
+                    "status",
+                    "source"
+                  ],
+                  "properties": {
+                    "row": {
+                      "type": "integer",
+                      "minimum": 0
+                    },
+                    "column": {
+                      "type": "integer",
+                      "minimum": 0
+                    },
+                    "value": {
+                      "oneOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "status": {
+                      "enum": [
+                        "present",
+                        "empty",
+                        "unreadable",
+                        "covered"
+                      ]
+                    },
+                    "source": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "required": [
+                        "block_id",
+                        "page",
+                        "bbox",
+                        "table_bbox",
+                        "source_reference",
+                        "cell_metadata"
+                      ],
+                      "properties": {
+                        "block_id": {
+                          "type": "string"
+                        },
+                        "page": {
+                          "oneOf": [
+                            {
+                              "type": "integer",
+                              "minimum": 1
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        },
+                        "bbox": {
+                          "oneOf": [
+                            {
+                              "type": "array",
+                              "minItems": 4,
+                              "maxItems": 4,
+                              "items": {
+                                "type": "number"
+                              }
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        },
+                        "table_bbox": {
+                          "oneOf": [
+                            {
+                              "type": "array",
+                              "minItems": 4,
+                              "maxItems": 4,
+                              "items": {
+                                "type": "number"
+                              }
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        },
+                        "source_reference": {
+                          "type": "object"
+                        },
+                        "cell_metadata": {
+                          "oneOf": [
+                            {
+                              "type": "object"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "price_lines": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "row",
+              "page",
+              "source_block_id",
+              "fields",
+              "missing_fields",
+              "arithmetic_check",
+              "needs_review",
+              "warnings"
+            ],
+            "properties": {
+              "row": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "page": {
+                "oneOf": [
+                  {
+                    "type": "integer",
+                    "minimum": 1
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "source_block_id": {
+                "type": "string"
+              },
+              "fields": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "price_number": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "value",
+                      "row",
+                      "column",
+                      "source_block_id"
+                    ],
+                    "properties": {
+                      "value": {
+                        "oneOf": [
+                          {
+                            "type": "string"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "row": {
+                        "type": "integer",
+                        "minimum": 0
+                      },
+                      "column": {
+                        "type": "integer",
+                        "minimum": 0
+                      },
+                      "source_block_id": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "designation": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "value",
+                      "row",
+                      "column",
+                      "source_block_id"
+                    ],
+                    "properties": {
+                      "value": {
+                        "oneOf": [
+                          {
+                            "type": "string"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "row": {
+                        "type": "integer",
+                        "minimum": 0
+                      },
+                      "column": {
+                        "type": "integer",
+                        "minimum": 0
+                      },
+                      "source_block_id": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "unit": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "value",
+                      "row",
+                      "column",
+                      "source_block_id"
+                    ],
+                    "properties": {
+                      "value": {
+                        "oneOf": [
+                          {
+                            "type": "string"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "row": {
+                        "type": "integer",
+                        "minimum": 0
+                      },
+                      "column": {
+                        "type": "integer",
+                        "minimum": 0
+                      },
+                      "source_block_id": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "quantity": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "value",
+                      "row",
+                      "column",
+                      "source_block_id"
+                    ],
+                    "properties": {
+                      "value": {
+                        "oneOf": [
+                          {
+                            "type": "string"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "row": {
+                        "type": "integer",
+                        "minimum": 0
+                      },
+                      "column": {
+                        "type": "integer",
+                        "minimum": 0
+                      },
+                      "source_block_id": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "unit_price": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "value",
+                      "row",
+                      "column",
+                      "source_block_id"
+                    ],
+                    "properties": {
+                      "value": {
+                        "oneOf": [
+                          {
+                            "type": "string"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "row": {
+                        "type": "integer",
+                        "minimum": 0
+                      },
+                      "column": {
+                        "type": "integer",
+                        "minimum": 0
+                      },
+                      "source_block_id": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "amount": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "value",
+                      "row",
+                      "column",
+                      "source_block_id"
+                    ],
+                    "properties": {
+                      "value": {
+                        "oneOf": [
+                          {
+                            "type": "string"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "row": {
+                        "type": "integer",
+                        "minimum": 0
+                      },
+                      "column": {
+                        "type": "integer",
+                        "minimum": 0
+                      },
+                      "source_block_id": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              },
+              "missing_fields": {
+                "type": "array",
+                "items": {
+                  "enum": [
+                    "price_number",
+                    "designation",
+                    "unit",
+                    "quantity",
+                    "unit_price",
+                    "amount"
+                  ]
+                }
+              },
+              "arithmetic_check": {
+                "oneOf": [
+                  {
+                    "type": "object",
+                    "required": [
+                      "status"
+                    ],
+                    "properties": {
+                      "status": {
+                        "enum": [
+                          "consistent",
+                          "mismatch",
+                          "not_checked"
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "needs_review": {
+                "const": true
+              },
+              "warnings": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "continuation_candidates": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "table_id",
+              "needs_review",
+              "reason"
+            ],
+            "properties": {
+              "table_id": {
+                "type": "string"
+              },
+              "needs_review": {
+                "const": true
+              },
+              "reason": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "warnings": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

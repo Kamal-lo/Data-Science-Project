@@ -1,0 +1,142 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "dataset_kind",
+    "conversion_json_sha256",
+    "approval",
+    "scope",
+    "sections"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "p2.section_annotations.v1"
+    },
+    "dataset_kind": {
+      "enum": [
+        "real",
+        "synthetic"
+      ]
+    },
+    "conversion_json_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "approval": {
+      "type": "object",
+      "required": [
+        "human_reviewed",
+        "scope_confirmed",
+        "reviewer",
+        "approved_at",
+        "reference_sha256",
+        "scope_sha256"
+      ],
+      "properties": {
+        "human_reviewed": {
+          "type": "boolean"
+        },
+        "scope_confirmed": {
+          "type": "boolean"
+        },
+        "reviewer": {
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "approved_at": {
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "reference_sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "scope_sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      }
+    },
+    "scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "block_ids",
+        "exhaustive"
+      ],
+      "properties": {
+        "block_ids": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        },
+        "exhaustive": {
+          "type": "boolean"
+        },
+        "hierarchy": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["kind", "start_block_id", "end_block_id"],
+            "properties": {
+              "kind": {"enum": ["article", "subsection"]},
+              "start_block_id": {"type": "string"},
+              "end_block_id": {"type": "string"}
+            }
+          }
+        }
+      }
+    },
+    "sections": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "annotation_id",
+          "category",
+          "start_block_id",
+          "end_block_id"
+        ],
+        "properties": {
+          "annotation_id": {
+            "type": "string"
+          },
+          "category": {
+            "enum": [
+              "RC",
+              "CPS",
+              "CCAP",
+              "CCTP",
+              "BPU"
+            ]
+          },
+          "start_block_id": {
+            "type": "string"
+          },
+          "end_block_id": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:p2:section_annotations:v1"
+}

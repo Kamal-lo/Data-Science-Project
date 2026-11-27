@@ -1,0 +1,8 @@
+# Conversion complète, OCR CPU inclus.
+-r requirements-core.txt
+paddlepaddle==3.2.2
+paddleocr==3.3.2
+paddlex[ocr-core]==3.3.13
+Pillow==12.0.0
+numpy==2.5.4
+opencv-contrib-python==4.10.0.84

@@ -1,0 +1,136 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:p2:conversion:v1",
+  "title": "T24 conversion manifest or document",
+  "oneOf": [{"$ref": "#/$defs/manifest"}, {"$ref": "#/$defs/document"}],
+  "$defs": {
+    "status": {"enum": ["processing", "completed", "completed_with_review", "partial", "failed", "rejected"]},
+    "graphic": {
+      "type": "object",
+      "required": ["kind", "index", "bbox"],
+      "properties": {
+        "kind": {"enum": ["raster", "vector"]},
+        "index": {"type": "integer", "minimum": 0},
+        "bbox": {"type": "array", "minItems": 4, "maxItems": 4, "items": {"type": "number"}},
+        "pixel_size": {"type": "array", "minItems": 2, "maxItems": 2, "items": {"type": "integer", "minimum": 1}},
+        "operator": {"enum": ["fill-path", "stroke-path", "fill-shade"]}
+      }
+    },
+    "text_locator": {
+      "type": "object",
+      "required": ["kind", "raw_text", "block_id", "page", "span", "method", "bbox", "needs_review"],
+      "properties": {
+        "kind": {"enum": ["date", "reference"]},
+        "raw_text": {"type": "string", "minLength": 1},
+        "block_id": {"$ref": "#/$defs/block/properties/block_id"},
+        "page": {"$ref": "#/$defs/block/properties/page"},
+        "span": {"type": "array", "minItems": 2, "maxItems": 2, "items": {"type": "integer", "minimum": 0}},
+        "method": {"$ref": "#/$defs/block/properties/method"},
+        "bbox": {"$ref": "#/$defs/block/properties/bbox"},
+        "needs_review": {"const": true}
+      }
+    },
+    "errors": {"type": "array", "items": {"type": "object", "required": ["code", "message"], "properties": {"code": {"type": "string"}, "message": {"type": "string"}}}},
+    "block": {
+      "type": "object",
+      "required": ["block_id", "type", "raw_text", "text", "page", "bbox", "method", "source_reference", "human_validated", "needs_review", "warnings", "language", "markdown_lines"],
+      "properties": {
+        "block_id": {"type": "string", "pattern": "^f[0-9]{6,}_b[0-9]{6,}$"},
+        "structure_group_id": {"type": "string", "pattern": "^f[0-9]{6,}_p[0-9]{4,}_s[0-9]{6,}$"},
+        "type": {"enum": ["heading", "paragraph", "list_item", "table", "image", "unresolved"]},
+        "raw_text": {"type": ["string", "null"]},
+        "text": {"type": ["string", "null"]},
+        "page": {"type": ["integer", "null"], "minimum": 1},
+        "bbox": {"oneOf": [{"type": "null"}, {"type": "array", "minItems": 4, "maxItems": 4, "items": {"type": "number"}}]},
+        "method": {"enum": ["native_pdf", "docx_xml", "ocr"]},
+        "source_reference": {"type": "object"},
+        "human_validated": {"const": false},
+        "needs_review": {"type": "boolean"},
+        "warnings": {"type": "array", "items": {"type": "string"}},
+        "language": {"enum": ["fr", "ar", "mixed", "und"]},
+        "markdown_lines": {"oneOf": [{"type": "null"}, {"type": "array", "minItems": 2, "maxItems": 2, "items": {"type": "integer", "minimum": 1}}]}
+      }
+    },
+    "ocr_structure": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["group_id", "type", "method", "page", "source_block_ids", "raw_texts", "text", "bbox", "language", "direction", "join_policy", "human_validated", "needs_review", "warnings", "markdown_lines", "inference"],
+      "properties": {
+        "group_id": {"type": "string", "pattern": "^f[0-9]{6,}_p[0-9]{4,}_s[0-9]{6,}$"},
+        "type": {"$ref": "#/$defs/block/properties/type"},
+        "method": {"const": "ocr"},
+        "page": {"type": "integer", "minimum": 1},
+        "source_block_ids": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "pattern": "^f[0-9]{6,}_b[0-9]{6,}$"}},
+        "raw_texts": {"type": "array", "minItems": 1, "items": {"type": ["string", "null"]}},
+        "text": {"type": ["string", "null"]},
+        "bbox": {"$ref": "#/$defs/block/properties/bbox"},
+        "language": {"$ref": "#/$defs/block/properties/language"},
+        "direction": {"enum": ["ltr", "rtl", "und"]},
+        "heading_level": {"enum": [1, 2, 3]},
+        "join_policy": {"const": "space_between_source_blocks"},
+        "human_validated": {"const": false},
+        "needs_review": {"const": true},
+        "warnings": {"$ref": "#/$defs/block/properties/warnings"},
+        "markdown_lines": {"$ref": "#/$defs/block/properties/markdown_lines"},
+        "inference": {
+          "type": "object", "required": ["version", "rule", "evidence"],
+          "properties": {
+            "version": {"const": "p2.ocr_structure.v1"},
+            "rule": {"enum": ["original_ocr_block", "aligned_adjacent_lines", "isolated_centered_height_hierarchy"]},
+            "evidence": {"type": "object"}
+          }
+        }
+      },
+      "allOf": [{"if": {"properties": {"type": {"const": "heading"}}}, "then": {"required": ["heading_level"], "properties": {"text": {"type": "string", "minLength": 1}}}, "else": {"not": {"required": ["heading_level"]}}}]
+    },
+    "document": {
+      "type": "object",
+      "required": ["schema_version", "document_id", "status", "human_validated", "source", "coordinate_system", "pages", "blocks", "sections", "coverage", "warnings", "errors", "outputs", "versions", "options", "execution_seconds"],
+      "properties": {
+        "schema_version": {"const": "p2.conversion_document.v1"},
+        "document_id": {"type": "string", "pattern": "^f[0-9]{6,}$"},
+        "status": {"$ref": "#/$defs/status"},
+        "human_validated": {"const": false},
+        "source": {
+          "type": "object",
+          "required": ["ingestion_run_id", "file_id", "manifest_path", "manifest_sha256", "artifact_path", "sha256", "size_bytes", "detected_type"],
+          "properties": {
+            "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+            "manifest_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+            "detected_type": {"enum": ["pdf", "docx"]},
+            "size_bytes": {"type": "integer", "minimum": 0}
+          }
+        },
+        "pages": {"type": "array", "items": {"type": "object", "required": ["page", "status", "routing", "blocks", "warnings", "errors"], "properties": {"page": {"type": "integer", "minimum": 1}, "blocks": {"type": "array", "items": {"$ref": "#/$defs/block"}}, "structure": {"type": "array", "items": {"$ref": "#/$defs/ocr_structure"}}, "graphics": {"type": "array", "items": {"$ref": "#/$defs/graphic"}}}}},
+        "blocks": {"type": "array", "items": {"$ref": "#/$defs/block"}},
+        "text_locators": {"type": "array", "items": {"$ref": "#/$defs/text_locator"}},
+        "sections": {"type": "array"},
+        "coverage": {"type": "object"},
+        "warnings": {"type": "array", "items": {"type": "string"}},
+        "errors": {"$ref": "#/$defs/errors"},
+        "execution_seconds": {"type": "number", "minimum": 0},
+        "outputs": {"const": {"markdown": "document.md", "json": "document.json"}},
+        "versions": {"type": "object"},
+        "options": {"type": "object"},
+        "coordinate_system": {"type": "string"}
+      },
+      "allOf": [{"if": {"properties": {"source": {"properties": {"detected_type": {"const": "docx"}}}}}, "then": {"properties": {"pages": {"maxItems": 0}, "blocks": {"items": {"properties": {"page": {"type": "null"}, "bbox": {"type": "null"}}}}}}}]
+    },
+    "manifest": {
+      "type": "object",
+      "required": ["schema_version", "run_id", "status", "human_validated", "source_manifest", "source_manifest_sha256", "ingestion_run_id", "documents", "errors", "execution_seconds"],
+      "properties": {
+        "schema_version": {"const": "p2.conversion.v1"},
+        "run_id": {"type": "string"},
+        "status": {"$ref": "#/$defs/status"},
+        "human_validated": {"const": false},
+        "source_manifest": {"type": "string"},
+        "source_manifest_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+        "ingestion_run_id": {"type": "string"},
+        "documents": {"type": "array", "items": {"type": "object", "required": ["document_id", "source_file_id", "status", "markdown", "json", "execution_seconds", "warnings", "errors"], "properties": {"status": {"$ref": "#/$defs/status"}}}},
+        "errors": {"$ref": "#/$defs/errors"},
+        "execution_seconds": {"type": "number", "minimum": 0}
+      }
+    }
+  }
+}

@@ -1,0 +1,474 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "dataset_kind",
+    "normalization",
+    "character_unit",
+    "block_join",
+    "sources",
+    "records",
+    "aggregates",
+    "warnings",
+    "limits"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "p2.ocr_metrics.v1"
+    },
+    "dataset_kind": {
+      "enum": [
+        "real",
+        "synthetic"
+      ]
+    },
+    "normalization": {
+      "enum": [
+        "none",
+        "NFC"
+      ]
+    },
+    "character_unit": {
+      "const": "Unicode code point"
+    },
+    "block_join": {
+      "type": "string"
+    },
+    "sources": {
+      "type": "object"
+    },
+    "records": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "document_id",
+          "page",
+          "language",
+          "dataset_kind",
+          "status",
+          "metrics",
+          "reference_source",
+          "reference_sha256",
+          "reference_validation",
+          "scope_sha256",
+          "reference_text_original",
+          "hypothesis_text_original",
+          "source_block_ids",
+          "warnings"
+        ],
+        "properties": {
+          "document_id": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "page": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "language": {
+            "enum": [
+              "fr",
+              "ar"
+            ]
+          },
+          "dataset_kind": {
+            "enum": [
+              "real",
+              "synthetic"
+            ]
+          },
+          "status": {
+            "enum": [
+              "evaluated",
+              "not_evaluated"
+            ]
+          },
+          "metrics": {
+            "oneOf": [
+              {
+                "allOf": [
+                  {
+                    "type": "object",
+                    "required": [
+                      "substitutions",
+                      "insertions",
+                      "deletions",
+                      "total_errors",
+                      "reference_characters",
+                      "hypothesis_characters",
+                      "cer",
+                      "cer_percent"
+                    ],
+                    "properties": {
+                      "word_metrics": { "$ref": "#/$defs/wordMetrics" },
+                      "substitutions": {
+                        "type": "integer",
+                        "minimum": 0
+                      },
+                      "insertions": {
+                        "type": "integer",
+                        "minimum": 0
+                      },
+                      "deletions": {
+                        "type": "integer",
+                        "minimum": 0
+                      },
+                      "total_errors": {
+                        "type": "integer",
+                        "minimum": 0
+                      },
+                      "reference_characters": {
+                        "type": "integer",
+                        "minimum": 0
+                      },
+                      "hypothesis_characters": {
+                        "type": "integer",
+                        "minimum": 0
+                      },
+                      "cer": {
+                        "type": "number",
+                        "minimum": 0
+                      },
+                      "cer_percent": {
+                        "type": "number",
+                        "minimum": 0
+                      }
+                    }
+                  },
+                  {
+                    "type": "object",
+                    "required": [
+                      "normalization",
+                      "reference_changed",
+                      "hypothesis_changed"
+                    ],
+                    "properties": {
+                      "normalization": {
+                        "enum": [
+                          "none",
+                          "NFC"
+                        ]
+                      },
+                      "reference_changed": {
+                        "type": "boolean"
+                      },
+                      "hypothesis_changed": {
+                        "type": "boolean"
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "reference_source": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "reference_sha256": {
+            "oneOf": [
+              {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "reference_validation": {
+            "type": "object",
+            "required": [
+              "human_validated",
+              "synthetic_oracle",
+              "approval"
+            ]
+          },
+          "scope_sha256": {
+            "oneOf": [
+              {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "reference_text_original": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "hypothesis_text_original": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "source_block_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "warnings": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "aggregates": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "fr",
+        "ar"
+      ],
+      "properties": {
+        "fr": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "status",
+            "evaluated_pages",
+            "requested_pages",
+            "metrics",
+            "warnings"
+          ],
+          "properties": {
+            "status": {
+              "enum": [
+                "evaluated",
+                "not_evaluated",
+                "partial"
+              ]
+            },
+            "evaluated_pages": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "requested_pages": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "metrics": {
+              "oneOf": [
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "substitutions",
+                    "insertions",
+                    "deletions",
+                    "total_errors",
+                    "reference_characters",
+                    "hypothesis_characters",
+                    "cer",
+                    "cer_percent"
+                  ],
+                  "properties": {
+                    "word_metrics": { "$ref": "#/$defs/wordMetrics" },
+                    "substitutions": {
+                      "type": "integer",
+                      "minimum": 0
+                    },
+                    "insertions": {
+                      "type": "integer",
+                      "minimum": 0
+                    },
+                    "deletions": {
+                      "type": "integer",
+                      "minimum": 0
+                    },
+                    "total_errors": {
+                      "type": "integer",
+                      "minimum": 0
+                    },
+                    "reference_characters": {
+                      "type": "integer",
+                      "minimum": 0
+                    },
+                    "hypothesis_characters": {
+                      "type": "integer",
+                      "minimum": 0
+                    },
+                    "cer": {
+                      "type": "number",
+                      "minimum": 0
+                    },
+                    "cer_percent": {
+                      "type": "number",
+                      "minimum": 0
+                    }
+                  }
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "warnings": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "ar": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "status",
+            "evaluated_pages",
+            "requested_pages",
+            "metrics",
+            "warnings"
+          ],
+          "properties": {
+            "status": {
+              "enum": [
+                "evaluated",
+                "not_evaluated",
+                "partial"
+              ]
+            },
+            "evaluated_pages": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "requested_pages": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "metrics": {
+              "oneOf": [
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "substitutions",
+                    "insertions",
+                    "deletions",
+                    "total_errors",
+                    "reference_characters",
+                    "hypothesis_characters",
+                    "cer",
+                    "cer_percent"
+                  ],
+                  "properties": {
+                    "word_metrics": { "$ref": "#/$defs/wordMetrics" },
+                    "substitutions": {
+                      "type": "integer",
+                      "minimum": 0
+                    },
+                    "insertions": {
+                      "type": "integer",
+                      "minimum": 0
+                    },
+                    "deletions": {
+                      "type": "integer",
+                      "minimum": 0
+                    },
+                    "total_errors": {
+                      "type": "integer",
+                      "minimum": 0
+                    },
+                    "reference_characters": {
+                      "type": "integer",
+                      "minimum": 0
+                    },
+                    "hypothesis_characters": {
+                      "type": "integer",
+                      "minimum": 0
+                    },
+                    "cer": {
+                      "type": "number",
+                      "minimum": 0
+                    },
+                    "cer_percent": {
+                      "type": "number",
+                      "minimum": 0
+                    }
+                  }
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "warnings": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "warnings": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "limits": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$defs": {
+    "wordMetrics": {
+      "type": ["object", "null"],
+      "additionalProperties": false,
+      "required": ["substitutions", "insertions", "deletions", "total_errors",
+                   "reference_words", "hypothesis_words", "wer", "wer_percent"],
+      "properties": {
+        "substitutions": {"type": "integer", "minimum": 0},
+        "insertions": {"type": "integer", "minimum": 0},
+        "deletions": {"type": "integer", "minimum": 0},
+        "total_errors": {"type": "integer", "minimum": 0},
+        "reference_words": {"type": "integer", "minimum": 1},
+        "hypothesis_words": {"type": "integer", "minimum": 0},
+        "wer": {"type": "number", "minimum": 0},
+        "wer_percent": {"type": "number", "minimum": 0}
+      }
+    }
+  },
+  "$id": "urn:p2:ocr_metrics:v1"
+}

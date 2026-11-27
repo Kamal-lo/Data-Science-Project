@@ -1,0 +1,3 @@
+# Interface facultative ; Streamlit est déjà présent dans l'environnement local.
+-r requirements-core.txt
+streamlit==1.67.0

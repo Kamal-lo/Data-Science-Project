@@ -1,0 +1,2 @@
+# Compatibilité avec les commandes de conversion existantes.
+-c requirements-lock.txt
